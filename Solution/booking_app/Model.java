@@ -73,6 +73,17 @@ public class Model {
             return users;
         }
     }
+    public static void addVisitDetails(User doctor, String visitNotes, int timestamp, User patient, String prescriptionName, int prescriptionQunatity) throws SQLException {
+        try (PreparedStatement stmt = getConn().prepareStatement("INSERT INTO visitDetails VALUES ( '?', '?', '?', '?', '?', '?');")) {
+            stmt.setInt(1, prescriptionQunatity);
+            stmt.setString(2, prescriptionName);
+            stmt.setString(3, patient.getEmail());
+            stmt.setString(4, visitNotes);
+            stmt.setString(5, doctor.getEmail());
+            stmt.setInt(6, timestamp);
+            stmt.executeUpdate();
+        }
+    }
 
     
 
