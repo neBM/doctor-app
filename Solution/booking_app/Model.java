@@ -42,6 +42,25 @@ public class Model {
         
         
     } 
+    public static class Message {
+        private int id;
+        private User to;
+        private User from;
+        private String message;
+        private Boolean read;
+    
+        public Message(int id, User to, User from, String message, Boolean read){
+            this.id = id;
+            this.to = to;
+            this.from = from;
+            this.message = message; 
+            this.read = read;
+        }
+        public void markRead(){
+            read = true;
+        }
+        
+    }
     
     private static class User {
         private String email;
