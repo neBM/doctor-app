@@ -61,6 +61,23 @@ public class Model {
             throw new IllegalArgumentException("Username doesn't exist");
         }
     }
+
+    public enum Events {
+        VIEW_MESSAGES,
+        VIEW_PATIENTS,
+        VIEW_BOOKINGS,
+        VIEW_VISTS,
+        VIEW_NEWVIST,
+        VIEW_WELCOMESCREEN;
+    }
+
+    public static void logEvent(User user, Events event) throws SQLException {
+        try (PreparedStatement stmt = getConn().prepareStatement("INSERT INTO `accessRecords` (`email`, `event`) VALUES (?, ?)")) {
+            stmt.setString(1, user.getEmail());
+            stmt.setString(2, event.name());
+            stmt.executeUpdate();
+        }
+    }
     
     public static Set<User> getUsers() throws SQLException {
         try (Statement stmt = getConn().createStatement()) {
