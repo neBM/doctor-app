@@ -48,7 +48,7 @@ public class Model {
         private User from;
         private String message;
         private Boolean read;
-    
+
         public Message(int id, User to, User from, String message, Boolean read){
             this.id = id;
             this.to = to;
@@ -136,6 +136,14 @@ public class Model {
             stmt.setString(4, visitNotes);
             stmt.setString(5, doctor.getEmail());
             stmt.setInt(6, timestamp);
+            stmt.executeUpdate();
+        }
+    }
+    public static void addMessage(User to, User from, String message) throws SQLException {
+        try (PreparedStatement stmt = getConn().prepareStatement("INSERT INTO `messages` (to, from, message) VALUES ('?', '?', '?');"))  {
+            stmt.setString(1, to.getEmail());
+            stmt.setString(2, from.getEmail());
+            stmt.setString(3, message);
             stmt.executeUpdate();
         }
     }
