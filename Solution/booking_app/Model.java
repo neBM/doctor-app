@@ -43,6 +43,18 @@ public class Model {
         return DriverManager.getConnection("jdbc:mysql://www.martinilink.co.uk:3306/doctor_app", "doctor_app", "JNpRFmbXk5WB68SW");
     }
 
+    public static User getUser(String email) throws SQLException, IllegalArgumentException {
+        try (PreparedStatement stmt = getConn().prepareStatement("SELECT `email` FROM `users` WHERE `email` = ?")) {
+            stmt.setString(1, email);
+            ResultSet result = stmt.executeQuery();
+            HashSet<User> users = new HashSet<>();
+            if (result.next()) {
+                return new User(result.getString("email"));
+            }
+            throw new IllegalArgumentException("Username doesn't exist");
+        }
+    }
+    
     public static Set<User> getUsers() throws SQLException {
         try (Statement stmt = getConn().createStatement()) {
             ResultSet result = stmt.executeQuery("SELECT `email` FROM `users`");
