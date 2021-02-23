@@ -49,12 +49,12 @@ public class Model {
         private String message;
         private Boolean read;
 
-        public Message(int id, User to, User from, String message, Boolean read){
+        public Message(int id, User to, User from, String message){
             this.id = id;
             this.to = to;
             this.from = from;
             this.message = message; 
-            this.read = read;
+            this.read = false;
         }
         public void markRead(){
             read = true;
