@@ -14,11 +14,9 @@ import java.util.Set;
 
 public class Model {
 
-    public static void main(String[] args) throws SQLException {
+    public static void main(String[] args) throws NoSuchAlgorithmException, SQLException {
         // Testing
-        Set<User> users = Model.getUsers();
-        for (User user : users) {
-            System.out.println(user);
+        System.out.println(Model.getUser("ben@sample.co.uk").testPassword("pass"));
         }
 
     private static class User {
