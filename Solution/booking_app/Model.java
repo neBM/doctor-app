@@ -8,6 +8,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Timestamp;
 import java.util.Base64;
 import java.util.HashSet;
 import java.util.Set;
@@ -19,6 +20,29 @@ public class Model {
         System.out.println(Model.getUser("ben@sample.co.uk").testPassword("pass"));
         }
 
+    
+    private static class Visit {
+        private User doctor;
+        private String visitNotes;
+        private Timestamp timestamp;
+        private User patient;
+        private String prescriptionName;
+        private int prescriptionQuantity;
+        
+        public Visit(User doctor, String visitNotes, Timestamp timestamp, User patient, String prescriptionName, int prescriptionQuantity) {
+            
+            this.doctor = doctor;
+            this.visitNotes = visitNotes;
+            this.timestamp = timestamp;
+            this.patient = patient;
+            this.prescriptionName = prescriptionName;
+            this.prescriptionQuantity = prescriptionQuantity;
+        }
+        
+        
+        
+    } 
+    
     private static class User {
         private String email;
     
