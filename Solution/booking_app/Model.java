@@ -70,6 +70,10 @@ public class Model {
     
     private static class User {
         private String email;
+
+        public enum Type {
+            DOCTOR, PATIENT;
+        }
         
         public User(String email) {
             this.email = email;
@@ -125,8 +129,19 @@ public class Model {
     }
     
     public static Set<User> getUsers() throws SQLException {
-        try (Statement stmt = getConn().createStatement()) {
-            ResultSet result = stmt.executeQuery("SELECT `email` FROM `users`");
+        return getUsers(null);
+    }
+    
+    public static Set<User> getUsers(User.Type type) throws SQLException {
+        String query = "SELECT `email` FROM `users`";
+        if (type != null) {
+            query += " WHERE `type` = ?";
+        }
+        try (PreparedStatement stmt = getConn().prepareStatement(query)) {
+            if (type != null) {
+                stmt.setString(1, type.name());
+            }
+            ResultSet result = stmt.executeQuery();
             HashSet<User> users = new HashSet<>();
             while (result.next()) {
                 users.add(new User(result.getString("email")));
@@ -134,6 +149,7 @@ public class Model {
             return users;
         }
     }
+
     public static void addVisitDetails(User doctor, String visitNotes, int timestamp, User patient, String prescriptionName, int prescriptionQunatity) throws SQLException {
         try (PreparedStatement stmt = getConn().prepareStatement("INSERT INTO visitDetails VALUES ( '?', '?', '?', '?', '?', '?');")) {
             stmt.setInt(1, prescriptionQunatity);
