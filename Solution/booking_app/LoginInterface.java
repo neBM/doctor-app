@@ -38,20 +38,16 @@ public class LoginInterface extends JFrame implements ActionListener {
         textPassword.setPreferredSize(new Dimension(150, 20));
 
         // Panel Information
-        //panelFooter.setBackground(Color.GREEN);
         panelFooter.add(button);
 
         panelUsername.add(labelUsername);
         panelUsername.setPreferredSize(new Dimension(250, 200));
-        //panelUsername.setBackground(Color.CYAN);
         panelUsername.add(textUsername);
 
         panelPassword.add(labelPassword);
         panelPassword.setPreferredSize(new Dimension(250, 200));
-        //panelPassword.setBackground(Color.CYAN);
         panelPassword.add(textPassword);
 
-        //panelCenter.setBackground(Color.RED);
         panelCenter.add(panelUsername, BorderLayout.WEST);
         panelCenter.add(panelPassword);
 
