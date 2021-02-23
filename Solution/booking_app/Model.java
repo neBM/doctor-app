@@ -55,7 +55,6 @@ public class Model {
         try (PreparedStatement stmt = getConn().prepareStatement("SELECT `email` FROM `users` WHERE `email` = ?")) {
             stmt.setString(1, email);
             ResultSet result = stmt.executeQuery();
-            HashSet<User> users = new HashSet<>();
             if (result.next()) {
                 return new User(result.getString("email"));
             }
