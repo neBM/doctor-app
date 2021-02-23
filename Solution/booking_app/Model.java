@@ -18,8 +18,8 @@ public class Model {
     public static void main(String[] args) throws NoSuchAlgorithmException, SQLException {
         // Testing
         System.out.println(Model.getUser("ben@sample.co.uk").testPassword("pass"));
-        }
-
+    }
+    
     
     private static class Visit {
         private User doctor;
@@ -45,7 +45,7 @@ public class Model {
     
     private static class User {
         private String email;
-    
+        
         public User(String email) {
             this.email = email;
         }
@@ -53,12 +53,12 @@ public class Model {
         public String getEmail() {
             return email;
         }
-    
+        
         @Override
         public String toString() {
             return email;
         }
-    
+        
         public boolean testPassword(String password) throws SQLException, NoSuchAlgorithmException {
             try (PreparedStatement stmt = getConn().prepareStatement("SELECT `password` FROM `users` WHERE `email` = ? LIMIT 1")) {
                 stmt.setString(1, email);
@@ -70,9 +70,21 @@ public class Model {
             }
         }
     }
-
+    
     private static Connection getConn() throws SQLException {
         return DriverManager.getConnection("jdbc:mysql://www.martinilink.co.uk:3306/doctor_app", "doctor_app", "JNpRFmbXk5WB68SW");
+    }
+    
+    public static Set<Visit> getVisits()  throws SQLException {
+        try (Statement stmt = getConn().createStatement()){
+            ResultSet result = stmt.executeQuery("SELECT * FROM `visitDetails`");
+            HashSet<Visit> visits = new HashSet<>();
+            while (result.next()) {
+                visits.add(new Visit(new User(result.getString("doctor")), result.getString("visitNotes"), result.getTimestamp("timestamp"), new User(result.getString("patientEmail")), result.getString("prescriptionName"), result.getInt("prescriptionQuantity")));
+            }
+            return visits;  
+        }
+        
     }
 
     public static User getUser(String email) throws SQLException, IllegalArgumentException {
