@@ -37,6 +37,16 @@ public class Model {
             return email;
         }
     
+        public boolean testPassword(String password) throws SQLException, NoSuchAlgorithmException {
+            try (PreparedStatement stmt = getConn().prepareStatement("SELECT `password` FROM `users` WHERE `email` = ? LIMIT 1")) {
+                stmt.setString(1, email);
+                ResultSet result = stmt.executeQuery();
+                result.next();
+                MessageDigest md = MessageDigest.getInstance("SHA-256");
+                
+                return result.getString("password").equals(Base64.getEncoder().encodeToString(md.digest(password.getBytes())));
+            }
+        }
     }
 
     private static Connection getConn() throws SQLException {
@@ -66,16 +76,6 @@ public class Model {
         }
     }
 
-    public static boolean testPassword(User user, String password) throws SQLException, NoSuchAlgorithmException {
-        try (PreparedStatement stmt = getConn().prepareStatement("SELECT `password` FROM `users` WHERE `email` = ? LIMIT 1")) {
-            stmt.setString(1, user.getEmail());
-            ResultSet result = stmt.executeQuery();
-            result.next();
-            MessageDigest md = MessageDigest.getInstance("SHA-256");
-            
-            return result.getString("password").equals(Base64.getEncoder().encodeToString(md.digest(password.getBytes())));
-        }
-    }
     
 
 }
