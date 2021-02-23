@@ -20,6 +20,23 @@ public class Model {
         for (User user : users) {
             System.out.println(user);
         }
+
+    private static class User {
+        private String email;
+    
+        public User(String email) {
+            this.email = email;
+        }
+    
+        public String getEmail() {
+            return email;
+        }
+    
+        @Override
+        public String toString() {
+            return email;
+        }
+    
     }
 
     private static Connection getConn() throws SQLException {
@@ -48,22 +65,5 @@ public class Model {
         }
     }
     
-    private static class User {
-        private String email;
-
-        public User(String email) {
-            this.email = email;
-        }
-
-        public String getEmail() {
-            return email;
-        }
-
-        @Override
-        public String toString() {
-            return email;
-        }
-
-    }
 
 }
