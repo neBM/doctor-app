@@ -7,12 +7,16 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 
 public class Model {
 
     private static final String USER_KEY = "email";
+    private static Map<String, User> userCache = new HashMap<>();
+
     public static void main(String[] args) throws NoSuchAlgorithmException, SQLException {
         // Testing
         System.out.println(Model.getUser("ben@sample.co.uk").testPassword("pass"));
@@ -23,11 +27,16 @@ public class Model {
     }
 
     public static User getUser(String email) throws SQLException, IllegalArgumentException {
+        if (userCache.keySet().contains(email)) {
+            return userCache.get(email);
+        }
         try (PreparedStatement stmt = getConn().prepareStatement("SELECT `email` FROM `users` WHERE `email` = ?")) {
             stmt.setString(1, email);
             ResultSet result = stmt.executeQuery();
             if (result.next()) {
-                return new User(result.getString(USER_KEY));
+                User user = new User(result.getString(USER_KEY));
+                userCache.put(result.getString(USER_KEY), user);
+                return user;
             }
             throw new IllegalArgumentException("Username doesn't exist");
         }
@@ -55,7 +64,9 @@ public class Model {
             ResultSet result = stmt.executeQuery("SELECT `email` FROM `users`");
             HashSet<User> users = new HashSet<>();
             while (result.next()) {
-                users.add(new User(result.getString(USER_KEY)));
+                User user = new User(result.getString(USER_KEY));
+                userCache.put(result.getString(USER_KEY), user);
+                users.add(user);
             }
             return users;
         }
