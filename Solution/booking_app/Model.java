@@ -58,7 +58,7 @@ public class Model {
             this.read = false;
         }
         public void markRead(int id) throws SQLException {
-            try (PreparedStatement stmt = getConn().prepareStatement("INSERT INTO `messages` (read) VALUES ('?') WHERE `id` = ?;")) {
+            try (PreparedStatement stmt = getConn().prepareStatement("INSERT INTO `messages` (read) VALUES (?) WHERE `id` = ?;")) {
                 stmt.setBoolean(1, true);
                 stmt.setInt(2, id);
                 stmt.executeUpdate();
@@ -152,7 +152,7 @@ public class Model {
     }
 
     public static void addVisitDetails(User doctor, String visitNotes, LocalDateTime timestamp, User patient, String prescriptionName, int prescriptionQunatity) throws SQLException {
-        try (PreparedStatement stmt = getConn().prepareStatement("INSERT INTO visitDetails VALUES ( '?', '?', '?', '?', '?', '?');")) {
+        try (PreparedStatement stmt = getConn().prepareStatement("INSERT INTO visitDetails VALUES ( ?, ?, ?, ?, ?, ?);")) {
             stmt.setInt(1, prescriptionQunatity);
             stmt.setString(2, prescriptionName);
             stmt.setString(3, patient.getEmail());
@@ -163,7 +163,7 @@ public class Model {
         }
     }
     public static void addMessage(User to, User from, String message) throws SQLException {
-        try (PreparedStatement stmt = getConn().prepareStatement("INSERT INTO `messages` (to, from, message) VALUES ('?', '?', '?');"))  {
+        try (PreparedStatement stmt = getConn().prepareStatement("INSERT INTO `messages` (to, from, message) VALUES (?, ?, ?);"))  {
             stmt.setString(1, to.getEmail());
             stmt.setString(2, from.getEmail());
             stmt.setString(3, message);
