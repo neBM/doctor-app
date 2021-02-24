@@ -1,6 +1,7 @@
 package booking_app;
 
 import javax.swing.*;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -80,7 +81,7 @@ public class Interface implements ActionListener {
         // TextField Information
         textFieldPatient.setBounds(20, 30, 250, 25);
         try {
-            for (User user : Model.getUsers()) {
+            for (Model.User user : Model.getUsers()) {
                 textFieldPatient.addItem(user.getEmail());
             }
         }
