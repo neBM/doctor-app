@@ -6,6 +6,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.sql.SQLException;
 import java.util.Set;
 
 public class Interface implements ActionListener {
@@ -78,14 +79,25 @@ public class Interface implements ActionListener {
 
         // TextField Information
         textFieldPatient.setBounds(20, 30, 250, 25);
+        try {
+            for (User user : Model.getUsers()) {
+                textFieldPatient.addItem(user.getEmail());
+            }
+        }
+
+        catch(SQLException e){
+            e.printStackTrace();
+        }
         textDoctor.setBounds(20, 80, 250, 25);
         textFieldDate.setBounds(20, 130, 250, 25);
         textFieldTime.setBounds(20, 180, 250, 25);
         textPrescription.setBounds(20, 230, 250, 25);
         textQuantity.setBounds(20, 280, 250, 25);
+        textQuantity.setHorizontalAlignment(SwingConstants.CENTER);
+
 
         textQuantity.addKeyListener(new KeyAdapter() {
-            public void keyPressed(KeyEvent ke) {
+            public void keyReleased(KeyEvent ke) {
                 String value = textQuantity.getText();
                 if (ke.getKeyChar() >= '0' && ke.getKeyChar() <= '9') {
                 }
