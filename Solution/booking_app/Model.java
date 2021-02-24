@@ -12,6 +12,7 @@ import java.util.Set;
 
 public class Model {
 
+    private static final String USER_KEY = "email";
     public static void main(String[] args) throws NoSuchAlgorithmException, SQLException {
         // Testing
         System.out.println(Model.getUser("ben@sample.co.uk").testPassword("pass"));
@@ -26,7 +27,7 @@ public class Model {
             stmt.setString(1, email);
             ResultSet result = stmt.executeQuery();
             if (result.next()) {
-                return new User(result.getString("email"));
+                return new User(result.getString(USER_KEY));
             }
             throw new IllegalArgumentException("Username doesn't exist");
         }
@@ -54,7 +55,7 @@ public class Model {
             ResultSet result = stmt.executeQuery("SELECT `email` FROM `users`");
             HashSet<User> users = new HashSet<>();
             while (result.next()) {
-                users.add(new User(result.getString("email")));
+                users.add(new User(result.getString(USER_KEY)));
             }
             return users;
         }
