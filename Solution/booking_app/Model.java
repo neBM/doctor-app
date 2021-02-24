@@ -68,7 +68,7 @@ public class Model {
         
     }
     
-    private static class User {
+    public static class User {
         private String email;
 
         public enum Type {
