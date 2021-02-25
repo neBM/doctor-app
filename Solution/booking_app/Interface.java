@@ -9,11 +9,12 @@ import java.awt.event.KeyEvent;
 import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.util.Set;
-
+import java.awt.Font;
 
 public class Interface implements ActionListener {
 
     private JFrame frame = new JFrame();
+    private JFrame windowError = new JFrame();
     private JPanel panelTop = new JPanel();
     private JPanel panelMessage = new JPanel();
     private JPanel panelPatientList = new JPanel();
@@ -27,6 +28,7 @@ public class Interface implements ActionListener {
     private JButton buttonPatientList = new JButton();
     private JButton buttonBookings = new JButton();
     private JButton buttonVisit = new JButton();
+    private JButton buttonOk = new JButton();
 
     private JButton buttonAddVisit = new JButton();
     private JButton buttonAddPrescriptions = new JButton();
@@ -38,6 +40,8 @@ public class Interface implements ActionListener {
     private JLabel labelNotes = new JLabel();
     private JLabel labelPrescriptionName = new JLabel();
     private JLabel labelQuantity = new JLabel();
+    private JLabel labelError = new JLabel();
+    private JLabel labelExample = new JLabel();
 
     private JComboBox textFieldPatient = new JComboBox();
     private JComboBox textDoctor = new JComboBox();
@@ -51,6 +55,8 @@ public class Interface implements ActionListener {
     private JTextField textVisitNotes = new JTextField();
     private JTextField textPrescription = new JTextField();
     private JTextField textQuantity = new JTextField();
+
+    private Font font = new Font("Courier", Font.BOLD,12);
 
     private int year = 0;
     private int month = 0;
@@ -98,7 +104,6 @@ public class Interface implements ActionListener {
                 textFieldPatient.addItem(user.getEmail());
             }
         }
-
         catch(SQLException e){
             e.printStackTrace();
         }
@@ -108,26 +113,39 @@ public class Interface implements ActionListener {
                 textDoctor.addItem(user.getEmail());
             }
         }
-
         catch(SQLException e){
             e.printStackTrace();
         }
         textYear.setBounds(20, 130, 50, 25);
         textYear.setText("yyyy");
+        textYear.setHorizontalAlignment(SwingConstants.CENTER);
+
         textMonth.setBounds(80, 130, 35, 25);
         textMonth.setText("mm");
+        textMonth.setHorizontalAlignment(SwingConstants.CENTER);
+
         textDay.setBounds(130, 130, 35, 25);
         textDay.setText("dd");
+        textDay.setHorizontalAlignment(SwingConstants.CENTER);
+
         textHour.setBounds(180, 130, 35, 25);
         textHour.setText("hh");
+        textHour.setHorizontalAlignment(SwingConstants.CENTER);
+
         textMinute.setBounds(230, 130, 35, 25);
         textMinute.setText("mm");
+        textMinute.setHorizontalAlignment(SwingConstants.CENTER);
+
+        labelExample.setBounds(280, 125, 400, 30);
+        labelExample.setText("Example: 2003  05  25  17  30");
+        labelExample.setFont(font.deriveFont(font.getStyle() | Font.BOLD));
+
         textVisitNotes.setBounds(20, 180, 250, 25);
+
         textPrescription.setBounds(20, 230, 250, 25);
+
         textQuantity.setBounds(20, 280, 250, 25);
         textQuantity.setHorizontalAlignment(SwingConstants.CENTER);
-
-
         textQuantity.addKeyListener(new KeyAdapter() {
             public void keyReleased(KeyEvent ke) {
                 String value = textQuantity.getText();
@@ -184,6 +202,7 @@ public class Interface implements ActionListener {
         panelAddVisit.add(textPrescription);
         panelAddVisit.add(labelQuantity);
         panelAddVisit.add(textQuantity);
+        panelAddVisit.add(labelExample);
         panelAddVisit.setLayout(null);
 
         panelAddPrescription.setBounds(40, 40, 700, 450);
@@ -208,6 +227,19 @@ public class Interface implements ActionListener {
         buttonSubmit.setText("Submit");
         buttonSubmit.setBounds(290, 400, 150, 30);
         buttonSubmit.addActionListener(this);
+
+        // Error Window Information
+        windowError.setLayout(null);
+        windowError.setResizable(false);
+        windowError.setTitle("Error Message");
+        windowError.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+        windowError.setSize(600, 100);
+
+        labelError.setBounds(30, 10, 600, 20);
+
+        buttonOk.setText("Ok");
+        buttonOk.setBounds(275,32,50, 25);
+        buttonOk.addActionListener(this);
     }
 
     public static void main(String[] args){
@@ -254,44 +286,40 @@ public class Interface implements ActionListener {
             panelAddPrescription.setVisible(true);
         }
 
-        if(e.getSource() == buttonSubmit){
-        String patientName = textFieldPatient.getSelectedItem().toString();
-        String doctorName = textDoctor.getSelectedItem().toString();
-        int year = Integer.valueOf(textYear.getText());
-        int month = Integer.valueOf(textMonth.getText());
-        int day = Integer.valueOf(textDay.getText());
-        int hour = Integer.valueOf(textHour.getText());
-        int minute = Integer.valueOf(textMinute.getText());
-        LocalDateTime date = LocalDateTime.of(year, month, day, hour, minute);
-        String visitNote = textVisitNotes.getText();
-        String prescription = textPrescription.getText();
-        int quantity = Integer.valueOf(textQuantity.getText());
+        if(e.getSource() == buttonOk){
+            windowError.dispose();
+        }
 
-           try {
+        if(e.getSource() == buttonSubmit){
+            String patientName = textFieldPatient.getSelectedItem().toString();
+            String doctorName = textDoctor.getSelectedItem().toString();
+            int year = Integer.valueOf(textYear.getText());
+            int month = Integer.valueOf(textMonth.getText());
+            int day = Integer.valueOf(textDay.getText());
+            int hour = Integer.valueOf(textHour.getText());
+            int minute = Integer.valueOf(textMinute.getText());
+            LocalDateTime date;
+
+            String visitNote = textVisitNotes.getText();
+            String prescription = textPrescription.getText();
+            int quantity = Integer.valueOf(textQuantity.getText());
+
+            try {
+                date = LocalDateTime.of(year, month, day, hour, minute);
                 Model.addVisitDetails(Model.getUser(doctorName), visitNote, date, Model.getUser(patientName), prescription, quantity);
             }
-           catch(java.sql.SQLIntegrityConstraintViolationException err) {
-               JFrame windowError = new JFrame();
-               windowError.setLayout(new BoxLayout(windowError.getContentPane(), BoxLayout.Y_AXIS));
-               windowError.setResizable(false);
-               windowError.setTitle("Error Message");
-               windowError.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-               windowError.setVisible(true);
 
-               windowError.setSize(600, 100);
-
-               JLabel errorLabel = new JLabel();
-               errorLabel.setText(err.getMessage());
-               windowError.add(errorLabel);
-
-               JButton buttonOk = new JButton();
-               buttonOk.setText("Ok");
-               windowError.add(buttonOk);
-               buttonOk.setAlignmentX(150);
-
-           } catch (SQLException throwables) {
-                throwables.printStackTrace();
+            catch(java.time.DateTimeException | java.sql.DataTruncation | java.sql.SQLIntegrityConstraintViolationException err){
+                windowError.setVisible(true);
+                labelError.setText(err.getMessage());
+                labelError.setBounds(30, 10, 600, 20);
+                windowError.add(buttonOk);
+                windowError.add(labelError);
             }
+
+           catch (SQLException throwables) {
+                throwables.printStackTrace();
+           }
         }
     }
 }
