@@ -1,4 +1,3 @@
-
 - The system should allow a user to log in with their username and password, and 
   log out. Every time the user logs in, the system should show the user’s new 
   messages on the welcome screen. 
@@ -58,6 +57,7 @@
               corresponding database of the patient.     
             - Add a message to the message database staying the info has been 
               added with the info that has been added. 
+            - Adding a getMessages method to display on welcome screen.
 
 
 
