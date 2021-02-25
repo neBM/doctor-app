@@ -223,6 +223,19 @@ public class Interface implements ActionListener {
 
         panelMessage.setVisible(true);
         panelMessage.setBounds(0, 40, 800, 560);
+        panelMessage.setLayout(new BoxLayout(panelMessage, BoxLayout.Y_AXIS));
+        numOfMessages = 0;
+        try {
+            Set<Model.Message> unread = Model.getMessages();
+            for(Model.Message message: unread){
+                numOfMessages++;
+                JLabel msg = new JLabel();
+                msg.setText(numOfMessages + ". " + message.getMessage());
+                panelMessage.add(msg);
+            }
+        } catch (SQLException e1) {
+            e1.printStackTrace();
+        }
 
         panelPatientList.setVisible(false);
         panelPatientList.setBounds(0, 40, 800, 560);
