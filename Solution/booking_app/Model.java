@@ -57,6 +57,14 @@ public class Model {
             this.message = message; 
             this.read = false;
         }
+        public String getMessage() {
+            return message;
+        }
+        
+        @Override
+        public String toString() {
+            return message;
+        }
         public void markRead(int id) throws SQLException {
             try (PreparedStatement stmt = getConn().prepareStatement("INSERT INTO `messages` (read) VALUES (?) WHERE `id` = ?;")) {
                 stmt.setBoolean(1, true);
