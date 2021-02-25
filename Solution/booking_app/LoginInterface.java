@@ -92,7 +92,7 @@ public class LoginInterface extends JFrame {
                                     //checking they entered the correct password
                                     if(user.testPassword(passwordField)){
                                         labelMessage.setText("Successful log in attempt c:");
-                                        //TO-DO enter code to send them to the welcome screen on a successful password attempt
+                                        //Takes user to Interface
                                         new Interface();
                                         frame.setVisible(false);
                                     }
