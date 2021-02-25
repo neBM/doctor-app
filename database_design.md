@@ -1,36 +1,31 @@
 # Conceptual Model
 
-## Users
+## users
 Store the username and password for each of the users that can access the system
-| email | name | tel |
-| ----- | ---- | --- |
+| email | password | firstName | lastName | phoneNumber | address | gender | dateOfBirth | type |
+| ----- | -------- | --------- | -------- | ----------- | ------- | ------ | ----------- | ---- |
 
-## Doctors
-A table of doctors (joined to users table)
-| email | password |
-| ----- | -------- |
-
-## Patients
+## patientDetials
 A table of patients (joined to users table)
-| email | details |
-| ----- | ------- |
+| patientEmail | assignedDoctor |
+| ------------ | -------------- |
 
-## Accesses
+## accessRecords
 Records who accessed each feature and when
-| email | timestamp | module |
-| ----- | --------- | ------ |
+| id | email | timestamp | event |
+| -- | ----- | --------- | ----- |
 
-## Messages
+## messages
 Store messages to and from users to display on the welcome page
-| to | from | message | read |
-| -- | ---- | ------- | ---- |
+| id | to | from | message | read |
+| -- | -- | ---- | ------- | ---- |
 
-## Bookings
+## bookings
 Stores when a patient meets a doctor
-| doctor | patient | timestamp | duration |
-| ------ | ------- | --------- | -------- |
+| id | doctor | patient | timestamp | duration |
+| -- | ------ | ------- | --------- | -------- |
 
-## Doctors Visit Details and Description
+## visitDetails
 Stores the notes taken when a patient meets a doctor
-| doctorsNotes | prescriptionName | prescriptionQty |
-| ------------ | ---------------- | --------------- |
+| id | patientEmail | doctor | visitDate | visitNotes | prescriptionName | prescriptionQuantity |
+| -- | ------------ | ------ | --------- | ---------- | ---------------- | -------------------- |
