@@ -66,7 +66,7 @@ public class Model {
             return message;
         }
         public void markRead() throws SQLException {
-            try (PreparedStatement stmt = getConn().prepareStatement("INSERT INTO `messages` (read) VALUES (?) WHERE `id` = ?;")) {
+            try (PreparedStatement stmt = getConn().prepareStatement("UPDATE `messages` SET `read` = ? WHERE `id` = ?;")) {
                 stmt.setBoolean(1, true);
                 stmt.setInt(2, id);
                 stmt.executeUpdate();
