@@ -150,6 +150,30 @@ public class Model {
             return users;
         }
     }
+    public static Set<Message> getMessages() throws SQLException{
+        return getMessages(null);
+    }
+
+    public static Set<Message> getMessages(Boolean read) throws SQLException {
+        String query = "SELECT * FROM `messages`";
+        if(read != null){
+            if(read == true){
+                query += " WHERE `read` = 1";
+            }
+            else{
+                query += " WHERE `read` = 0";
+            }
+        }
+        try (PreparedStatement stmt = getConn().prepareStatement(query)) {
+            ResultSet result = stmt.executeQuery();
+            HashSet<Message> messages = new HashSet<>();
+            while (result.next()){
+                messages.add(new Message(result.getInt("id"), new User(result.getString("to")), new User(result.getString("from")), result.getString("message")));
+            }
+            return messages;
+        }
+
+    }
 
     public static void addVisitDetails(User doctor, String visitNotes, LocalDateTime timestamp, User patient, String prescriptionName, int prescriptionQunatity) throws SQLException {
         try (PreparedStatement stmt = getConn().prepareStatement("INSERT INTO `visitDetails` (`prescriptionnQuantity`, `prescriptionName`, `patientEmail`, `visitNotes`, `doctor`, `visitDate`) VALUES ( ?, ?, ?, ?, ?, ?);")) {
