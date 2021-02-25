@@ -15,14 +15,17 @@ public class Interface implements ActionListener {
 
     private JFrame frame = new JFrame();
     private JFrame windowError = new JFrame();
+    private JFrame newMessages = new JFrame();
     private JPanel panelTop = new JPanel();
     private JPanel panelMessage = new JPanel();
     private JPanel panelPatientList = new JPanel();
     private JPanel panelBookings = new JPanel();
     private JPanel panelVisit = new JPanel();
+    private JPanel panelNewMessage = new JPanel();
 
     private JPanel panelAddVisit = new JPanel();
     private JPanel panelAddPrescription = new JPanel();
+    private JPanel panelMessageTop = new JPanel();
 
     private JButton buttonMessage = new JButton();
     private JButton buttonPatientList = new JButton();
@@ -42,6 +45,7 @@ public class Interface implements ActionListener {
     private JLabel labelQuantity = new JLabel();
     private JLabel labelError = new JLabel();
     private JLabel labelExample = new JLabel();
+    private JLabel labelNewMessages = new JLabel();
 
     private JComboBox textFieldPatient = new JComboBox();
     private JComboBox textDoctor = new JComboBox();
@@ -63,6 +67,7 @@ public class Interface implements ActionListener {
     private int dayOfMonth = 0;
     private int hour = 0;
     private int minute = 0;
+    private int numOfMessages = 0;
 
     public Interface(){
         // Frame Information
@@ -77,6 +82,23 @@ public class Interface implements ActionListener {
         frame.add(panelPatientList);
         frame.add(panelBookings);
         frame.add(panelVisit);
+
+        // New Messages Window Information
+
+        newMessages.setLayout(null);
+        newMessages.setTitle("Unread Messages");
+        newMessages.setVisible(true);
+        newMessages.setSize(600, 400);
+        newMessages.setResizable(false);
+        newMessages.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+        newMessages.add(panelMessageTop);
+        newMessages.add(panelNewMessage);
+
+        panelMessageTop.add(labelNewMessages);
+        panelMessageTop.setBounds(0, 0, 600, 40);
+        panelMessageTop.setLayout(null);
+        panelMessageTop.setBackground(Color.decode("#709ED6"));
+        panelMessageTop.setVisible(true);
 
         // Label Information
         labelPatient.setText("Patient's Full-name");
@@ -96,6 +118,39 @@ public class Interface implements ActionListener {
 
         labelQuantity.setText("Prescription Quantity");
         labelQuantity.setBounds(20, 260, 150, 20);
+
+        //Retrieving number of new messages
+        
+        try {
+            Set<Model.Message> unread = Model.getMessages(false);
+            panelNewMessage.setBounds(0, 40, 600, 40);
+            for(Model.Message message: unread){
+                numOfMessages++;
+                JLabel msg = new JLabel();
+                msg.setText(message.getMessage());
+                panelNewMessage.add(msg);
+                JButton buttonRead = new JButton();
+                buttonRead.setText("Mark as read");
+                panelNewMessage.add(buttonRead);
+                buttonRead.addActionListener(new ActionListener(){
+                    public void actionPerformed(ActionEvent e) {
+                        try {
+                            message.markRead();
+                        } catch (SQLException e1) {
+                            e1.printStackTrace();
+                        }
+                    }
+                });
+            }
+        } catch (SQLException e1) {
+            e1.printStackTrace();
+        }
+
+        //New Messages Label
+        labelNewMessages.setText(numOfMessages + " Unread Messages");
+        labelNewMessages.setBounds(0, 0, 150, 20);
+        
+        
 
         // TextField Information
         textFieldPatient.setBounds(20, 30, 250, 25);
