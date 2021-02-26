@@ -20,5 +20,5 @@
 | ------ | -------------------- | -------------------------- | ------------ |
 | Ben    |
 | Hayden |
-| Robin  |
+| Robin  | <ul><li>Adding a getMessages method to display on welcome screen.</li></ul> | <ul><li>Follow the testing plan to find any bugs in adding or updating the sql database from the java program.</li></ul> | 
 | Sean   | <ul><li>Added DataTimeException, DataTruncation and SQLIntergrityConstraintViolation exceptions </li> <li>Added Error window functionality </li></ul> | <ul><li>Follow the testing plan to find any potential bugs in add visit functionality</li><ul>
