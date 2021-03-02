@@ -18,7 +18,7 @@
 # Scrum Meeting Two
 | Name   | What I did Yesterday | What tasks I will do today | Any isssues? |
 | ------ | -------------------- | -------------------------- | ------------ |
-| Ben    | <ul><li>Have a method that checks if the new input date and time does not conflict with a pre-existing entry.</li></ul> | <ul><li>Rebase out #0e54d8985406f6ae5e7e97d35e3e0e7bbf549132 and #8a2554ef6502e7c2d969754f1cfca8d2e1a78030 from feature/authentication</li><li>Export DB<li>Merge feature/authentication and feature/newVisit to master</li></ul> |
+| Ben    | <ul><li>Have a method that checks if the new input date and time does not conflict with a pre-existing entry.</li></ul> | <ul><li>Rebase out #0e54d8985406f6ae5e7e97d35e3e0e7bbf549132 and #8a2554ef6502e7c2d969754f1cfca8d2e1a78030 from feature/authentication</li><li>Export DB<li>Merge feature/authentication and feature/newVisit to master</li></ul> | <ul><li>#0e54d8985406f6ae5e7e97d35e3e0e7bbf549132 and #8a2554ef6502e7c2d969754f1cfca8d2e1a78030 still exists in master branch after merge</li></ul> |
 | Hayden | <ul> <li> Implemented retrieve new messages and display them (which you receive from back end). </li><li> Implement display the messages on the screen,like gmail or outlook for example. </li> </ul> | <ul> <li> Follow the testing plan to find any potential bugs with the log in and messages page </li> </ul> | |
 | Robin  | <ul><li>Adding a getMessages method to display on welcome screen.</li></ul> | <ul><li>Follow the testing plan to find any bugs in adding or updating the sql database from the java program.</li></ul> | 
 | Sean   | <ul><li>Added DataTimeException, DataTruncation and SQLIntergrityConstraintViolation exceptions </li> <li>Added Error window functionality </li></ul> | <ul><li>Follow the testing plan to find any potential bugs in add visit functionality</li><ul>
@@ -26,7 +26,7 @@
 # Scrum Meeting Three
 | Name   | What I did Yesterday | What tasks I will do today | Any isssues? |
 | ------ | -------------------- | -------------------------- | ------------ |
-| Ben    |
+| Ben    | <ul><li>Rebase out #0e54d8985406f6ae5e7e97d35e3e0e7bbf549132 and #8a2554ef6502e7c2d969754f1cfca8d2e1a78030 from feature/authentication</li><li>Export DB<li>Merge feature/authentication and feature/newVisit to master</li></ul> | <ul><li>Make a new branch for feature/viewPatient and feature/viewBooking</li><li>Rebase out #0e54d8985406f6ae5e7e97d35e3e0e7bbf549132 and #8a2554ef6502e7c2d969754f1cfca8d2e1a78030 from master</li><ul> |  |
 | Hayden |
 | Robin  |
 | Sean   |
