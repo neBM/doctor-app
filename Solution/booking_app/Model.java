@@ -26,8 +26,8 @@ public class Model {
         // Testing
         System.out.println(Model.getUser("ben@sample.co.uk").testPassword("pass"));
     }
-    
-    
+
+
     private static class Visit {
         private User doctor;
         private String visitNotes;
@@ -35,9 +35,9 @@ public class Model {
         private User patient;
         private String prescriptionName;
         private int prescriptionQuantity;
-        
+
         public Visit(User doctor, String visitNotes, Timestamp timestamp, User patient, String prescriptionName, int prescriptionQuantity) {
-            
+
             this.doctor = doctor;
             this.visitNotes = visitNotes;
             this.timestamp = timestamp;
@@ -45,10 +45,10 @@ public class Model {
             this.prescriptionName = prescriptionName;
             this.prescriptionQuantity = prescriptionQuantity;
         }
-        
-        
-        
-    } 
+
+
+
+    }
     public static class Message {
         private int id;
         private User to;
@@ -60,13 +60,13 @@ public class Model {
             this.id = id;
             this.to = to;
             this.from = from;
-            this.message = message; 
+            this.message = message;
             this.read = false;
         }
         public String getMessage() {
             return message;
         }
-        
+
         @Override
         public String toString() {
             return message;
@@ -76,11 +76,11 @@ public class Model {
                 stmt.setBoolean(1, true);
                 stmt.setInt(2, id);
                 stmt.executeUpdate();
-                
+
             }
             read = true;
         }
-        
+
     }
     
     public static Set<Visit> getVisits()  throws SQLException {
@@ -90,9 +90,9 @@ public class Model {
             while (result.next()) {
                 visits.add(new Visit(new User(result.getString("doctor")), result.getString("visitNotes"), result.getTimestamp("timestamp"), new User(result.getString("patientEmail")), result.getString("prescriptionName"), result.getInt("prescriptionQuantity")));
             }
-            return visits;  
+            return visits;
         }
-        
+
     }
 
     public static User getUser(String email) throws SQLException, IllegalArgumentException {
@@ -128,11 +128,11 @@ public class Model {
             stmt.executeUpdate();
         }
     }
-    
+
     public static Set<User> getUsers() throws SQLException {
         return getUsers(null);
     }
-    
+
     public static Set<User> getUsers(User.Type type) throws SQLException {
         String query = "SELECT `email` FROM `users`";
         if (type != null) {
@@ -189,14 +189,11 @@ public class Model {
         }
     }
     public static void addMessage(User to, User from, String message) throws SQLException {
-        try (PreparedStatement stmt = getConn().prepareStatement("INSERT INTO `messages` (to, from, message) VALUES (?, ?, ?);"))  {
+        try (PreparedStatement stmt = getConn().prepareStatement("INSERT INTO `messages` (`to`, `from`, `message`) VALUES (?, ?, ?);"))  {
             stmt.setString(1, to.getEmail());
             stmt.setString(2, from.getEmail());
             stmt.setString(3, message);
             stmt.executeUpdate();
         }
     }
-
-    
-
 }
