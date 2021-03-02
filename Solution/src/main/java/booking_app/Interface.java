@@ -351,16 +351,16 @@ public class Interface implements ActionListener {
         if(e.getSource() == buttonSubmit){
             String patientName = textFieldPatient.getSelectedItem().toString();
             String doctorName = textDoctor.getSelectedItem().toString();
-            int year = Integer.valueOf(textYear.getText());
-            int month = Integer.valueOf(textMonth.getText());
-            int day = Integer.valueOf(textDay.getText());
-            int hour = Integer.valueOf(textHour.getText());
-            int minute = Integer.valueOf(textMinute.getText());
+            int year = Integer.parseInt(textYear.getText());
+            int month = Integer.parseInt(textMonth.getText());
+            int day = Integer.parseInt(textDay.getText());
+            int hour = Integer.parseInt(textHour.getText());
+            int minute = Integer.parseInt(textMinute.getText());
             LocalDateTime date;
 
             String visitNote = textVisitNotes.getText();
             String prescription = textPrescription.getText();
-            int quantity = Integer.valueOf(textQuantity.getText());
+            int quantity = Integer.parseInt(textQuantity.getText());
 
             try {
                 Model.addMessage(Model.getUser(patientName), Model.getUser(doctorName), "Visit confirmation on " + String.valueOf(year) + " " + String.valueOf(month) + " " + String.valueOf(day) + " at " + String.valueOf(hour) + String.valueOf(minute));
