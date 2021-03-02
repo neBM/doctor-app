@@ -48,7 +48,6 @@ public class LoginInterface extends JFrame {
         // Label Information
         labelUsername.setText("Username");
         labelPassword.setText("Password");
-        labelMessage.setText("Hi");
 
         // Text Information
         textUsername.setPreferredSize(new Dimension(150, 20));

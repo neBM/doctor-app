@@ -12,6 +12,10 @@ import java.util.Base64;
 public class User {
     private String email;
 
+    public enum Type {
+        DOCTOR, PATIENT;
+    }
+
     private static Connection getConn() throws SQLException {
         return DriverManager.getConnection("jdbc:mysql://www.martinilink.co.uk:3306/doctor_app", "doctor_app", "JNpRFmbXk5WB68SW");
     }
