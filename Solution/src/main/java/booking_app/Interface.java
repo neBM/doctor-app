@@ -194,11 +194,9 @@ public class Interface implements ActionListener {
         textQuantity.setBounds(20, 280, 250, 25);
         textQuantity.setHorizontalAlignment(SwingConstants.CENTER);
         textQuantity.addKeyListener(new KeyAdapter() {
+            @Override
             public void keyReleased(KeyEvent ke) {
-                String value = textQuantity.getText();
-                if (ke.getKeyChar() >= '0' && ke.getKeyChar() <= '9') {
-                }
-                else{
+                if (!(ke.getKeyChar() >= '0' && ke.getKeyChar() <= '9')) {
                     textQuantity.setText("");
                 }
             }
