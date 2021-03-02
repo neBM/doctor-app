@@ -85,17 +85,17 @@ public class Interface implements ActionListener {
 
         // New Messages Window Information
 
-        newMessages.setLayout(null);
+        newMessages.setLayout(new BorderLayout());
         newMessages.setTitle("Unread Messages");
         newMessages.setVisible(true);
         newMessages.setSize(600, 400);
         newMessages.setResizable(false);
         newMessages.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
-        newMessages.add(panelMessageTop);
-        newMessages.add(panelNewMessage);
+        newMessages.add(panelMessageTop, BorderLayout.PAGE_START);
+        newMessages.add(panelNewMessage, BorderLayout.CENTER);
 
         panelMessageTop.add(labelNewMessages);
-        panelMessageTop.setBounds(0, 0, 600, 40);
+        panelMessageTop.setPreferredSize(new Dimension(600, 40));
         panelMessageTop.setLayout(null);
         panelMessageTop.setBackground(Color.decode("#709ED6"));
         panelMessageTop.setVisible(true);
@@ -123,8 +123,7 @@ public class Interface implements ActionListener {
         
         try {
             Set<Model.Message> unread = Model.getMessages(false);
-            panelNewMessage.setBounds(0, 40, 600, 40);
-            for(Model.Message message: unread){
+            for(Model.Message message : unread){
                 numOfMessages++;
                 JLabel msg = new JLabel();
                 msg.setText(message.getMessage());
