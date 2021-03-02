@@ -20,7 +20,7 @@ public class LoginInterface extends JFrame {
     private JLabel labelPassword;
     private JLabel labelMessage;
     private JTextField textUsername;
-    private JTextField textPassword;
+    private JPasswordField textPassword;
 
     public LoginInterface() {
         // Creating objects for Interface
@@ -34,7 +34,7 @@ public class LoginInterface extends JFrame {
         labelPassword = new JLabel();
         labelMessage = new JLabel();
         textUsername = new JTextField();
-        textPassword = new JTextField();
+        textPassword = new JPasswordField();
 
         // Frame Information
         frame.setTitle("NHS Login Page");
@@ -81,7 +81,7 @@ public class LoginInterface extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 //if (e.getActionCommand().equals("button")) {
                     String usernameField = textUsername.getText();
-                    String passwordField = textPassword.getText();
+                    String passwordField = String.valueOf(textPassword.getPassword());
                     try {
                         Set<User> users = Model.getUsers();
                         //checking if the username exists
@@ -124,6 +124,4 @@ public class LoginInterface extends JFrame {
         LoginInterface logininterface = new LoginInterface();
         
     }
-
-    
 }
