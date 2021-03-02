@@ -372,6 +372,7 @@ public class Interface implements ActionListener {
             int quantity = Integer.valueOf(textQuantity.getText());
 
             try {
+                Model.addMessage(Model.getUser(patientName), Model.getUser(doctorName), "Visit confirmation on " + String.valueOf(year) + " " + String.valueOf(month) + " " + String.valueOf(day) + " at " + String.valueOf(hour) + String.valueOf(minute));
                 date = LocalDateTime.of(year, month, day, hour, minute);
                 Model.addVisitDetails(Model.getUser(doctorName), visitNote, date, Model.getUser(patientName), prescription, quantity);
             }
