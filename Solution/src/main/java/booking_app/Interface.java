@@ -47,8 +47,8 @@ public class Interface implements ActionListener {
     private JLabel labelExample = new JLabel();
     private JLabel labelNewMessages = new JLabel();
 
-    private JComboBox textFieldPatient = new JComboBox();
-    private JComboBox textDoctor = new JComboBox();
+    private JComboBox<String> textFieldPatient = new JComboBox<>();
+    private JComboBox<String> textDoctor = new JComboBox<>();
 
     private JTextField textYear = new JTextField();
     private JTextField textMonth = new JTextField();
