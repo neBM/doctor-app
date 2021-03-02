@@ -383,6 +383,7 @@ public class Interface implements ActionListener {
                 labelError.setBounds(30, 10, 600, 20);
                 windowError.add(buttonOk);
                 windowError.add(labelError);
+                err.printStackTrace();
             }
 
            catch (SQLException throwables) {
