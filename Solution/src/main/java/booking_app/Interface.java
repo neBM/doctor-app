@@ -62,11 +62,6 @@ public class Interface implements ActionListener {
 
     private Font font = new Font("Courier", Font.BOLD,12);
 
-    private int year = 0;
-    private int month = 0;
-    private int dayOfMonth = 0;
-    private int hour = 0;
-    private int minute = 0;
     private int numOfMessages = 0;
 
     public Interface(){
