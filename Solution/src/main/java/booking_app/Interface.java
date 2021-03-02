@@ -126,13 +126,11 @@ public class Interface implements ActionListener {
                 JButton buttonRead = new JButton();
                 buttonRead.setText("Mark as read");
                 panelNewMessage.add(buttonRead);
-                buttonRead.addActionListener(new ActionListener(){
-                    public void actionPerformed(ActionEvent e) {
-                        try {
-                            message.markRead();
-                        } catch (SQLException e1) {
-                            e1.printStackTrace();
-                        }
+                buttonRead.addActionListener(e -> {
+                    try {
+                        message.markRead();
+                    } catch (SQLException e1) {
+                        e1.printStackTrace();
                     }
                 });
             }
