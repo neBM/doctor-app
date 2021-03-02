@@ -73,7 +73,7 @@ public class Interface implements ActionListener {
         // Frame Information
         frame.setLayout(null);
         frame.setTitle("Welcome Page");
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         frame.setVisible(true);
         frame.setSize(800, 560);
         frame.setResizable(false);
@@ -90,7 +90,7 @@ public class Interface implements ActionListener {
         newMessages.setVisible(true);
         newMessages.setSize(600, 400);
         newMessages.setResizable(false);
-        newMessages.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+        newMessages.setDefaultCloseOperation(WindowConstants.HIDE_ON_CLOSE);
         newMessages.add(panelMessageTop, BorderLayout.PAGE_START);
         newMessages.add(panelNewMessage, BorderLayout.CENTER);
 
@@ -299,7 +299,7 @@ public class Interface implements ActionListener {
         windowError.setLayout(null);
         windowError.setResizable(false);
         windowError.setTitle("Error Message");
-        windowError.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+        windowError.setDefaultCloseOperation(WindowConstants.HIDE_ON_CLOSE);
         windowError.setSize(600, 100);
 
         labelError.setBounds(30, 10, 600, 20);
