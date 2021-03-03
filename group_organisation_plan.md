@@ -63,32 +63,37 @@
 
 
 **Sprint 2:**
-- The system should allow a doctor to view their bookings by entering a month and year
-  - Tasks
-    - Front End:
-      - Create a button for bookings
-      - Create a pop window that is form used to enter the booking month and year
-      - Add two entries which takes a month and year
-      - On the form pop window have a button to return to the welcome screen
-      - Have a button to submit the entries from the form
-      - Create a pop window that shows the result of the month and year entered
-      -Have a button to return to the welcome screen
+  - The system should allow a doctor to view their bookings by entering a month and year
+    - Tasks
+      - Front End:
+        - Create a button for bookings
+        - Create a pop window that is form used to enter the booking month and year
+        - Add two entries which takes a month and year
+        - On the form pop window have a button to return to the welcome screen
+        - Have a button to submit the entries from the form
+        - Create a pop window that shows the result of the month and year entered
+        -Have a button to return to the welcome screen
     
-    - Back End:
-      - Create a class for bookings
-      - Create fields for id, doctor, patient and timestamp
-      - Have the constructor initialise the fields
-      - Create a getDoctor method that returns the doctor
-      - Create a getPatient method that returns the patient
-      - Create a getTimestamp method that returns the timestamp
-      - Create a getBooking method that takes a month and year as parameters and returns a set of bookings matching the month and year
-
-
-
+      - Back End:
+        - Create a class for bookings
+        - Create fields for id, doctor, patient and timestamp
+        - Have the constructor initialise the fields
+        - Create a getDoctor method that returns the doctor
+        - Create a getPatient method that returns the patient
+        - Create a getTimestamp method that returns the timestamp
+        - Create a getBooking method that takes a month and year as parameters and returns a set of bookings matching the month and year
 
 
 
 - The system should allow a doctor to view their own patients with their summary information, e.g. name, phone number.
+  - Tasks
+    - Front End:
+      - On the doctor's patients list window have it display all the doctors patients
+      - Have a button on the doctor's patients list that allows the user to return to the welcome screen
+      - Next to each patient have a button to view summary information  
+      - When the view summary information is clikced it will create a new pop up window for the patient selected
+      - On the patient's pop up window display email, first and last name, phone number, address, gender, date of birth
+      - have a button on the patient's pop window that allows you to return to the welcome screen
 
 
 
