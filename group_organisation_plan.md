@@ -1,3 +1,5 @@
+**Sprint 1:**
+
 - The system should allow a user to log in with their username and password, and 
   log out. Every time the user logs in, the system should show the user’s new 
   messages on the welcome screen. 
@@ -60,7 +62,9 @@
             - Adding a getMessages method to display on welcome screen.
 
 
-
+**Sprint 2:**
+- The system should allow a doctor to view their bookings by entering a month and year
+- The system should allow a doctor to view their own patients with their summary information, e.g. name, phone number.
 
 
 
