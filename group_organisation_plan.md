@@ -37,7 +37,7 @@
 - The system should allow a doctor to enter visit details and prescriptions 
   regarding a past booking. The system should then send confirmation messages to 
   the patient and the doctor.
-    - Tasks:
+    - Tasks
         - Front End:
             - Have a window that allows to enter necessary  requirements for the 
               attributes of the table and then press submit.
@@ -64,15 +64,25 @@
 
 **Sprint 2:**
 - The system should allow a doctor to view their bookings by entering a month and year
-  - Tasks:
+  - Tasks
     - Front End:
       - Create a button for bookings
-      - Create a pop window that is form used to enter the booking date and month
+      - Create a pop window that is form used to enter the booking month and year
       - Add two entries which takes a month and year
       - On the form pop window have a button to return to the welcome screen
       - Have a button to submit the entries from the form
       - Create a pop window that shows the result of the month and year entered
       -Have a button to return to the welcome screen
+    
+    - Back End:
+      - Create a class for bookings
+      - Create fields for id, doctor, patient and timestamp
+      - Have the constructor initialise the fields
+      - Create a getDoctor method that returns the doctor
+      - Create a getPatient method that returns the patient
+      - Create a getTimestamp method that returns the timestamp
+      - Create a getBooking method that takes a month and year as parameters and returns a set of bookings matching the month and year
+
 
 
 
