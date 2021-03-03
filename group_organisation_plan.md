@@ -94,6 +94,22 @@
       - When the view summary information is clikced it will create a new pop up window for the patient selected
       - On the patient's pop up window display email, first and last name, phone number, address, gender, date of birth
       - have a button on the patient's pop window that allows you to return to the welcome screen
+    - Back End:
+      - Create a PatientDetail class
+      - Have patient's email and assigned doctor's email as fields
+      - Have the fields initialised in the constructor
+      - Create a getPatientEmail method that returns the patient's email
+      - Create a getDoctorEmail that returns the doctor's email 
+      - in the model class create a getPatientsList method that takes a doctor's email as a parameter and returns a set of patients to whom the doctor 
+        is assigned to
+      - In the user class create getter methods for: 
+        - a getFirstName method that returns the first name of the user
+        - a getLastName method that returns the last name of the user
+        - a getPhoneNumber method that returns the user's phone number 
+        - a getAddress method that returns the user's address 
+        - a getGender method that returns the user's gender 
+        - a getDateOfBirth method that returns the user's date of birth 
+
 
 
 
