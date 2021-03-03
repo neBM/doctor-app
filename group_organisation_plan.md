@@ -64,6 +64,20 @@
 
 **Sprint 2:**
 - The system should allow a doctor to view their bookings by entering a month and year
+  - Tasks:
+    - Front End:
+      - Create a button for bookings
+      - Create a pop window that is form used to enter the booking date and month
+      - Add two entries which takes a month and year
+      - On the form pop window have a button to return to the welcome screen
+      - Have a button to submit the entries from the form
+      - Create a pop window that shows the result of the month and year entered
+      -Have a button to return to the welcome screen
+
+
+
+
+
 - The system should allow a doctor to view their own patients with their summary information, e.g. name, phone number.
 
 
