@@ -27,7 +27,7 @@
 | Name   | What I did Yesterday | What tasks I will do today | Any isssues? |
 | ------ | -------------------- | -------------------------- | ------------ |
 | Ben    | <ul><li>Rebase out #0e54d8985406f6ae5e7e97d35e3e0e7bbf549132 and #8a2554ef6502e7c2d969754f1cfca8d2e1a78030 from feature/authentication</li><li>Export DB<li>Merge feature/authentication and feature/newVisit to master</li></ul> | <ul><li>Make a new branch for feature/viewPatient and feature/viewBooking</li><li>Rebase out #0e54d8985406f6ae5e7e97d35e3e0e7bbf549132 and #8a2554ef6502e7c2d969754f1cfca8d2e1a78030 from master</li><ul> |  |
-| Hayden |
+| Hayden | |<ul> <li> Continue testing and making changes for front end features of sprint 1 that developed </li> <li> Front end for the system should allow a doctor to view their own patients with their summary information, e.g. name, phone number. </li> </ul> | |
 | Robin  | <ul><li>Checked for bugs in the message and user class</li></ul> | <ul><li>Create the tasks list for the next three stories</li></ul> | 
 | Sean   | <ul><li>Fixed SQL query in addMessage() method #973ea13a</li></ul> | <ul><li>Continue testing front-end features for sprint 1</li><li>Make a start on sprint 2 user stories</li></ul> | 
 
@@ -35,6 +35,6 @@
 | Name   | What I did Yesterday | What tasks I will do today | Any isssues? |
 | ------ | -------------------- | -------------------------- | ------------ |
 | Ben    | |  |  |
-| Hayden |
+| Hayden | Assisted with making changes to the message display from sprint 1 and making it only show that users incoming messages instead of all messages | Begin designing the page to allow doctors to view their patients |  |
 | Robin  | <ul><li>Wrote the tasks for 2 user stories</li></ul> | <ul><li>Write the tasks for the remaining</li><li>Code the sql query needed to retrieve all the needed information for viewPatient</li></ul> | 
 | Sean   | |  | 
