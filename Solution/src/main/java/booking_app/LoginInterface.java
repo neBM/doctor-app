@@ -92,6 +92,7 @@ public class LoginInterface extends JFrame {
                                     if(user.testPassword(passwordField)){
                                         labelMessage.setText("Successful log in attempt c:");
                                         //Takes user to Interface
+                        new Interface(user);
                                         new Interface();
                                         frame.setVisible(false);
                                     }

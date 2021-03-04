@@ -63,8 +63,11 @@ public class Interface implements ActionListener {
     private Font font = new Font("Courier", Font.BOLD,12);
 
     private int numOfMessages = 0;
+    private User loggedInUser;
 
-    public Interface(){
+    public Interface(User loggedInuser){
+        this.loggedInUser = loggedInuser;
+
         // Frame Information
         frame.setLayout(null);
         frame.setTitle("Welcome Page");
@@ -298,10 +301,6 @@ public class Interface implements ActionListener {
         buttonOk.setText("Ok");
         buttonOk.setBounds(275,32,50, 25);
         buttonOk.addActionListener(this);
-    }
-
-    public static void main(String[] args){
-        Interface mainInterface = new Interface();
     }
 
     @Override
