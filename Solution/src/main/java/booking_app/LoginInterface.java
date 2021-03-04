@@ -39,11 +39,11 @@ public class LoginInterface extends JFrame {
         // Frame Information
         frame.setTitle("NHS Login Page");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setVisible(true);
         frame.setSize(550, 150);
         frame.setResizable(false);
         frame.add(panelFooter, BorderLayout.SOUTH);
         frame.add(panelCenter, BorderLayout.CENTER);
+        frame.setVisible(true);
 
         // Label Information
         labelUsername.setText("Username");

@@ -82,12 +82,12 @@ public class Interface implements ActionListener {
 
         newMessages.setLayout(new BorderLayout());
         newMessages.setTitle("Unread Messages");
-        newMessages.setVisible(true);
         newMessages.setSize(600, 400);
         newMessages.setResizable(false);
         newMessages.setDefaultCloseOperation(WindowConstants.HIDE_ON_CLOSE);
         newMessages.add(panelMessageTop, BorderLayout.PAGE_START);
         newMessages.add(panelNewMessage, BorderLayout.CENTER);
+        newMessages.setVisible(true);
 
         panelMessageTop.add(labelNewMessages);
         panelMessageTop.setPreferredSize(new Dimension(600, 40));
