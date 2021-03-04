@@ -1,10 +1,10 @@
 # Attendance
-| Name  |  24/02/2021  | 26/02/2021 | 02/03/2021 |
-| ----- | :----------: | :--------: | :--------: |
-| Ben   |   &#x2611;   |  &#x2611;  |  &#x2611;  |
-| Hayden|   &#x2611;   |  &#x2611;  |  &#x2611;  |
-| Robin |   &#x2611;   |  &#x2611;  |  &#x2611;  |
-| Sean  |   &#x2611;   |  &#x2611;  |  &#x2611;  |
+| Name  |  24/02/2021  | 26/02/2021 | 02/03/2021 | 04/03/2021 |
+| ----- | :----------: | :--------: | :--------: | :--------: |
+| Ben   |   &#x2611;   |  &#x2611;  |  &#x2611;  |  &#x2611;  | 
+| Hayden|   &#x2611;   |  &#x2611;  |  &#x2611;  |  &#x2611;  | 
+| Robin |   &#x2611;   |  &#x2611;  |  &#x2611;  |  &#x2611;  | 
+| Sean  |   &#x2611;   |  &#x2611;  |  &#x2611;  |  &#x2611;  | 
 
 
 # Scrum Meeting One
@@ -30,3 +30,11 @@
 | Hayden |
 | Robin  | <ul><li>Checked for bugs in the message and user class</li></ul> | <ul><li>Create the tasks list for the next three stories</li></ul> | 
 | Sean   | <ul><li>Fixed SQL query in addMessage() method #973ea13a</li></ul> | <ul><li>Continue testing front-end features for sprint 1</li><li>Make a start on sprint 2 user stories</li></ul> | 
+
+# Scrum Meeting Four
+| Name   | What I did Yesterday | What tasks I will do today | Any isssues? |
+| ------ | -------------------- | -------------------------- | ------------ |
+| Ben    | |  |  |
+| Hayden |
+| Robin  | <ul><li>Wrote the tasks for 2 user stories</li></ul> | <ul><li>Write the tasks for the remaining</li><li>Code the sql query needed to retrieve all the needed information for viewPatient</li></ul> | 
+| Sean   | |  | 
