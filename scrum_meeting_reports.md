@@ -28,5 +28,5 @@
 | ------ | -------------------- | -------------------------- | ------------ |
 | Ben    | <ul><li>Rebase out #0e54d8985406f6ae5e7e97d35e3e0e7bbf549132 and #8a2554ef6502e7c2d969754f1cfca8d2e1a78030 from feature/authentication</li><li>Export DB<li>Merge feature/authentication and feature/newVisit to master</li></ul> | <ul><li>Make a new branch for feature/viewPatient and feature/viewBooking</li><li>Rebase out #0e54d8985406f6ae5e7e97d35e3e0e7bbf549132 and #8a2554ef6502e7c2d969754f1cfca8d2e1a78030 from master</li><ul> |  |
 | Hayden |
-| Robin  |
+| Robin  | <ul><li>Checked for bugs in the message and user class</li></ul> | <ul><li>Create the tasks list for the next three stories</li></ul> | 
 | Sean   | <ul><li>Fixed SQL query in addMessage() method #973ea13a</li></ul> | <ul><li>Continue testing front-end features for sprint 1</li><li>Make a start on sprint 2 user stories</li></ul> | 
