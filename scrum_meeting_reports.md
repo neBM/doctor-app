@@ -35,6 +35,6 @@
 | Name   | What I did Yesterday | What tasks I will do today | Any isssues? |
 | ------ | -------------------- | -------------------------- | ------------ |
 | Ben    | |  |  |
-| Hayden | Assisted with making changes to the message display from sprint 1 and making it only show that users incoming messages instead of all messages | Begin designing the page to allow doctors to view their patients |  |
+| Hayden | <ul> <li> Assisted with making changes to the message display from sprint 1 and making it only show that users incoming messages instead of all messages </li> </ul> | <ul> <li> Begin designing the page to allow doctors to view their patients along with their summary information</li> </ul> |  |
 | Robin  | <ul><li>Wrote the tasks for 2 user stories</li></ul> | <ul><li>Write the tasks for the remaining</li><li>Code the sql query needed to retrieve all the needed information for viewPatient</li></ul> | 
 | Sean   | |  | 
