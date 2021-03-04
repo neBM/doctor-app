@@ -54,4 +54,9 @@ public class User {
         }
         return email.equals(((User) obj).getEmail());
     }
+
+    @Override
+    public int hashCode() {
+        return email.hashCode();
+    }
 }
