@@ -12,6 +12,8 @@ public class BookingInterface {
     private String[] day = new String[32];
     private JLabel labelMonth = new JLabel();
     private JLabel labelDay = new JLabel();
+    private JButton buttonCancel = new JButton();
+    private JButton buttonSearch = new JButton();
 
     public BookingInterface(){
         // Frame Information
@@ -53,12 +55,22 @@ public class BookingInterface {
         listRenderer.setHorizontalAlignment(DefaultListCellRenderer.CENTER);
         textMonth.setRenderer(listRenderer);
         textDay.setRenderer(listRenderer);
+        textMonth.removeItemAt(0);
+        textDay.removeItemAt(0);
 
         // Label Information
         labelMonth.setText("Month");
         labelDay.setText("Day");
         labelMonth.setBounds(10,30, 50, 20);
         labelDay.setBounds(10,60, 50, 20); 
+
+        // Button Information
+        buttonCancel.setText("Cancel");
+        buttonSearch.setText("Search");
+        buttonCancel.setBounds(50, 100, 120, 20);
+        buttonSearch.setBounds(200, 100, 120, 20);
+        buttonCancel.addActionListener(this);
+        buttonSearch.addActionListener(this);
     }
 
     public static void main (String[] args){
