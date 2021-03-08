@@ -2,7 +2,7 @@ package booking_app;
 
 import javax.swing.*;
 
-public class BookingInterface {
+public class BookingInterface implements ActionListener {
 
     private JFrame frame = new JFrame();
     private JPanel panel = new JPanel();
@@ -75,6 +75,17 @@ public class BookingInterface {
 
     public static void main (String[] args){
         BookingInterface bookingInterface = new BookingInterface();
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        if(e.getSource() == buttonCancel){
+            frame.dispose();
+        }
+
+        if(e.getSource() == buttonSearch){
+
+        }
     }
 }
 
