@@ -8,6 +8,8 @@ public class BookingInterface {
     private JPanel panel = new JPanel();
     private JComboBox textMonth = new JComboBox();
     private JComboBox textDay = new JComboBox();
+    private String[] month = new String[13];
+    private String[] day = new String[32];
     private JLabel labelMonth = new JLabel();
     private JLabel labelDay = new JLabel();
 
@@ -29,9 +31,22 @@ public class BookingInterface {
         panel.add(labelDay);
         panel.add(labelMonth);
 
+        // ComboBox Information
+        // Setting String array for months (12)
+        for(int i = 1; i <= 12; i++){
+            month[i] = String.valueOf(i);
+        }
+
+        // Setting String array for days (31)
+        for(int i = 1; i <= 31; i++){
+            day[i] = String.valueOf(i);
+        }
+
         // Set Size and Location of ComboBox
         textMonth.setBounds(50, 30, 275, 20);
         textDay.setBounds(50, 60, 275,20);
+        textDay.setModel(new DefaultComboBoxModel(day));
+        textMonth.setModel(new DefaultComboBoxModel(month));
 
         // Label Information
         labelMonth.setText("Month");
