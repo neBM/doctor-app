@@ -48,6 +48,12 @@ public class BookingInterface {
         textDay.setModel(new DefaultComboBoxModel(day));
         textMonth.setModel(new DefaultComboBoxModel(month));
 
+        // Creating a list cell renderer to center align the ComboBox
+        DefaultListCellRenderer listRenderer = new DefaultListCellRenderer();
+        listRenderer.setHorizontalAlignment(DefaultListCellRenderer.CENTER);
+        textMonth.setRenderer(listRenderer);
+        textDay.setRenderer(listRenderer);
+
         // Label Information
         labelMonth.setText("Month");
         labelDay.setText("Day");
