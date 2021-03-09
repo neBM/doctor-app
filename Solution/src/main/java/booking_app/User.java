@@ -49,6 +49,9 @@ public class User {
     public String getLastname() {
         return lastname;
     }
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
 
     @Override
     public String toString() {
