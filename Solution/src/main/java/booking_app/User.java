@@ -43,6 +43,10 @@ public class User {
     public String getEmail() {
         return email;
     }
+    public String getFirstname() {
+        return firstName;
+    }
+    
 
     @Override
     public String toString() {
