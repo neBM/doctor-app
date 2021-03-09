@@ -111,6 +111,9 @@
         - a getDateOfBirth method that returns the user's date of birth 
 
 
+- The system should allow a doctor to view the visit details and prescriptions regarding a past booking, for which the doctor provided visit details 
+  and prescriptions.
+
 
 
 
