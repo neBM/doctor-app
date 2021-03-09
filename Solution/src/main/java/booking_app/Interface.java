@@ -8,8 +8,10 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.sql.SQLException;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Set;
 import java.awt.Font;
+import java.util.stream.Collectors;
 
 public class Interface implements ActionListener {
 
@@ -27,15 +29,17 @@ public class Interface implements ActionListener {
     private JPanel panelAddPrescription = new JPanel();
     private JPanel panelMessageTop = new JPanel();
 
+    private JPanel panelViewBooking = new JPanel();
+
     private JButton buttonMessage = new JButton();
     private JButton buttonPatientList = new JButton();
     private JButton buttonBookings = new JButton();
     private JButton buttonVisit = new JButton();
     private JButton buttonOk = new JButton();
 
-    private JButton buttonAddVisit = new JButton();
-    private JButton buttonAddPrescriptions = new JButton();
     private JButton buttonSubmit = new JButton();
+
+    private JButton buttonFilter = new JButton();
 
     private JLabel labelPatient = new JLabel();
     private JLabel labelDoctor = new JLabel();
