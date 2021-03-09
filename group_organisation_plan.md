@@ -121,6 +121,12 @@
       - show all the past visit details performed by the user (the doctor)
       - A return button to the welcome screen
     
+    - Back End:
+      - An SQL query that retrieves the visit details for a given doctor 
+      - Create a visitDetails class
+      - Add all the necessary fields for the visitDetails class and initiate them in the constructor 
+      - A getVisitDetails method that takes a user as a parameter and returns all the visits for that user
+    
 
 
 
