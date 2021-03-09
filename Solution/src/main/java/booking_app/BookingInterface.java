@@ -32,6 +32,8 @@ public class BookingInterface implements ActionListener {
         panel.add(textDay);
         panel.add(labelDay);
         panel.add(labelMonth);
+        panel.add(buttonCancel);
+        panel.add(buttonSearch);
 
         // ComboBox Information
         // Setting String array for months (12)
@@ -49,6 +51,8 @@ public class BookingInterface implements ActionListener {
         textDay.setBounds(50, 60, 275,20);
         textDay.setModel(new DefaultComboBoxModel(day));
         textMonth.setModel(new DefaultComboBoxModel(month));
+        textMonth.setSelectedItem("1");
+        textDay.setSelectedItem("1");
 
         // Creating a list cell renderer to center align the ComboBox
         DefaultListCellRenderer listRenderer = new DefaultListCellRenderer();
