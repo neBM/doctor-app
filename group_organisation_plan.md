@@ -114,6 +114,14 @@
 - The system should allow a doctor to view the visit details and prescriptions regarding a past booking, for which the doctor provided visit details 
   and prescriptions.
 
+  - Tasks
+    - Front End:
+      - A button for view visit details on the welcome screen 
+      - A pop up window for  visit details 
+      - show all the past visit details performed by the user (the doctor)
+      - A return button to the welcome screen
+    
+
 
 
 
