@@ -1,10 +1,10 @@
 # Attendance
-| Name  |  24/02/2021  | 26/02/2021 | 02/03/2021 | 04/03/2021 |
-| ----- | :----------: | :--------: | :--------: | :--------: |
-| Ben   |   &#x2611;   |  &#x2611;  |  &#x2611;  |  &#x2611;  | 
-| Hayden|   &#x2611;   |  &#x2611;  |  &#x2611;  |  &#x2611;  | 
-| Robin |   &#x2611;   |  &#x2611;  |  &#x2611;  |  &#x2611;  | 
-| Sean  |   &#x2611;   |  &#x2611;  |  &#x2611;  |  &#x2611;  | 
+| Name  |  24/02/2021  | 26/02/2021 | 02/03/2021 | 04/03/2021 | 09/03/2021 |
+| ----- | :----------: | :--------: | :--------: | :--------: | :--------: |
+| Ben   |   &#x2611;   |  &#x2611;  |  &#x2611;  |  &#x2611;  |  &#x2611;  |
+| Hayden|   &#x2611;   |  &#x2611;  |  &#x2611;  |  &#x2611;  |  &#x2611;  |
+| Robin |   &#x2611;   |  &#x2611;  |  &#x2611;  |  &#x2611;  |  &#x2611;  |
+| Sean  |   &#x2611;   |  &#x2611;  |  &#x2611;  |  &#x2611;  |  &#x2611;  |
 
 
 # Scrum Meeting One
@@ -45,4 +45,4 @@
 | Ben    |                      |                            |              |
 | Hayden | <ul> <li> Made a start on the front end design for allowing doctors to view their patients </li> </ul> | <ul> <li> Add a button on the doctor's patients list that allows the user to return to the welcome screen </li> <li> When the view summary information is clikced it will create a new pop up window for the patient selected </li> <li> Next to each patient have a button to view summary information </li>  </ul> | <ul> <li> View Patients branch login-interface was not the most recent version </li>  </ul> |
 | Robin  |                      |                            |              |
-| Sean   | <ul><li>Create a pop window that is form used to enter the booking month and year</li><li>Add two entries which takes a month and year</li><li>On the form pop window have a button to return to the welcome screen</li></ul>   | <ul><li>Implement functionality to the JButton in view bookings</li><li>Retrieve booking data from our SQL database</li></ul>                           |              |
+| Sean   | <ul><li>Create a pop window that is form used to enter the booking month and year</li><li>Add two entries which takes a month and year</li><li>On the form pop window have a button to return to the welcome screen</li></ul>   | <ul><li>Implement functionality to the JButton in view bookings</li><li>Retrieve booking data from our SQL database</li></ul> | <ul><li>ComboBoxes were not being displayed properly</li></ul>             |
