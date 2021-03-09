@@ -51,6 +51,24 @@ public class Model {
             this.prescriptionName = prescriptionName;
             this.prescriptionQuantity = prescriptionQuantity;
         }
+        public User getDoctor() {
+            return doctor;
+        }
+        public String getVisitNotes() {
+            return visitNotes;
+        }
+        public Timestamp getTimestamp() {
+            return timestamp;
+        }
+        public User getpatient() {
+            return patient;
+        }
+        public String getPrescriptionName() {
+            return prescriptionName;
+        }
+        public int getPrescriptionQuantity() {
+            return prescriptionQuantity;
+        }
 
 
 
