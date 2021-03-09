@@ -381,6 +381,27 @@ public class Interface implements ActionListener {
            }
         }
     }
+
+    protected void updateInterface(Set<Booking> bookings){
+        panelViewBooking.removeAll();
+        if(bookings.size() <= 0){
+            JLabel error = new JLabel();
+            error.setText("No Bookings Found!");
+            panelViewBooking.add(error);
+        } else{
+            int bookingNumber = 0;
+            for(Booking booking : bookings.stream().sorted((booking1, booking2) -> booking1.getTimestamp().compareTo(booking2.getTimestamp())).collect(Collectors.toList())){
+                if(booking.getDoctor().equals(loggedInUser)){
+                    bookingNumber++;
+                    JLabel labelViewBooking = new JLabel();
+                    labelViewBooking.setText(String.format("%d. doctor: %s patient: %s date/time: %s", bookingNumber, booking.getDoctor().getEmail(), booking.getPatient().getEmail(), booking.getTimestamp().format(DateTimeFormatter.ISO_DATE_TIME)));
+                    panelViewBooking.add(labelViewBooking);
+                }
+            }
+        }
+        panelViewBooking.revalidate();
+        panelViewBooking.repaint();
+    }
 }
 
 
