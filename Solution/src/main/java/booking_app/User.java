@@ -8,9 +8,18 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Base64;
+import java.sql.Timestamp;
 
 public class User {
     private String email;
+    private String firstName;
+    private String lastname;
+    private String phoneNumber;
+    private String address;
+    private String gender;
+    private Timestamp dateOfBirth;
+    private String assignedDoctor;
+
 
     public enum Type {
         DOCTOR, PATIENT;
@@ -20,8 +29,15 @@ public class User {
         return DriverManager.getConnection("jdbc:mysql://www.martinilink.co.uk:3306/doctor_app", "doctor_app", "JNpRFmbXk5WB68SW");
     }
 
-    public User(String email) {
+    public User(String email, String firstName, String lastName, String phoneNumber, String address, String gender, Timestamp dateOfBirth, String assignedDoctor) {
         this.email = email;
+        this.firstName = firstName;
+        this.lastname = lastName;
+        this.phoneNumber = phoneNumber;
+        this.address = address;
+        this.gender = gender;
+        this.dateOfBirth = dateOfBirth;
+        this.assignedDoctor = assignedDoctor;
     }
 
     public String getEmail() {
