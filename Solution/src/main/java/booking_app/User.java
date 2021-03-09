@@ -46,7 +46,9 @@ public class User {
     public String getFirstname() {
         return firstName;
     }
-    
+    public String getLastname() {
+        return lastname;
+    }
 
     @Override
     public String toString() {
