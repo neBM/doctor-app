@@ -2,10 +2,7 @@ package booking_app;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
+import java.awt.event.*;
 import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -13,34 +10,39 @@ import java.util.Set;
 import java.awt.Font;
 import java.util.stream.Collectors;
 
-public class Interface implements ActionListener {
+public class Interface implements ActionListener, KeyListener {
+    // Field Variables
+    private Font font = new Font("Courier", Font.BOLD,12);
+    private User loggedInUser;
+    private int numOfMessages = 0;
 
+    // JFrames Objects
     private JFrame frame = new JFrame();
     private JFrame windowError = new JFrame();
     private JFrame newMessages = new JFrame();
+
+    // JPanels Objects
     private JPanel panelTop = new JPanel();
     private JPanel panelMessage = new JPanel();
     private JPanel panelPatientList = new JPanel();
     private JPanel panelBookings = new JPanel();
     private JPanel panelVisit = new JPanel();
     private JPanel panelNewMessage = new JPanel();
-
     private JPanel panelAddVisit = new JPanel();
     private JPanel panelAddPrescription = new JPanel();
     private JPanel panelMessageTop = new JPanel();
-
     private JPanel panelViewBooking = new JPanel();
 
+    // JButtons Objects
     private JButton buttonMessage = new JButton();
     private JButton buttonPatientList = new JButton();
     private JButton buttonBookings = new JButton();
     private JButton buttonVisit = new JButton();
     private JButton buttonOk = new JButton();
-
     private JButton buttonSubmit = new JButton();
-
     private JButton buttonFilter = new JButton();
 
+    // JLabels Objects
     private JLabel labelPatient = new JLabel();
     private JLabel labelDoctor = new JLabel();
     private JLabel labelDate = new JLabel();
@@ -51,32 +53,27 @@ public class Interface implements ActionListener {
     private JLabel labelExample = new JLabel();
     private JLabel labelNewMessages = new JLabel();
 
+    // JComboBoxes Objects
     private JComboBox<String> textFieldPatient = new JComboBox<>();
     private JComboBox<String> textDoctor = new JComboBox<>();
 
-    private JTextField textYear = new JTextField();
-    private JTextField textMonth = new JTextField();
-    private JTextField textDay = new JTextField();
-    private JTextField textHour = new JTextField();
-    private JTextField textMinute = new JTextField();
-
-    private JTextField textVisitNotes = new JTextField();
-    private JTextField textPrescription = new JTextField();
-    private JTextField textQuantity = new JTextField();
-
-    private Font font = new Font("Courier", Font.BOLD,12);
-
-    private int numOfMessages = 0;
-    private User loggedInUser;
+    // JTextFields Objects
+    private JTextField textFieldYear = new JTextField();
+    private JTextField textFieldMonth = new JTextField();
+    private JTextField textFieldDay = new JTextField();
+    private JTextField textFieldHour = new JTextField();
+    private JTextField textFieldMinute = new JTextField();
+    private JTextField textFieldVisitNotes = new JTextField();
+    private JTextField textFieldPrescription = new JTextField();
+    private JTextField textFieldQuantity = new JTextField();
 
     public Interface(User loggedInuser){
-        this.loggedInUser = loggedInuser;
-
+        // Main Interface
         // Frame Information
+        this.loggedInUser = loggedInuser;
         frame.setLayout(null);
         frame.setTitle("Welcome Page");
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        frame.setVisible(true);
         frame.setSize(800, 560);
         frame.setResizable(false);
         frame.add(panelTop, BorderLayout.NORTH);
@@ -84,9 +81,27 @@ public class Interface implements ActionListener {
         frame.add(panelPatientList);
         frame.add(panelBookings);
         frame.add(panelVisit);
+        frame.setVisible(true);
 
+        // Button Information
+        buttonMessage.setText("Messages");
+        buttonMessage.setBounds(20, 5, 175, 30);
+        buttonMessage.addActionListener(this);
+        buttonPatientList.setText("Patient's List");
+        buttonPatientList.setBounds(210, 5, 175, 30);
+        buttonPatientList.addActionListener(this);
+        buttonBookings.setText("Bookings");
+        buttonBookings.setBounds(400, 5, 175, 30);
+        buttonBookings.addActionListener(this);
+        buttonVisit.setText("Add Visit & Prescription");
+        buttonVisit.setBounds(590, 5, 175, 30);
+        buttonVisit.addActionListener(this);
+        buttonSubmit.setText("Submit");
+        buttonSubmit.setBounds(290, 400, 150, 30);
+        buttonSubmit.addActionListener(this);
+//----------------------------------------------------------------------------------------------------------------------
+        // Messages
         // New Messages Window Information
-
         newMessages.setLayout(new BorderLayout());
         newMessages.setTitle("Unread Messages");
         newMessages.setSize(600, 400);
@@ -102,27 +117,7 @@ public class Interface implements ActionListener {
         panelMessageTop.setBackground(Color.decode("#709ED6"));
         panelMessageTop.setVisible(true);
 
-        // Label Information
-        labelPatient.setText("Patient's Full-name");
-        labelPatient.setBounds(20,10,150,20);
-
-        labelDoctor.setText("Doctor's Full-name");
-        labelDoctor.setBounds(20, 60, 150, 20);
-
-        labelDate.setText("Date and Time of Visit");
-        labelDate.setBounds(20, 110, 150, 20);
-
-        labelNotes.setText("Visit Notes");
-        labelNotes.setBounds(20, 160, 150, 20);
-
-        labelPrescriptionName.setText("Prescription Name");
-        labelPrescriptionName.setBounds(20, 210, 150, 20);
-
-        labelQuantity.setText("Prescription Quantity");
-        labelQuantity.setBounds(20, 260, 150, 20);
-
         //Retrieving number of new messages
-        
         try {
             Set<Model.Message> unread = Model.getMessages(false);
             for(Model.Message message : unread){
@@ -148,8 +143,6 @@ public class Interface implements ActionListener {
         //New Messages Label
         labelNewMessages.setText(numOfMessages + " Unread Messages");
         labelNewMessages.setBounds(0, 0, 150, 20);
-        
-        
 
         // TextField Information
         textFieldPatient.setBounds(20, 30, 250, 25);
@@ -170,44 +163,6 @@ public class Interface implements ActionListener {
         catch(SQLException e){
             e.printStackTrace();
         }
-        textYear.setBounds(20, 130, 50, 25);
-        textYear.setText("yyyy");
-        textYear.setHorizontalAlignment(SwingConstants.CENTER);
-
-        textMonth.setBounds(80, 130, 35, 25);
-        textMonth.setText("mm");
-        textMonth.setHorizontalAlignment(SwingConstants.CENTER);
-
-        textDay.setBounds(130, 130, 35, 25);
-        textDay.setText("dd");
-        textDay.setHorizontalAlignment(SwingConstants.CENTER);
-
-        textHour.setBounds(180, 130, 35, 25);
-        textHour.setText("hh");
-        textHour.setHorizontalAlignment(SwingConstants.CENTER);
-
-        textMinute.setBounds(230, 130, 35, 25);
-        textMinute.setText("mm");
-        textMinute.setHorizontalAlignment(SwingConstants.CENTER);
-
-        labelExample.setBounds(280, 125, 400, 30);
-        labelExample.setText("Example: 2003  05  25  17  30");
-        labelExample.setFont(font.deriveFont(font.getStyle() | Font.BOLD));
-
-        textVisitNotes.setBounds(20, 180, 250, 25);
-
-        textPrescription.setBounds(20, 230, 250, 25);
-
-        textQuantity.setBounds(20, 280, 250, 25);
-        textQuantity.setHorizontalAlignment(SwingConstants.CENTER);
-        textQuantity.addKeyListener(new KeyAdapter() {
-            @Override
-            public void keyReleased(KeyEvent ke) {
-                if (!(ke.getKeyChar() >= '0' && ke.getKeyChar() <= '9')) {
-                    textQuantity.setText("");
-                }
-            }
-        });
 
         // Panel Information
         panelTop.add(buttonMessage);
@@ -217,7 +172,6 @@ public class Interface implements ActionListener {
         panelTop.setBounds(0, 0, 800, 40);
         panelTop.setBackground(Color.decode("#709ED6"));
         panelTop.setLayout(null);
-
         panelMessage.setVisible(true);
         panelMessage.setBounds(0, 40, 800, 560);
         panelMessage.setLayout(new BoxLayout(panelMessage, BoxLayout.Y_AXIS));
@@ -237,7 +191,69 @@ public class Interface implements ActionListener {
         panelPatientList.setVisible(false);
         panelPatientList.setBounds(0, 40, 800, 560);
 
-        //---------------------------------------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------------------------------------
+        // Add Visit & Prescription
+        // Label Information
+        labelPatient.setText("Patient's Full-name");
+        labelPatient.setBounds(20,10,150,20);
+        labelDoctor.setText("Doctor's Full-name");
+        labelDoctor.setBounds(20, 60, 150, 20);
+        labelDate.setText("Date and Time of Visit");
+        labelDate.setBounds(20, 110, 150, 20);
+        labelNotes.setText("Visit Notes");
+        labelNotes.setBounds(20, 160, 150, 20);
+        labelPrescriptionName.setText("Prescription Name");
+        labelPrescriptionName.setBounds(20, 210, 150, 20);
+        labelQuantity.setText("Prescription Quantity");
+        labelQuantity.setBounds(20, 260, 150, 20);
+
+        // TextField Information
+        textFieldYear.setBounds(20, 130, 50, 25);
+        textFieldYear.setText("yyyy");
+        textFieldYear.setHorizontalAlignment(SwingConstants.CENTER);
+        textFieldMonth.setBounds(80, 130, 35, 25);
+        textFieldMonth.setText("mm");
+        textFieldMonth.setHorizontalAlignment(SwingConstants.CENTER);
+        textFieldDay.setBounds(130, 130, 35, 25);
+        textFieldDay.setText("dd");
+        textFieldDay.setHorizontalAlignment(SwingConstants.CENTER);
+        textFieldHour.setBounds(180, 130, 35, 25);
+        textFieldHour.setText("hh");
+        textFieldHour.setHorizontalAlignment(SwingConstants.CENTER);
+        textFieldMinute.setBounds(230, 130, 35, 25);
+        textFieldMinute.setText("mm");
+        textFieldMinute.setHorizontalAlignment(SwingConstants.CENTER);
+        labelExample.setBounds(280, 125, 400, 30);
+        labelExample.setText("Example: 2003  05  25  17  30");
+        labelExample.setFont(font.deriveFont(font.getStyle() | Font.BOLD));
+        textFieldVisitNotes.setBounds(20, 180, 250, 25);
+        textFieldPrescription.setBounds(20, 230, 250, 25);
+        textFieldQuantity.setBounds(20, 280, 250, 25);
+        textFieldQuantity.setHorizontalAlignment(SwingConstants.CENTER);
+        textFieldQuantity.addKeyListener(this);
+
+        // Panel Information
+        panelAddVisit.setBounds(40, 20, 700, 450);
+        panelAddVisit.add(labelPatient);
+        panelAddVisit.add(textFieldPatient);
+        panelAddVisit.add(labelDoctor);
+        panelAddVisit.add(textDoctor);
+        panelAddVisit.add(labelDate);
+        panelAddVisit.add(textFieldYear);
+        panelAddVisit.add(textFieldMonth);
+        panelAddVisit.add(textFieldDay);
+        panelAddVisit.add(textFieldHour);
+        panelAddVisit.add(textFieldMinute);
+        panelAddVisit.add(labelNotes);
+        panelAddVisit.add(textFieldVisitNotes);
+        panelAddVisit.add(buttonSubmit);
+        panelAddVisit.add(labelPrescriptionName);
+        panelAddVisit.add(textFieldPrescription);
+        panelAddVisit.add(labelQuantity);
+        panelAddVisit.add(textFieldQuantity);
+        panelAddVisit.add(labelExample);
+        panelAddVisit.setLayout(null);
+//---------------------------------------------------------------------------------------------------------------------
         // Bookings
         // Panels
         panelBookings.setBackground(Color.LIGHT_GRAY);
@@ -261,60 +277,18 @@ public class Interface implements ActionListener {
         buttonFilter.setBounds(360, 430, 100, 35);
         buttonFilter.addActionListener(this);
 //----------------------------------------------------------------------------------------------------------------------
-
-        panelAddVisit.setBounds(40, 20, 700, 450);
-        panelAddVisit.add(labelPatient);
-        panelAddVisit.add(textFieldPatient);
-        panelAddVisit.add(labelDoctor);
-        panelAddVisit.add(textDoctor);
-        panelAddVisit.add(labelDate);
-        panelAddVisit.add(textYear);
-        panelAddVisit.add(textMonth);
-        panelAddVisit.add(textDay);
-        panelAddVisit.add(textHour);
-        panelAddVisit.add(textMinute);
-        panelAddVisit.add(labelNotes);
-        panelAddVisit.add(textVisitNotes);
-        panelAddVisit.add(buttonSubmit);
-        panelAddVisit.add(labelPrescriptionName);
-        panelAddVisit.add(textPrescription);
-        panelAddVisit.add(labelQuantity);
-        panelAddVisit.add(textQuantity);
-        panelAddVisit.add(labelExample);
-        panelAddVisit.setLayout(null);
-
-        panelAddPrescription.setBounds(40, 40, 700, 450);
-
-        // Button Information
-        buttonMessage.setText("Messages");
-        buttonMessage.setBounds(20, 5, 175, 30);
-        buttonMessage.addActionListener(this);
-
-        buttonPatientList.setText("Patient's List");
-        buttonPatientList.setBounds(210, 5, 175, 30);
-        buttonPatientList.addActionListener(this);
-
-        buttonBookings.setText("Bookings");
-        buttonBookings.setBounds(400, 5, 175, 30);
-        buttonBookings.addActionListener(this);
-
-        buttonVisit.setText("Add Visit & Prescription");
-        buttonVisit.setBounds(590, 5, 175, 30);
-        buttonVisit.addActionListener(this);
-
-        buttonSubmit.setText("Submit");
-        buttonSubmit.setBounds(290, 400, 150, 30);
-        buttonSubmit.addActionListener(this);
-
         // Error Window Information
+        // Frame Information
         windowError.setLayout(null);
         windowError.setResizable(false);
         windowError.setTitle("Error Message");
         windowError.setDefaultCloseOperation(WindowConstants.HIDE_ON_CLOSE);
         windowError.setSize(600, 100);
 
+        // Label Information
         labelError.setBounds(30, 10, 600, 20);
 
+        // Button Information
         buttonOk.setText("Ok");
         buttonOk.setBounds(275,32,50, 25);
         buttonOk.addActionListener(this);
@@ -354,16 +328,6 @@ public class Interface implements ActionListener {
             panelVisit.setVisible(true);
         }
 
-        if(e.getSource() == buttonAddVisit) {
-            panelAddVisit.setVisible(true);
-            panelAddPrescription.setVisible(false);
-        }
-
-        if(e.getSource() == buttonAddPrescriptions) {
-            panelAddVisit.setVisible(false);
-            panelAddPrescription.setVisible(true);
-        }
-
         if(e.getSource() == buttonOk){
             windowError.dispose();
         }
@@ -371,16 +335,16 @@ public class Interface implements ActionListener {
         if(e.getSource() == buttonSubmit){
             String patientName = textFieldPatient.getSelectedItem().toString();
             String doctorName = textDoctor.getSelectedItem().toString();
-            int year = Integer.parseInt(textYear.getText());
-            int month = Integer.parseInt(textMonth.getText());
-            int day = Integer.parseInt(textDay.getText());
-            int hour = Integer.parseInt(textHour.getText());
-            int minute = Integer.parseInt(textMinute.getText());
+            int year = Integer.parseInt(textFieldYear.getText());
+            int month = Integer.parseInt(textFieldMonth.getText());
+            int day = Integer.parseInt(textFieldDay.getText());
+            int hour = Integer.parseInt(textFieldHour.getText());
+            int minute = Integer.parseInt(textFieldMinute.getText());
             LocalDateTime date;
 
-            String visitNote = textVisitNotes.getText();
-            String prescription = textPrescription.getText();
-            int quantity = Integer.parseInt(textQuantity.getText());
+            String visitNote = textFieldVisitNotes.getText();
+            String prescription = textFieldPrescription.getText();
+            int quantity = Integer.parseInt(textFieldQuantity.getText());
 
             try {
                 Model.addMessage(Model.getUser(patientName), Model.getUser(doctorName), String.format("Visit confirmation on %d %d %d at %d %d", year, month, day, hour, minute));
@@ -401,6 +365,21 @@ public class Interface implements ActionListener {
                 throwables.printStackTrace();
            }
         }
+    }
+
+    @Override
+    public void keyReleased(KeyEvent ke) {
+        if (!(ke.getKeyChar() >= '0' && ke.getKeyChar() <= '9')) {
+            textFieldQuantity.setText("");
+        }
+    }
+
+    @Override
+    public void keyTyped(KeyEvent e) {
+    }
+
+    @Override
+    public void keyPressed(KeyEvent e) {
     }
 
     protected void updateInterface(Set<Booking> bookings){
