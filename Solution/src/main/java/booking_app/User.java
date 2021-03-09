@@ -7,6 +7,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Time;
 import java.util.Base64;
 import java.sql.Timestamp;
 
@@ -51,6 +52,18 @@ public class User {
     }
     public String getPhoneNumber() {
         return phoneNumber;
+    }
+    public String getAddress() {
+        return address;
+    }
+    public String getGender() {
+        return gender;
+    }
+    public Timestamp getDateOfBirth() {
+        return dateOfBirth;
+    }
+    public String getAssignedDoctor() {
+        return assignedDoctor;
     }
 
     @Override
