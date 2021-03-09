@@ -326,6 +326,10 @@ public class Interface implements ActionListener {
             panelVisit.setVisible(false);
         }
 
+        if(e.getSource() == buttonFilter){
+            BookingInterface bookingInterface = new BookingInterface(this);
+        }
+
         if(e.getSource() == buttonVisit){
             panelMessage.setVisible(false);
             panelPatientList.setVisible(false);
