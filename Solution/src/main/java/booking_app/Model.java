@@ -25,6 +25,12 @@ public class Model {
     public static void main(String[] args) throws NoSuchAlgorithmException, SQLException {
         // Testing
         System.out.println(Model.getUser("ben@sample.co.uk").testPassword("pass"));
+        Set<User> patients = new HashSet<>();
+        patients = getPatients("ben@sample.co.uk");
+        for (User patient : patients) {
+            System.out.println(patient.getEmail());
+        }
+       
     }
 
 
@@ -81,6 +87,19 @@ public class Model {
             read = true;
         }
 
+    }
+    public static Set<User> getPatients(String doctor)  throws SQLException {
+        try (PreparedStatement stmt = getConn().prepareStatement("SELECT `users`.`email`,`users`.`firstName`,`users`.`lastname`,`users`.`phoneNumber`,`users`.`address`,`users`.`gender`,`users`.`dateOfbirth`, `patientDetails`.`assignedDoctor` FROM `users` LEFT JOIN `patientDetails` ON `users`.`email` = `patientDetails`.`patientEmail` WHERE `patientDetails`.`assignedDoctor` = ?")) {
+            stmt.setString(1, doctor);
+            ResultSet result = stmt.executeQuery();
+            Set<User> patients = new HashSet<>();
+            while (result.next()) {
+                patients.add(new User(result.getString(USER_KEY), result.getString("firstName"), result.getString("lastName"), result.getString("phoneNumber"), result.getString("address"), result.getString("gender"), result.getTimestamp("dateOfBirth"), result.getString("assignedDoctor")));
+               
+               
+            }
+            return patients;
+        }
     }
     
     public static Set<Visit> getVisits()  throws SQLException {
