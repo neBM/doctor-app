@@ -14,8 +14,8 @@ public class BookingInterface implements ActionListener {
     private JPanel panel = new JPanel();
     private JComboBox textMonth = new JComboBox();
     private JComboBox textDay = new JComboBox();
-    private String[] month = new String[13];
-    private String[] day = new String[32];
+    private Integer[] month = new Integer[13];
+    private Integer[] day = new Integer[32];
     private JLabel labelMonth = new JLabel();
     private JLabel labelDay = new JLabel();
     private JButton buttonCancel = new JButton();
@@ -44,12 +44,12 @@ public class BookingInterface implements ActionListener {
         // ComboBox Information
         // Setting String array for months (12)
         for(int i = 1; i <= 12; i++){
-            month[i] = String.valueOf(i);
+            month[i] = i;
         }
 
         // Setting String array for days (31)
         for(int i = 1; i <= 31; i++){
-            day[i] = String.valueOf(i);
+            day[i] = i;
         }
 
         // Set Size and Location of ComboBox
@@ -94,6 +94,8 @@ public class BookingInterface implements ActionListener {
         }
 
         if(e.getSource() == buttonSearch){
+            Integer month = (Integer) textMonth.getSelectedItem();
+            Integer day = (Integer) textDay.getSelectedItem();
 
         }
     }
