@@ -233,17 +233,30 @@ public class Interface implements ActionListener {
         panelPatientList.setVisible(false);
         panelPatientList.setBounds(0, 40, 800, 560);
 
+        //---------------------------------------------------------------------------------------------------------------------
+        // Bookings
+        // Panels
+        panelBookings.setBackground(Color.LIGHT_GRAY);
+        panelBookings.setLayout(null);
         panelBookings.setVisible(false);
         panelBookings.setBounds(0, 40, 800, 560);
+        panelBookings.add(panelViewBooking);
+        panelBookings.add(buttonFilter);
+        panelViewBooking.setBounds(40, 20, 700, 400);
 
+        // Labels
         panelVisit.setBackground(Color.LIGHT_GRAY);
         panelVisit.setVisible(false);
         panelVisit.setBounds(0, 40, 800, 560);
-        panelVisit.add(buttonAddVisit);
-        panelVisit.add(buttonAddPrescriptions);
         panelVisit.add(panelAddVisit);
         panelVisit.add(panelAddPrescription);
         panelVisit.setLayout(null);
+
+        // Buttons
+        buttonFilter.setText("Filter");
+        buttonFilter.setBounds(360, 430, 100, 35);
+        buttonFilter.addActionListener(this);
+//----------------------------------------------------------------------------------------------------------------------
 
         panelAddVisit.setBounds(40, 20, 700, 450);
         panelAddVisit.add(labelPatient);
