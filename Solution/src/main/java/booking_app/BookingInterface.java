@@ -82,11 +82,7 @@ public class BookingInterface implements ActionListener {
         buttonCancel.addActionListener(this);
         buttonSearch.addActionListener(this);
     }
-
-    public static void main (String[] args){
-        BookingInterface bookingInterface = new BookingInterface();
-    }
-
+    
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == buttonCancel){
@@ -97,6 +93,12 @@ public class BookingInterface implements ActionListener {
             Integer month = (Integer) textMonth.getSelectedItem();
             Integer day = (Integer) textDay.getSelectedItem();
 
+            try {
+                Set<Booking> bookings = Model.getBookings().stream().filter((booking) -> booking.getTimestamp().getDayOfMonth() == day && booking.getTimestamp().getMonthValue() == month).collect(Collectors.toSet());
+                context.updateInterface(bookings);
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
         }
     }
 }
