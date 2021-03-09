@@ -68,6 +68,7 @@ public class Interface implements ActionListener, KeyListener {
     private JTextField textFieldQuantity = new JTextField();
 
     public Interface(User loggedInuser){
+//----------------------------------------------------------------------------------------------------------------------
         // Main Interface
         // Frame Information
         this.loggedInUser = loggedInuser;
@@ -292,6 +293,7 @@ public class Interface implements ActionListener, KeyListener {
         buttonOk.setText("Ok");
         buttonOk.setBounds(275,32,50, 25);
         buttonOk.addActionListener(this);
+//----------------------------------------------------------------------------------------------------------------------
     }
 
     @Override
