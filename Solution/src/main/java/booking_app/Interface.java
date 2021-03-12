@@ -1,6 +1,9 @@
 package booking_app;
 
 import javax.swing.*;
+
+//import jdk.tools.jlink.internal.Jlink;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -16,6 +19,9 @@ public class Interface implements ActionListener {
     private JFrame frame = new JFrame();
     private JFrame windowError = new JFrame();
     private JFrame newMessages = new JFrame();
+    private JFrame summaryInfo = new JFrame();
+    private JPanel panelSummary = new JPanel();
+    private JPanel panelSummaryTop = new JPanel();
     private JPanel panelTop = new JPanel();
     private JPanel panelMessage = new JPanel();
     private JPanel panelPatientList = new JPanel();
@@ -46,6 +52,13 @@ public class Interface implements ActionListener {
     private JLabel labelError = new JLabel();
     private JLabel labelExample = new JLabel();
     private JLabel labelNewMessages = new JLabel();
+    private JLabel labelNumOfPatients = new JLabel();
+    private JLabel labelPatientName = new JLabel();
+    private JLabel labelNumber = new JLabel();
+    private JLabel labelAddress = new JLabel();
+    private JLabel labelGender = new JLabel();
+    private JLabel labelDOB = new JLabel();
+    private JLabel labelAssignedDoc = new JLabel();
 
     private JComboBox<String> textFieldPatient = new JComboBox<>();
     private JComboBox<String> textDoctor = new JComboBox<>();
@@ -301,7 +314,61 @@ public class Interface implements ActionListener {
         buttonOk.setText("Ok");
         buttonOk.setBounds(275,32,50, 25);
         buttonOk.addActionListener(this);
-    }
+
+        // View Patient Window Information
+
+        panelPatientList.setLayout(new BoxLayout(panelPatientList, BoxLayout.Y_AXIS));
+        int numOfPatients = 0;
+        panelPatientList.add(labelNumOfPatients);
+        try {
+            Set<User> setPatients = Model.getPatients(loggedInUser.getEmail());
+            for(User patients: setPatients){
+                numOfPatients++; 
+                labelNumOfPatients.setText("Total number of patients: " + numOfPatients);
+                JLabel msg = new JLabel();
+                msg.setText(numOfPatients + ". " + patients.getFirstname() + " " + patients.getLastname());
+                JButton buttonViewInfo = new JButton();
+                buttonViewInfo.setText("View Summary Information");
+                panelPatientList.add(msg);
+                panelPatientList.add(buttonViewInfo);
+                buttonViewInfo.addActionListener(e -> {
+                    summaryInfo.setVisible(true);
+                    labelPatientName.setText(patients.getFirstname() + " " + patients.getLastname());
+                    labelNumber.setText(patients.getPhoneNumber());
+                    labelAddress.setText(patients.getAddress());
+                    labelGender.setText(patients.getGender());
+                    labelDOB.setText("" + patients.getDateOfBirth());
+                    labelAssignedDoc.setText(patients.getAssignedDoctor());
+                });
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        // View Summary Information 
+
+        summaryInfo.setLayout(new BorderLayout());
+        summaryInfo.setTitle("Patients Summary Information");
+        summaryInfo.setSize(600, 400);
+        summaryInfo.setResizable(false);
+        summaryInfo.setDefaultCloseOperation(WindowConstants.HIDE_ON_CLOSE);
+        summaryInfo.add(panelSummaryTop, BorderLayout.PAGE_START);
+        summaryInfo.add(panelSummary, BorderLayout.CENTER);
+
+        panelSummaryTop.setPreferredSize(new Dimension(600, 40));
+        panelSummaryTop.setLayout(null);
+        panelSummaryTop.setBackground(Color.decode("#709ED6"));
+        panelSummaryTop.setVisible(true);
+
+        
+        panelSummary.add(labelPatientName);
+        panelSummary.setLayout(new BoxLayout(panelSummary, BoxLayout.Y_AXIS));
+        panelSummary.add(labelNumber);
+        panelSummary.add(labelAddress);
+        panelSummary.add(labelGender);
+        panelSummary.add(labelDOB);
+        panelSummary.add(labelAssignedDoc);
+    }   
 
     @Override
     public void actionPerformed(ActionEvent e){
@@ -346,6 +413,7 @@ public class Interface implements ActionListener {
         if(e.getSource() == buttonOk){
             windowError.dispose();
         }
+        
 
         if(e.getSource() == buttonSubmit){
             String patientName = textFieldPatient.getSelectedItem().toString();
