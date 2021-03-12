@@ -152,6 +152,18 @@ public class Model {
             return users;
         }
     }
+
+    public static Set<Booking> getBookings() throws SQLException {
+        try (Statement stmt = getConn().createStatement()){
+            ResultSet result = stmt.executeQuery("SELECT * FROM `bookings`");
+            HashSet<Booking> bookings = new HashSet<>();
+            while (result.next()) {
+                bookings.add(new Booking(result.getInt("id"), result.getString("doctor"), result.getString("patient"), result.getTimestamp("timestamp").toLocalDateTime()));
+            }
+            return bookings;
+        }
+    }
+
     public static Set<Message> getMessages() throws SQLException{
         return getMessages(null);
     }
