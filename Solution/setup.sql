@@ -47,7 +47,7 @@ CREATE TABLE `visitDetails` (
   `patientEmail` varchar(150) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `prescriptionName` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `doctor` varchar(50) DEFAULT NULL,
-  `visitDate` timestamp NULL DEFAULT NULL,
+  `timestamp` timestamp NULL DEFAULT NULL,
   `visitNotes` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `prescriptionnQuantity` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
@@ -77,7 +77,7 @@ ALTER TABLE `users`
 
 ALTER TABLE `visitDetails`
   ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `visitDate` (`visitDate`,`patientEmail`) USING BTREE,
+  ADD UNIQUE KEY `timestamp` (`timestamp`,`patientEmail`) USING BTREE,
   ADD KEY `doctor` (`doctor`),
   ADD KEY `patientEmail` (`patientEmail`) USING BTREE;
 

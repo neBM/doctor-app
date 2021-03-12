@@ -43,8 +43,8 @@ This table is used to store when a patient has booked an appointment with a doct
 
 ## visitDetails
 Stores the notes taken when a patient meets a doctor
-| id      | patientEmail    | doctor | visitDate | visitNotes | prescriptionName | prescriptionQuantity |
+| id      | patientEmail    | doctor | timestamp | visitNotes | prescriptionName | prescriptionQuantity |
 | ------- | --------------- | ------ | --------- | ---------- | ---------------- | -------------------- |
 | primary | foreign, unique |        | unique    |            |                  |                      |
 
-This table is used to store when a patient has booked an appointment with a doctor. At the clients request, this table is used to store bookings in the past. This is a duplicate of the bookings table with additional attributes for visit notes and prescription details: name and quantity. Because a patient can't attend two visits at the same time, a composite unuiqe key constraint is applied to `visitDate` and `patientEmail`. We also decided that `patientEmail` be a foreign key to the `patientDetails` tables `email` because a patient can't have make a visit without first being assigned to a doctor.
+This table is used to store when a patient has booked an appointment with a doctor. At the clients request, this table is used to store bookings in the past. This is a duplicate of the bookings table with additional attributes for visit notes and prescription details: name and quantity. Because a patient can't attend two visits at the same time, a composite unuiqe key constraint is applied to `timestamp` and `patientEmail`. We also decided that `patientEmail` be a foreign key to the `patientDetails` tables `email` because a patient can't have make a visit without first being assigned to a doctor.
