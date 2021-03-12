@@ -25,6 +25,12 @@ public class Model {
     public static void main(String[] args) throws NoSuchAlgorithmException, SQLException {
         // Testing
         System.out.println(Model.getUser("ben@sample.co.uk").testPassword("pass"));
+        Set<User> patients = new HashSet<>();
+        patients = getPatients("ben@sample.co.uk");
+        for (User patient : patients) {
+            System.out.println(patient.getEmail());
+        }
+       
     }
 
 
@@ -82,13 +88,26 @@ public class Model {
         }
 
     }
+    public static Set<User> getPatients(String doctor)  throws SQLException {
+        try (PreparedStatement stmt = getConn().prepareStatement("SELECT `users`.`email`,`users`.`firstName`,`users`.`lastname`,`users`.`phoneNumber`,`users`.`address`,`users`.`gender`,`users`.`dateOfbirth`, `patientDetails`.`assignedDoctor` FROM `users` LEFT JOIN `patientDetails` ON `users`.`email` = `patientDetails`.`patientEmail` WHERE `patientDetails`.`assignedDoctor` = ?")) {
+            stmt.setString(1, doctor);
+            ResultSet result = stmt.executeQuery();
+            Set<User> patients = new HashSet<>();
+            while (result.next()) {
+                patients.add(new User(result.getString(USER_KEY), result.getString("firstName"), result.getString("lastName"), result.getString("phoneNumber"), result.getString("address"), result.getString("gender"), result.getTimestamp("dateOfBirth"), result.getString("assignedDoctor")));
+               
+               
+            }
+            return patients;
+        }
+    }
     
     public static Set<Visit> getVisits()  throws SQLException {
         try (Statement stmt = getConn().createStatement()){
             ResultSet result = stmt.executeQuery("SELECT * FROM `visitDetails`");
             HashSet<Visit> visits = new HashSet<>();
             while (result.next()) {
-                visits.add(new Visit(new User(result.getString("doctor")), result.getString("visitNotes"), result.getTimestamp("timestamp"), new User(result.getString("patientEmail")), result.getString("prescriptionName"), result.getInt("prescriptionQuantity")));
+                visits.add(new Visit(getUser(result.getString("doctor")), result.getString("visitNotes"), result.getTimestamp("timestamp"), getUser(result.getString("patientEmail")), result.getString("prescriptionName"), result.getInt("prescriptionQuantity")));
             }
             return visits;
         }
@@ -99,12 +118,13 @@ public class Model {
         if (userCache.keySet().contains(email)) {
             return userCache.get(email);
         }
-        try (PreparedStatement stmt = getConn().prepareStatement("SELECT `email` FROM `users` WHERE `email` = ?")) {
+        //try (PreparedStatement stmt = getConn().prepareStatement("SELECT `email` FROM `users` WHERE `email` = ?")) {
+        try (PreparedStatement stmt = getConn().prepareStatement("SELECT `users`.`email`,`users`.`firstName`,`users`.`lastname`,`users`.`phoneNumber`,`users`.`address`,`users`.`gender`,`users`.`dateOfbirth`, `patientDetails`.`assignedDoctor` FROM `users` LEFT JOIN `patientDetails` ON `users`.`email` = `patientDetails`.`patientEmail` WHERE `users`.`email` = ?")) {
             stmt.setString(1, email);
             ResultSet result = stmt.executeQuery();
             HashSet<User> users = new HashSet<>();
             if (result.next()) {
-                User user = new User(result.getString(USER_KEY));
+                User user =  new User(result.getString(USER_KEY), result.getString("firstName"), result.getString("lastName"), result.getString("phoneNumber"), result.getString("address"), result.getString("gender"), result.getTimestamp("dateOfBirth"), result.getString("assignedDoctor"));
                 userCache.put(result.getString(USER_KEY), user);
                 return user;
             }
@@ -134,7 +154,8 @@ public class Model {
     }
 
     public static Set<User> getUsers(User.Type type) throws SQLException {
-        String query = "SELECT `email` FROM `users`";
+       // String query = "SELECT `email` FROM `users`";
+        String query = "SELECT `users`.`email`,`users`.`firstName`,`users`.`lastname`,`users`.`phoneNumber`,`users`.`address`,`users`.`gender`,`users`.`dateOfbirth`, `patientDetails`.`assignedDoctor` FROM `users`LEFT JOIN `patientDetails` ON `users`.`email` = `patientDetails`.`patientEmail`";
         if (type != null) {
             query += " WHERE `type` = ?";
         }
@@ -145,7 +166,7 @@ public class Model {
             ResultSet result = stmt.executeQuery();
             HashSet<User> users = new HashSet<>();
             while (result.next()) {
-                User user = new User(result.getString(USER_KEY));
+                User user = new User(result.getString(USER_KEY), result.getString("firstName"), result.getString("lastName"), result.getString("phoneNumber"), result.getString("address"), result.getString("gender"), result.getTimestamp("dateOfBirth"), result.getString("assignedDoctor"));
                 userCache.put(result.getString(USER_KEY), user);
                 users.add(user);
             }
@@ -182,7 +203,7 @@ public class Model {
             ResultSet result = stmt.executeQuery();
             HashSet<Message> messages = new HashSet<>();
             while (result.next()){
-                messages.add(new Message(result.getInt("id"), new User(result.getString("to")), new User(result.getString("from")), result.getString("message")));
+                messages.add(new Message(result.getInt("id"), getUser(result.getString("to")), getUser(result.getString("from")), result.getString("message")));
             }
             return messages;
         }
