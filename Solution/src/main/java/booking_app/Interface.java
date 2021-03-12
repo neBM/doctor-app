@@ -45,6 +45,7 @@ public class Interface implements ActionListener, KeyListener {
     private JButton buttonOk = new JButton();
     private JButton buttonSubmit = new JButton();
     private JButton buttonFilter = new JButton();
+    private JButton buttonPreviousBookings = new JButton();
 
     // JLabels Objects
     private JLabel labelPatient = new JLabel();
@@ -274,6 +275,7 @@ public class Interface implements ActionListener, KeyListener {
         panelBookings.setBounds(0, 40, 800, 560);
         panelBookings.add(panelViewBooking);
         panelBookings.add(buttonFilter);
+        panelBookings.add(buttonPreviousBookings);
         panelViewBooking.setBounds(40, 20, 700, 400);
 
         // Labels
@@ -285,6 +287,9 @@ public class Interface implements ActionListener, KeyListener {
         panelVisit.setLayout(null);
 
         // Buttons
+        buttonPreviousBookings.setText("Past Bookings");
+        buttonPreviousBookings.setBounds(50, 430, 150, 35);
+        buttonPreviousBookings.addActionListener(this);
         buttonFilter.setText("Filter");
         buttonFilter.setBounds(360, 430, 100, 35);
         buttonFilter.addActionListener(this);
