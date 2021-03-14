@@ -48,17 +48,17 @@ public class BookingInterface implements ActionListener {
         }
 
         // Setting String array for days (31)
-        for(int i = 1; i <= 31; i++){
-            year[i] = i;
+        for(int i = 1; i <= 30; i++){
+            year[i] = 2000+i;
         }
 
+
         // Set Size and Location of ComboBox
-        textYear.setBounds(50, 30, 275, 20);
-        textMonth.setBounds(50, 60, 275,20);
+        textYear.setBounds(50, 60, 275, 20);
+        textMonth.setBounds(50, 30, 275,20);
         textYear.setModel(new DefaultComboBoxModel(day));
         textMonth.setModel(new DefaultComboBoxModel(month));
         textMonth.setSelectedItem("1");
-        textYear.setSelectedItem("1");
 
         // Creating a list cell renderer to center align the ComboBox
         DefaultListCellRenderer listRenderer = new DefaultListCellRenderer();
@@ -66,7 +66,6 @@ public class BookingInterface implements ActionListener {
         textMonth.setRenderer(listRenderer);
         textYear.setRenderer(listRenderer);
         textMonth.removeItemAt(0);
-        textYear.removeItemAt(0);
 
         // Label Information
         labelMonth.setText("Month");
