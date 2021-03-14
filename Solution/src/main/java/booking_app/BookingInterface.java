@@ -15,9 +15,9 @@ public class BookingInterface implements ActionListener {
     private JComboBox textMonth = new JComboBox();
     private JComboBox textDay = new JComboBox();
     private Integer[] month = new Integer[13];
-    private Integer[] day = new Integer[32];
+    private Integer[] day = new Integer[31];
     private JLabel labelMonth = new JLabel();
-    private JLabel labelDay = new JLabel();
+    private JLabel labelYear = new JLabel();
     private JButton buttonCancel = new JButton();
     private JButton buttonSearch = new JButton();
 
@@ -49,30 +49,30 @@ public class BookingInterface implements ActionListener {
 
         // Setting String array for days (31)
         for(int i = 1; i <= 31; i++){
-            day[i] = i;
+            year[i] = i;
         }
 
         // Set Size and Location of ComboBox
-        textMonth.setBounds(50, 30, 275, 20);
-        textDay.setBounds(50, 60, 275,20);
-        textDay.setModel(new DefaultComboBoxModel(day));
+        textYear.setBounds(50, 30, 275, 20);
+        textMonth.setBounds(50, 60, 275,20);
+        textYear.setModel(new DefaultComboBoxModel(day));
         textMonth.setModel(new DefaultComboBoxModel(month));
         textMonth.setSelectedItem("1");
-        textDay.setSelectedItem("1");
+        textYear.setSelectedItem("1");
 
         // Creating a list cell renderer to center align the ComboBox
         DefaultListCellRenderer listRenderer = new DefaultListCellRenderer();
         listRenderer.setHorizontalAlignment(DefaultListCellRenderer.CENTER);
         textMonth.setRenderer(listRenderer);
-        textDay.setRenderer(listRenderer);
+        textYear.setRenderer(listRenderer);
         textMonth.removeItemAt(0);
-        textDay.removeItemAt(0);
+        textYear.removeItemAt(0);
 
         // Label Information
         labelMonth.setText("Month");
-        labelDay.setText("Day");
+        labelYear.setText("Year");
         labelMonth.setBounds(10,30, 50, 20);
-        labelDay.setBounds(10,60, 50, 20); 
+        labelYear.setBounds(10,60, 50, 20); 
 
         // Button Information
         buttonCancel.setText("Cancel");
@@ -91,10 +91,10 @@ public class BookingInterface implements ActionListener {
 
         if(e.getSource() == buttonSearch){
             Integer month = (Integer) textMonth.getSelectedItem();
-            Integer day = (Integer) textDay.getSelectedItem();
+            Integer year = (Integer) textDay.getSelectedItem();
 
             try {
-                Set<Booking> bookings = Model.getBookings().stream().filter((booking) -> booking.getTimestamp().getDayOfMonth() == day && booking.getTimestamp().getMonthValue() == month).collect(Collectors.toSet());
+                Set<Booking> bookings = Model.getBookings().stream().filter((booking) -> booking.getTimestamp().getDayOfMonth() == year && booking.getTimestamp().getMonthValue() == month).collect(Collectors.toSet());
                 context.updateInterface(bookings);
             } catch (SQLException throwables) {
                 throwables.printStackTrace();
