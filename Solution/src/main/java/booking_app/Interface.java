@@ -367,6 +367,9 @@ public class Interface implements ActionListener, KeyListener {
 
     @Override
     public void actionPerformed(ActionEvent e){
+        if(e.getSource() == buttonPreviousBookings){
+            new ViewBookingInterface(loggedInUser);
+        }
         if(e.getSource() == buttonMessage){
             panelMessage.setVisible(true);
             panelPatientList.setVisible(false);
