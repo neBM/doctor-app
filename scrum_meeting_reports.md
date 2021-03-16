@@ -4,7 +4,7 @@
 | Ben   |   &#x2611;   |  &#x2611;  |  &#x2611;  |  &#x2611;  |  &#x2611;  |  |
 | Hayden|   &#x2611;   |  &#x2611;  |  &#x2611;  |  &#x2611;  |  &#x2611;  |  |
 | Robin |   &#x2611;   |  &#x2611;  |  &#x2611;  |  &#x2611;  |  &#x2611;  |  |
-| Sean  |   &#x2611;   |  &#x2611;  |  &#x2611;  |  &#x2611;  |  &#x2611;  |  |
+| Sean  |   &#x2611;   |  &#x2611;  |  &#x2611;  |  &#x2611;  |  &#x2611;  |  |&#x2611; |
 
 
 # Scrum Meeting One
@@ -53,4 +53,4 @@
 | Ben    |  |  |  |
 | Hayden |  |  |  |
 | Robin  |  |  |  |
-| Sean   |  |  |  |
+| Sean   | <ul><li>Converted all the JLabels and JComboBoxes from Day to Year</li><li>Updated Year array to take values 2000-2030</li><li>Set getTimestamp(). to getYear() instead of getDayOfMonth() & Reformatted code</li><li>Switched Month and Year around</li></ul>  |  |  |
