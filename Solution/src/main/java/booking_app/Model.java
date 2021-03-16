@@ -88,6 +88,20 @@ public class Model {
         }
 
     }
+
+    public static Set<Visit> getVisitDetails (String doctor)  throws SQLException {
+        try (PreparedStatement stmt = getConn().prepareStatement("SELECT * FROM `visitDetails` WHERE `doctor` = ?")) {
+            stmt.setString(1, doctor);
+            ResultSet result = stmt.executeQuery();
+            Set<Visit> visitDetails = new HashSet<>();
+            while (result.next()) {
+                visitDetails.add(new Visit(getUser(result.getString("doctor")), result.getString("visitNotes"), result.getTimestamp("timestamp"), getUser(result.getString("patientEmail")), result.getString("prescriptionName"), result.getInt("prescriptionQuantity"))); 
+            }
+            return visitDetails;
+        }
+
+    }
+
     public static Set<User> getPatients(String doctor)  throws SQLException {
         try (PreparedStatement stmt = getConn().prepareStatement("SELECT `users`.`email`,`users`.`firstName`,`users`.`lastname`,`users`.`phoneNumber`,`users`.`address`,`users`.`gender`,`users`.`dateOfbirth`, `patientDetails`.`assignedDoctor` FROM `users` LEFT JOIN `patientDetails` ON `users`.`email` = `patientDetails`.`patientEmail` WHERE `patientDetails`.`assignedDoctor` = ?")) {
             stmt.setString(1, doctor);
