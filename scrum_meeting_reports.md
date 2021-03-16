@@ -2,7 +2,7 @@
 | Name  |  24/02/2021  | 26/02/2021 | 02/03/2021 | 04/03/2021 | 09/03/2021 | 16/03/2021 |
 | ----- | :----------: | :--------: | :--------: | :--------: | :--------: | :--------: |
 | Ben   |   &#x2611;   |  &#x2611;  |  &#x2611;  |  &#x2611;  |  &#x2611;  |  &#x2611;  |
-| Hayden|   &#x2611;   |  &#x2611;  |  &#x2611;  |  &#x2611;  |  &#x2611;  |  |
+| Hayden|   &#x2611;   |  &#x2611;  |  &#x2611;  |  &#x2611;  |  &#x2611;  |  &#x2611;  |
 | Robin |   &#x2611;   |  &#x2611;  |  &#x2611;  |  &#x2611;  |  &#x2611;  |  &#x2611; |
 | Sean  |   &#x2611;   |  &#x2611;  |  &#x2611;  |  &#x2611;  |  &#x2611;  |  &#x2611; |
 
@@ -51,6 +51,6 @@
 | Name   | What I did Yesterday | What tasks I will do today | Any isssues? |
 | ------ | -------------------- | -------------------------- | ------------ |
 | Ben    | <ul><li>Merge master into feature/viewPatient and feature/viewBookings</li><li>Create branch for feature/viewVistDetails</li></ul> | <ul><li>Merge feature/viewPatient and feature/viewBookings into master</li><li>Move #7700d9d6bcafcea17819d962f3e22a48cef4d01d, #c83cc65199486d3b5641b345938fc5623c350cd6, and #b4ed5d05bafaf2012b97b03aa236ec472fb3379f into feature/viewVistDetails</li><li>Remove deletions from #49a426344ce652b8261bc974a5e82ec6d86230e3</li><li>Help Front End complete features</li></ul> |  |
-| Hayden |  |  |  |
+| Hayden | <ul><li> Completed front end tasks for view Visit Details user story </li> <li> Fixed sql query in getVisitDetails() as a field was named wrong and it was causing an error </li></ul> | <ul> <li> Begin implementing front end design for one of the user stories for the final sprint </li> </ul> | <ul><li> </li></ul> |
 | Robin  | <ul><li>Make test to ensure all potential scenarios are accounted for</li></ul>    | <ul><li>Help linking the front end to the back-end</li></ul>    | <ul><li>Had git pulling issues, a branch needed code from another branch so we had to merge branches</li></ul> |
 | Sean   | <ul><li>Converted all the JLabels and JComboBoxes from Day to Year</li><li>Updated Year array to take values 2000-2030</li><li>Set getTimestamp(). to getYear() instead of getDayOfMonth() & Reformatted code</li><li>Switched Month and Year around</li></ul>  | <ul><li>Created README.MD file and started User Manual</li></ul> |  |
