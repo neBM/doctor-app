@@ -16,6 +16,13 @@ import java.util.Set;
 
 public class Model {
 
+    private static final String ASSIGNED_DOCTOR = "assignedDoctor";
+    private static final String DATE_OF_BIRTH = "dateOfBirth";
+    private static final String GENDER = "gender";
+    private static final String ADDRESS = "address";
+    private static final String PHONE_NUMBER = "phoneNumber";
+    private static final String LAST_NAME = "lastName";
+    private static final String FIRST_NAME = "firstName";
     private static final String USER_KEY = "email";
     private static Map<String, User> userCache = new HashMap<>();
 
@@ -94,7 +101,7 @@ public class Model {
             ResultSet result = stmt.executeQuery();
             Set<User> patients = new HashSet<>();
             while (result.next()) {
-                patients.add(new User(result.getString(USER_KEY), result.getString("firstName"), result.getString("lastName"), result.getString("phoneNumber"), result.getString("address"), result.getString("gender"), result.getTimestamp("dateOfBirth"), result.getString("assignedDoctor")));
+                patients.add(new User(result.getString(USER_KEY), result.getString(FIRST_NAME), result.getString(LAST_NAME), result.getString(PHONE_NUMBER), result.getString(ADDRESS), result.getString(GENDER), result.getTimestamp(DATE_OF_BIRTH), result.getString(ASSIGNED_DOCTOR)));
                
                
             }
@@ -124,7 +131,7 @@ public class Model {
             ResultSet result = stmt.executeQuery();
             HashSet<User> users = new HashSet<>();
             if (result.next()) {
-                User user =  new User(result.getString(USER_KEY), result.getString("firstName"), result.getString("lastName"), result.getString("phoneNumber"), result.getString("address"), result.getString("gender"), result.getTimestamp("dateOfBirth"), result.getString("assignedDoctor"));
+                User user =  new User(result.getString(USER_KEY), result.getString(FIRST_NAME), result.getString(LAST_NAME), result.getString(PHONE_NUMBER), result.getString(ADDRESS), result.getString(GENDER), result.getTimestamp(DATE_OF_BIRTH), result.getString(ASSIGNED_DOCTOR));
                 userCache.put(result.getString(USER_KEY), user);
                 return user;
             }
@@ -166,7 +173,7 @@ public class Model {
             ResultSet result = stmt.executeQuery();
             HashSet<User> users = new HashSet<>();
             while (result.next()) {
-                User user = new User(result.getString(USER_KEY), result.getString("firstName"), result.getString("lastName"), result.getString("phoneNumber"), result.getString("address"), result.getString("gender"), result.getTimestamp("dateOfBirth"), result.getString("assignedDoctor"));
+                User user = new User(result.getString(USER_KEY), result.getString(FIRST_NAME), result.getString(LAST_NAME), result.getString(PHONE_NUMBER), result.getString(ADDRESS), result.getString(GENDER), result.getTimestamp(DATE_OF_BIRTH), result.getString(ASSIGNED_DOCTOR));
                 userCache.put(result.getString(USER_KEY), user);
                 users.add(user);
             }
