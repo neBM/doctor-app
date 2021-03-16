@@ -28,13 +28,13 @@ public class Model {
         Set<Visit> visits = new HashSet<>();
         visits = getVisitDetails("ben@sample.co.uk");
         for (Visit visit : visits) {
-            System.out.println(visit.getpatient().getEmail());
+            System.out.println(visit.getPatient().getEmail());
         }
        
     }
 
 
-    private static class Visit {
+    public static class Visit {
         private User doctor;
         private String visitNotes;
         private Timestamp timestamp;
@@ -60,7 +60,7 @@ public class Model {
         public Timestamp getTimestamp() {
             return timestamp;
         }
-        public User getpatient() {
+        public User getPatient() {
             return patient;
         }
         public String getPrescriptionName() {
@@ -113,7 +113,7 @@ public class Model {
             ResultSet result = stmt.executeQuery();
             Set<Visit> visitDetails = new HashSet<>();
             while (result.next()) {
-                visitDetails.add(new Visit(getUser(result.getString("doctor")), result.getString("visitNotes"), result.getTimestamp("visitDate"), getUser(result.getString("patientEmail")), result.getString("prescriptionName"), result.getInt("prescriptionQuantity"))); 
+                visitDetails.add(new Visit(getUser(result.getString("doctor")), result.getString("visitNotes"), result.getTimestamp("timestamp"), getUser(result.getString("patientEmail")), result.getString("prescriptionName"), result.getInt("prescriptionQuantity"))); 
             }
             return visitDetails;
         }
