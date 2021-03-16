@@ -1,3 +1,20 @@
+# Compiling and Building
+## Dependancies
+* Maven
+* Java Development Kit (JDK)
+```bash
+apt install maven default-jdk
+```
+## Steps
+Run this command in bash:
+```bash
+cd Solution && mvn clean compile assembly:single
+```
+Jar can be found in `target/booking_app-[version]-jar-with-dependencies.jar`:
+```bash
+java -jar ./target/booking_app-1.0-SNAPSHOT-jar-with-dependencies.jar
+```
+
 # User Manual
 ## Features
 <ul><li> The system should allow a user to log in with their username and password, and log out. Everytime the user logs in, the system should show the user’s new messages on the welcome screen</li>
