@@ -32,16 +32,16 @@ public class Model {
     public static void main(String[] args) throws NoSuchAlgorithmException, SQLException {
         // Testing
         System.out.println(Model.getUser("ben@sample.co.uk").testPassword("pass"));
-        Set<User> patients = new HashSet<>();
-        patients = getPatients("ben@sample.co.uk");
-        for (User patient : patients) {
-            System.out.println(patient.getEmail());
+        Set<Visit> visits = new HashSet<>();
+        visits = getVisitDetails("ben@sample.co.uk");
+        for (Visit visit : visits) {
+            System.out.println(visit.getPatient().getEmail());
         }
        
     }
 
 
-    private static class Visit {
+    public static class Visit {
         private User doctor;
         private String visitNotes;
         private Timestamp timestamp;
@@ -57,6 +57,24 @@ public class Model {
             this.patient = patient;
             this.prescriptionName = prescriptionName;
             this.prescriptionQuantity = prescriptionQuantity;
+        }
+        public User getDoctor() {
+            return doctor;
+        }
+        public String getVisitNotes() {
+            return visitNotes;
+        }
+        public Timestamp getTimestamp() {
+            return timestamp;
+        }
+        public User getPatient() {
+            return patient;
+        }
+        public String getPrescriptionName() {
+            return prescriptionName;
+        }
+        public int getPrescriptionQuantity() {
+            return prescriptionQuantity;
         }
 
 
@@ -95,6 +113,20 @@ public class Model {
         }
 
     }
+
+    public static Set<Visit> getVisitDetails (String doctor)  throws SQLException {
+        try (PreparedStatement stmt = getConn().prepareStatement("SELECT * FROM `visitDetails` WHERE `doctor` = ?")) {
+            stmt.setString(1, doctor);
+            ResultSet result = stmt.executeQuery();
+            Set<Visit> visitDetails = new HashSet<>();
+            while (result.next()) {
+                visitDetails.add(new Visit(getUser(result.getString("doctor")), result.getString("visitNotes"), result.getTimestamp("timestamp"), getUser(result.getString("patientEmail")), result.getString("prescriptionName"), result.getInt("prescriptionQuantity"))); 
+            }
+            return visitDetails;
+        }
+
+    }
+
     public static Set<User> getPatients(String doctor)  throws SQLException {
         try (Connection conn = getConn(); PreparedStatement stmt = conn.prepareStatement("SELECT `users`.`email`,`users`.`firstName`,`users`.`lastname`,`users`.`phoneNumber`,`users`.`address`,`users`.`gender`,`users`.`dateOfbirth`, `patientDetails`.`assignedDoctor` FROM `users` LEFT JOIN `patientDetails` ON `users`.`email` = `patientDetails`.`patientEmail` WHERE `patientDetails`.`assignedDoctor` = ?")) {
             stmt.setString(1, doctor);
