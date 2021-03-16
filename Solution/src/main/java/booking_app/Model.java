@@ -78,7 +78,7 @@ public class Model {
             return message;
         }
         public void markRead() throws SQLException {
-            try (PreparedStatement stmt = getConn().prepareStatement("UPDATE `messages` SET `read` = ? WHERE `id` = ?;")) {
+            try (Connection conn = getConn(); PreparedStatement stmt = conn.prepareStatement("UPDATE `messages` SET `read` = ? WHERE `id` = ?;")) {
                 stmt.setBoolean(1, true);
                 stmt.setInt(2, id);
                 stmt.executeUpdate();
@@ -89,7 +89,7 @@ public class Model {
 
     }
     public static Set<User> getPatients(String doctor)  throws SQLException {
-        try (PreparedStatement stmt = getConn().prepareStatement("SELECT `users`.`email`,`users`.`firstName`,`users`.`lastname`,`users`.`phoneNumber`,`users`.`address`,`users`.`gender`,`users`.`dateOfbirth`, `patientDetails`.`assignedDoctor` FROM `users` LEFT JOIN `patientDetails` ON `users`.`email` = `patientDetails`.`patientEmail` WHERE `patientDetails`.`assignedDoctor` = ?")) {
+        try (Connection conn = getConn(); PreparedStatement stmt = conn.prepareStatement("SELECT `users`.`email`,`users`.`firstName`,`users`.`lastname`,`users`.`phoneNumber`,`users`.`address`,`users`.`gender`,`users`.`dateOfbirth`, `patientDetails`.`assignedDoctor` FROM `users` LEFT JOIN `patientDetails` ON `users`.`email` = `patientDetails`.`patientEmail` WHERE `patientDetails`.`assignedDoctor` = ?")) {
             stmt.setString(1, doctor);
             ResultSet result = stmt.executeQuery();
             Set<User> patients = new HashSet<>();
@@ -103,7 +103,7 @@ public class Model {
     }
     
     public static Set<Visit> getVisits()  throws SQLException {
-        try (Statement stmt = getConn().createStatement()){
+        try (Connection conn = getConn(); Statement stmt = conn.createStatement()){
             ResultSet result = stmt.executeQuery("SELECT * FROM `visitDetails`");
             HashSet<Visit> visits = new HashSet<>();
             while (result.next()) {
@@ -118,8 +118,8 @@ public class Model {
         if (userCache.keySet().contains(email)) {
             return userCache.get(email);
         }
-        //try (PreparedStatement stmt = getConn().prepareStatement("SELECT `email` FROM `users` WHERE `email` = ?")) {
-        try (PreparedStatement stmt = getConn().prepareStatement("SELECT `users`.`email`,`users`.`firstName`,`users`.`lastname`,`users`.`phoneNumber`,`users`.`address`,`users`.`gender`,`users`.`dateOfbirth`, `patientDetails`.`assignedDoctor` FROM `users` LEFT JOIN `patientDetails` ON `users`.`email` = `patientDetails`.`patientEmail` WHERE `users`.`email` = ?")) {
+        //try (Connection conn = getConn(); PreparedStatement stmt = conn.prepareStatement("SELECT `email` FROM `users` WHERE `email` = ?")) {
+        try (Connection conn = getConn(); PreparedStatement stmt = conn.prepareStatement("SELECT `users`.`email`,`users`.`firstName`,`users`.`lastname`,`users`.`phoneNumber`,`users`.`address`,`users`.`gender`,`users`.`dateOfbirth`, `patientDetails`.`assignedDoctor` FROM `users` LEFT JOIN `patientDetails` ON `users`.`email` = `patientDetails`.`patientEmail` WHERE `users`.`email` = ?")) {
             stmt.setString(1, email);
             ResultSet result = stmt.executeQuery();
             HashSet<User> users = new HashSet<>();
@@ -142,7 +142,7 @@ public class Model {
     }
 
     public static void logEvent(User user, Events event) throws SQLException {
-        try (PreparedStatement stmt = getConn().prepareStatement("INSERT INTO `accessRecords` (`email`, `event`) VALUES (?, ?)")) {
+        try (Connection conn = getConn(); PreparedStatement stmt = conn.prepareStatement("INSERT INTO `accessRecords` (`email`, `event`) VALUES (?, ?)")) {
             stmt.setString(1, user.getEmail());
             stmt.setString(2, event.name());
             stmt.executeUpdate();
@@ -159,7 +159,7 @@ public class Model {
         if (type != null) {
             query += " WHERE `type` = ?";
         }
-        try (PreparedStatement stmt = getConn().prepareStatement(query)) {
+        try (Connection conn = getConn(); PreparedStatement stmt = conn.prepareStatement(query)) {
             if (type != null) {
                 stmt.setString(1, type.name());
             }
@@ -175,7 +175,7 @@ public class Model {
     }
 
     public static Set<Booking> getBookings() throws SQLException {
-        try (Statement stmt = getConn().createStatement()){
+        try (Connection conn = getConn(); Statement stmt = conn.createStatement()){
             ResultSet result = stmt.executeQuery("SELECT * FROM `bookings`");
             HashSet<Booking> bookings = new HashSet<>();
             while (result.next()) {
@@ -199,7 +199,7 @@ public class Model {
                 query += " WHERE `read` = 0";
             }
         }
-        try (PreparedStatement stmt = getConn().prepareStatement(query)) {
+        try (Connection conn = getConn(); PreparedStatement stmt = conn.prepareStatement(query)) {
             ResultSet result = stmt.executeQuery();
             HashSet<Message> messages = new HashSet<>();
             while (result.next()){
@@ -211,7 +211,7 @@ public class Model {
     }
 
     public static void addVisitDetails(User doctor, String visitNotes, LocalDateTime timestamp, User patient, String prescriptionName, int prescriptionQunatity) throws SQLException {
-        try (PreparedStatement stmt = getConn().prepareStatement("INSERT INTO `visitDetails` (`prescriptionQuantity`, `prescriptionName`, `patientEmail`, `visitNotes`, `doctor`, `timestamp`) VALUES ( ?, ?, ?, ?, ?, ?);")) {
+        try (Connection conn = getConn(); PreparedStatement stmt = conn.prepareStatement("INSERT INTO `visitDetails` (`prescriptionQuantity`, `prescriptionName`, `patientEmail`, `visitNotes`, `doctor`, `timestamp`) VALUES ( ?, ?, ?, ?, ?, ?);")) {
             stmt.setInt(1, prescriptionQunatity);
             stmt.setString(2, prescriptionName);
             stmt.setString(3, patient.getEmail());
@@ -222,7 +222,7 @@ public class Model {
         }
     }
     public static void addMessage(User to, User from, String message) throws SQLException {
-        try (PreparedStatement stmt = getConn().prepareStatement("INSERT INTO `messages` (`to`, `from`, `message`) VALUES (?, ?, ?);"))  {
+        try (Connection conn = getConn(); PreparedStatement stmt = conn.prepareStatement("INSERT INTO `messages` (`to`, `from`, `message`) VALUES (?, ?, ?);"))  {
             stmt.setString(1, to.getEmail());
             stmt.setString(2, from.getEmail());
             stmt.setString(3, message);
