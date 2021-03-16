@@ -25,10 +25,10 @@ public class Model {
     public static void main(String[] args) throws NoSuchAlgorithmException, SQLException {
         // Testing
         System.out.println(Model.getUser("ben@sample.co.uk").testPassword("pass"));
-        Set<User> patients = new HashSet<>();
-        patients = getPatients("ben@sample.co.uk");
-        for (User patient : patients) {
-            System.out.println(patient.getEmail());
+        Set<Visit> visits = new HashSet<>();
+        visits = getVisitDetails("ben@sample.co.uk");
+        for (Visit visit : visits) {
+            System.out.println(visit.getpatient().getEmail());
         }
        
     }
@@ -113,7 +113,7 @@ public class Model {
             ResultSet result = stmt.executeQuery();
             Set<Visit> visitDetails = new HashSet<>();
             while (result.next()) {
-                visitDetails.add(new Visit(getUser(result.getString("doctor")), result.getString("visitNotes"), result.getTimestamp("timestamp"), getUser(result.getString("patientEmail")), result.getString("prescriptionName"), result.getInt("prescriptionQuantity"))); 
+                visitDetails.add(new Visit(getUser(result.getString("doctor")), result.getString("visitNotes"), result.getTimestamp("visitDate"), getUser(result.getString("patientEmail")), result.getString("prescriptionName"), result.getInt("prescriptionQuantity"))); 
             }
             return visitDetails;
         }
