@@ -3,8 +3,8 @@
 | ----- | :----------: | :--------: | :--------: | :--------: | :--------: | :--------: |
 | Ben   |   &#x2611;   |  &#x2611;  |  &#x2611;  |  &#x2611;  |  &#x2611;  |  |
 | Hayden|   &#x2611;   |  &#x2611;  |  &#x2611;  |  &#x2611;  |  &#x2611;  |  |
-| Robin |   &#x2611;   |  &#x2611;  |  &#x2611;  |  &#x2611;  |  &#x2611;  |  |
-| Sean  |   &#x2611;   |  &#x2611;  |  &#x2611;  |  &#x2611;  |  &#x2611;  |  &#x2611; |
+| Robin |   &#x2611;   |  &#x2611;  |  &#x2611;  |  &#x2611;  |  &#x2611;  |  &#x2611; |
+| Sean  |   &#x2611;   |  &#x2611;  |  &#x2611;  |  &#x2611;  |  &#x2611;  |  |
 
 
 # Scrum Meeting One
@@ -52,5 +52,5 @@
 | ------ | -------------------- | -------------------------- | ------------ |
 | Ben    |  |  |  |
 | Hayden |  |  |  |
-| Robin  |  |  |  |
-| Sean   | <ul><li>Converted all the JLabels and JComboBoxes from Day to Year</li><li>Updated Year array to take values 2000-2030</li><li>Set getTimestamp(). to getYear() instead of getDayOfMonth() & Reformatted code</li><li>Switched Month and Year around</li></ul>  |  |  |
+| Robin  | <ul><li>Make test to ensure all potential scenarios are accounted for</li></ul>    | <ul><li>Help linking the front end to the back-end</li></ul>    | <ul><li>Had git pulling issues, a branch needed code from another branch so we had to merge branches</li></ul> |
+| Sean   |  |  |  |
