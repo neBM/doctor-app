@@ -8,7 +8,7 @@ apt install maven default-jdk
 ## Steps
 Run this command in bash:
 ```bash
-cd Solution && mvn clean compile assembly:single
+mvn clean compile assembly:single
 ```
 Jar can be found in `target/booking_app-[version]-jar-with-dependencies.jar`:
 ```bash
