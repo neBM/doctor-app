@@ -72,7 +72,7 @@ public class User {
     }
 
     public boolean testPassword(String password) throws SQLException, NoSuchAlgorithmException {
-        try (PreparedStatement stmt = getConn().prepareStatement("SELECT `password` FROM `users` WHERE `email` = ? LIMIT 1")) {
+        try (Connection conn = getConn(); PreparedStatement stmt = conn.prepareStatement("SELECT `password` FROM `users` WHERE `email` = ? LIMIT 1")) {
             stmt.setString(1, email);
             ResultSet result = stmt.executeQuery();
             result.next();
