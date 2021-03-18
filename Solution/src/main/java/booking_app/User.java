@@ -62,8 +62,8 @@ public class User {
     public Timestamp getDateOfBirth() {
         return dateOfBirth;
     }
-    public String getAssignedDoctor() {
-        return assignedDoctor;
+    public User getAssignedDoctor() throws IllegalArgumentException, SQLException {
+        return Model.getUser(email);
     }
 
     @Override

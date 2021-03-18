@@ -333,7 +333,11 @@ public class Interface implements ActionListener, KeyListener {
                     labelAddress.setText(patients.getAddress());
                     labelGender.setText(patients.getGender());
                     labelDOB.setText("" + patients.getDateOfBirth());
-                    labelAssignedDoc.setText(patients.getAssignedDoctor());
+                    try {
+                        labelAssignedDoc.setText(patients.getAssignedDoctor().getEmail());
+                    } catch (IllegalArgumentException | SQLException e1) {
+                        e1.printStackTrace();
+                    }
                 });
             }
         } catch (SQLException e) {
