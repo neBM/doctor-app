@@ -46,6 +46,7 @@ public class Interface implements ActionListener, KeyListener {
     private JButton buttonSubmit = new JButton();
     private JButton buttonFilter = new JButton();
     private JButton buttonPreviousBookings = new JButton();
+    private JButton buttonAssignDoctor = new JButton();
 
     // JLabels Objects
     private JLabel labelPatient = new JLabel();
@@ -59,6 +60,7 @@ public class Interface implements ActionListener, KeyListener {
     private JLabel labelNewMessages = new JLabel();
     private JLabel labelNumOfPatients = new JLabel();
     private JLabel labelPatientName = new JLabel();
+    private JLabel labelPatientEmail = new JLabel();
     private JLabel labelNumber = new JLabel();
     private JLabel labelAddress = new JLabel();
     private JLabel labelGender = new JLabel();
@@ -68,6 +70,7 @@ public class Interface implements ActionListener, KeyListener {
     // JComboBoxes Objects
     private JComboBox<String> textFieldPatient = new JComboBox<>();
     private JComboBox<String> textDoctor = new JComboBox<>();
+    private JComboBox<String> textChangeDoctor = new JComboBox();
 
     // JTextFields Objects
     private JTextField textFieldYear = new JTextField();
@@ -324,6 +327,8 @@ public class Interface implements ActionListener, KeyListener {
                 msg.setText(numOfPatients + ". " + patients.getFirstname() + " " + patients.getLastname());
                 JButton buttonViewInfo = new JButton();
                 buttonViewInfo.setText("View Summary Information");
+                buttonAssignDoctor.setText("Assign New Doctor");
+                buttonAssignDoctor.addActionListener(this);
                 panelPatientList.add(msg);
                 panelPatientList.add(buttonViewInfo);
                 buttonViewInfo.addActionListener(e -> {
