@@ -314,10 +314,17 @@ public class Interface implements ActionListener, KeyListener {
         buttonOk.addActionListener(this);
 
         // View Patient Window Information
-
         panelPatientList.setLayout(new BoxLayout(panelPatientList, BoxLayout.Y_AXIS));
         int numOfPatients = 0;
         panelPatientList.add(labelNumOfPatients);
+        try {
+            for (User user : Model.getUsers(User.Type.DOCTOR)) {
+                textChangeDoctor.addItem(user.getEmail());
+            }
+        }
+        catch(SQLException ee){
+            ee.printStackTrace();
+        }
         try {
             Set<User> setPatients = Model.getPatients(loggedInUser.getEmail());
             for(User patients: setPatients){
@@ -334,15 +341,13 @@ public class Interface implements ActionListener, KeyListener {
                 buttonViewInfo.addActionListener(e -> {
                     summaryInfo.setVisible(true);
                     labelPatientName.setText(patients.getFirstname() + " " + patients.getLastname());
+                    labelPatientEmail.setText(patients.getEmail());
                     labelNumber.setText(patients.getPhoneNumber());
                     labelAddress.setText(patients.getAddress());
                     labelGender.setText(patients.getGender());
                     labelDOB.setText("" + patients.getDateOfBirth());
-                    try {
-                        labelAssignedDoc.setText(patients.getAssignedDoctor().getEmail());
-                    } catch (IllegalArgumentException | SQLException e1) {
-                        e1.printStackTrace();
-                    }
+                    labelAssignedDoc.setText(patients.getAssignedDoctor());
+                    textChangeDoctor.setMaximumSize(new Dimension(150, 20));               
                 });
             }
         } catch (SQLException e) {
@@ -350,7 +355,6 @@ public class Interface implements ActionListener, KeyListener {
         }
 
         // View Summary Information 
-
         summaryInfo.setLayout(new BorderLayout());
         summaryInfo.setTitle("Patients Summary Information");
         summaryInfo.setSize(600, 400);
@@ -363,15 +367,17 @@ public class Interface implements ActionListener, KeyListener {
         panelSummaryTop.setLayout(null);
         panelSummaryTop.setBackground(Color.decode("#709ED6"));
         panelSummaryTop.setVisible(true);
-
-        
+  
         panelSummary.add(labelPatientName);
+        panelSummary.add(labelPatientEmail);
         panelSummary.setLayout(new BoxLayout(panelSummary, BoxLayout.Y_AXIS));
         panelSummary.add(labelNumber);
         panelSummary.add(labelAddress);
         panelSummary.add(labelGender);
         panelSummary.add(labelDOB);
         panelSummary.add(labelAssignedDoc);
+        panelSummary.add(textChangeDoctor);
+        panelSummary.add(buttonAssignDoctor);
     }   
 
     @Override
