@@ -379,9 +379,19 @@ public class Interface implements ActionListener, KeyListener {
         panelSummary.add(textChangeDoctor);
         panelSummary.add(buttonAssignDoctor);
     }   
-
     @Override
     public void actionPerformed(ActionEvent e){
+        if(e.getSource() == buttonAssignDoctor){
+            String doctorName2 = textChangeDoctor.getSelectedItem().toString();
+            String patientName2 = labelPatientEmail.getText();
+            try {
+                User doctor = Model.getUser(doctorName2);
+                User patient = Model.getUser(patientName2);
+                patient.setAssignedDoctor(doctor);
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
+        }
         if(e.getSource() == buttonPreviousBookings){
             new ViewBookingInterface(loggedInUser);
         }
