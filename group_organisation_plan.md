@@ -126,6 +126,14 @@
       - Create a visitDetails class
       - Add all the necessary fields for the visitDetails class and initiate them in the constructor 
       - A getVisitDetails method that takes a user as a parameter and returns all the visits for that user
+
+
+**Sprint 3:**
+- The system should allow a doctor to edit the visit details and prescriptions regarding a past booking, for which the doctor provided visit details and prescriptions. The system should then send confirmation messages to the patient and the doctor.
+
+- The system should allow a doctor to assign a new doctor to a patient using the list of all doctors. The system should then send confirmation messages to the patient and both doctors.
+
+- The system should log all access from a user, i.e. who accessed what functionality and when.
     
 
 
