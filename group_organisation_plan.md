@@ -137,6 +137,14 @@
         already filled with what was previously written, the user can then modify the entries and then click the submit button which will result in 
         updating the visit details
       - When the submit button is clicked the user receives a confirmation message that the visit details has successfully been added  
+    
+    - Back End:
+      - Add the id field to the visit class and update the constructor and the necessary method to account for adding the id field 
+      - Create a getId method for the visit class
+      - Create a method that takes an id as the first parameter (because the id is the only field that cannot be modified) and the rest of the 
+        parameters are the remaining fields/attributes for a visit. The method updates the SQL database with the parameters entered where the id 
+        matches
+        
 
 
 
