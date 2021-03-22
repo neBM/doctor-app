@@ -50,7 +50,7 @@ public class Model {
         private String prescriptionName;
         private int prescriptionQuantity;
 
-        public Visit(User doctor, String visitNotes, Timestamp timestamp, User patient, String prescriptionName, int prescriptionQuantity, int id) {
+        public Visit(int id, User doctor, String visitNotes, Timestamp timestamp, User patient, String prescriptionName, int prescriptionQuantity) {
             this.id = id;
             this.doctor = doctor;
             this.visitNotes = visitNotes;
@@ -117,7 +117,18 @@ public class Model {
         }
 
     }
+    public static void editVisitDetails(int id, User doctor, String visitNotes, Timestamp timestamp, User patient, String prescriptionName, int prescriptionQuantity )  throws SQLException {
+        try (Connection conn = getConn(); PreparedStatement stmt = conn.prepareStatement("UPDATE `visitDetails` SET `visitNotes` = ?, `doctor` = ?, `patientEmail` = ?, `prescriptionName` = ?, `timestamp` = ? WHERE `id` = ?;")) {
+            stmt.setString(1, visitNotes);
+            stmt.setString(2, doctor.getEmail());
+            stmt.setString(3, patient.getEmail());
+            stmt.setString(4, prescriptionName);
+            stmt.setTimestamp(5, timestamp);
+            stmt.setInt(6, id);
+            stmt.executeUpdate();
 
+        }
+    }
     public static Set<Visit> getVisitDetails (String doctor)  throws SQLException {
         try (PreparedStatement stmt = getConn().prepareStatement("SELECT * FROM `visitDetails` WHERE `doctor` = ?")) {
             stmt.setString(1, doctor);
