@@ -42,6 +42,7 @@ public class Model {
 
 
     public static class Visit {
+        private int id;
         private User doctor;
         private String visitNotes;
         private Timestamp timestamp;
@@ -49,8 +50,8 @@ public class Model {
         private String prescriptionName;
         private int prescriptionQuantity;
 
-        public Visit(User doctor, String visitNotes, Timestamp timestamp, User patient, String prescriptionName, int prescriptionQuantity) {
-
+        public Visit(User doctor, String visitNotes, Timestamp timestamp, User patient, String prescriptionName, int prescriptionQuantity, int id) {
+            this.id = id;
             this.doctor = doctor;
             this.visitNotes = visitNotes;
             this.timestamp = timestamp;
@@ -75,6 +76,9 @@ public class Model {
         }
         public int getPrescriptionQuantity() {
             return prescriptionQuantity;
+        }
+        public int getId() {
+            return id;
         }
 
 
@@ -120,7 +124,7 @@ public class Model {
             ResultSet result = stmt.executeQuery();
             Set<Visit> visitDetails = new HashSet<>();
             while (result.next()) {
-                visitDetails.add(new Visit(getUser(result.getString("doctor")), result.getString("visitNotes"), result.getTimestamp("timestamp"), getUser(result.getString("patientEmail")), result.getString("prescriptionName"), result.getInt("prescriptionQuantity"))); 
+                visitDetails.add(new Visit(result.getInt("id"), getUser(result.getString("doctor")), result.getString("visitNotes"), result.getTimestamp("timestamp"), getUser(result.getString("patientEmail")), result.getString("prescriptionName"), result.getInt("prescriptionQuantity"))); 
             }
             return visitDetails;
         }
@@ -146,7 +150,7 @@ public class Model {
             ResultSet result = stmt.executeQuery("SELECT * FROM `visitDetails`");
             HashSet<Visit> visits = new HashSet<>();
             while (result.next()) {
-                visits.add(new Visit(getUser(result.getString("doctor")), result.getString("visitNotes"), result.getTimestamp("timestamp"), getUser(result.getString("patientEmail")), result.getString("prescriptionName"), result.getInt("prescriptionQuantity")));
+                visits.add(new Visit(result.getInt("id"), getUser(result.getString("doctor")), result.getString("visitNotes"), result.getTimestamp("timestamp"), getUser(result.getString("patientEmail")), result.getString("prescriptionName"), result.getInt("prescriptionQuantity")));
             }
             return visits;
         }
