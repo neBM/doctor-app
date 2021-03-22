@@ -149,6 +149,13 @@
 
 
 - The system should allow a doctor to assign a new doctor to a patient using the list of all doctors. The system should then send confirmation messages to the patient and both doctors.
+  - Tasks
+    - Front End:
+      - On the patient's details window add a button to assign a new doctor
+      - When the button is clicked create a new pop up window that allows you to enter a new doctor (doctor's email)
+      - If the email does not exist or the email is not a doctor inform to the user that the entered email is invalid
+
+
 
 - The system should log all access from a user, i.e. who accessed what functionality and when.
     
