@@ -154,6 +154,14 @@
       - On the patient's details window add a button to assign a new doctor
       - When the button is clicked create a new pop up window that allows you to enter a new doctor (doctor's email)
       - If the email does not exist or the email is not a doctor inform to the user that the entered email is invalid
+      - Send a confirmation email that the change has been made
+    - Back End:
+      - Add a field to the user class for the user's type (doctor or patient) and update the necessary methods afterwards
+      - Create a method called changeDoctor that takes a patient's email and a doctor's email as input
+        - The method should check that the doctor's email entered is indeed a doctor otherwise throw an error
+        - If the doctor's email is valid then update the SQL database for assigned doctor
+
+
 
 
 
