@@ -156,10 +156,10 @@
       - If the email does not exist or the email is not a doctor inform to the user that the entered email is invalid
       - Send a confirmation email that the change has been made
     - Back End:
-      - Add a field to the user class for the user's type (doctor or patient) and update the necessary methods afterwards
-      - Create a method called changeDoctor that takes a patient's email and a doctor's email as input
-        - The method should check that the doctor's email entered is indeed a doctor otherwise throw an error
-        - If the doctor's email is valid then update the SQL database for assigned doctor
+      - Create a method called setAssignedDoctor that takes a doctor's email as input
+        - The method retrives the patient's email
+        - The method has to update the SQL database assigned doctor for the patient with the doctor's email inputed
+        
 
 
 
