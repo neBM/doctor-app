@@ -166,6 +166,9 @@
 
 
 - The system should log all access from a user, i.e. who accessed what functionality and when.
+  - Tasks
+    - Front End:
+      - Add to every button a call to the method logActions
     
 
 
