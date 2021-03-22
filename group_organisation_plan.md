@@ -169,6 +169,11 @@
   - Tasks
     - Front End:
       - Add to every button a call to the method logActions
+    - Back End:
+      - Create a new SQL table to keep track of all functionalities accessed, having the following attributes, a timestamp to know at what time a 
+        functionality was accessed, a user attribute to know who and an action attribute to know what has been accessed (what button has been pressed)
+      - Create a method called logActions
+        - Inserts in the newly created SQL table the user, the current timestamp, and the name of the button clicked 
     
 
 
