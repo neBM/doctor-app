@@ -130,6 +130,15 @@
 
 **Sprint 3:**
 - The system should allow a doctor to edit the visit details and prescriptions regarding a past booking, for which the doctor provided visit details and prescriptions. The system should then send confirmation messages to the patient and the doctor.
+  - Tasks 
+    - Front End:
+      - On the visitDetails pop window add a edit button that allows you to modify a specific visit 
+      - When the button is clicked it brings you to a window that is similar to the form where you enter the visit details except the form entries are 
+        already filled with what was previously written, the user can then modify the entries and then click the submit button which will result in 
+        updating the visit details
+      - When the submit button is clicked the user receives a confirmation message that the visit details has successfully been added  
+
+
 
 - The system should allow a doctor to assign a new doctor to a patient using the list of all doctors. The system should then send confirmation messages to the patient and both doctors.
 
