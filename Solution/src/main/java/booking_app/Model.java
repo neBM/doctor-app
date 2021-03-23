@@ -136,14 +136,14 @@ public class Model {
         }
 
     }
-    public static void editVisitDetails(int id, User doctor, String visitNotes, Timestamp timestamp, User patient, String prescriptionName, int prescriptionQuantity )  throws SQLException {
+    public static void editVisitDetails(Visit visit )  throws SQLException {
         try (Connection conn = getConn(); PreparedStatement stmt = conn.prepareStatement("UPDATE `visitDetails` SET `visitNotes` = ?, `doctor` = ?, `patientEmail` = ?, `prescriptionName` = ?, `timestamp` = ? WHERE `id` = ?;")) {
-            stmt.setString(1, visitNotes);
-            stmt.setString(2, doctor.getEmail());
-            stmt.setString(3, patient.getEmail());
-            stmt.setString(4, prescriptionName);
-            stmt.setTimestamp(5, timestamp);
-            stmt.setInt(6, id);
+            stmt.setString(1, visit.getVisitNotes());
+            stmt.setString(2, visit.getDoctor().getEmail());
+            stmt.setString(3, visit.getPatient().getEmail());
+            stmt.setString(4, visit.getPrescriptionName());
+            stmt.setTimestamp(5, visit.getTimestamp());
+            stmt.setInt(6, visit.getId());
             stmt.executeUpdate();
 
         }
