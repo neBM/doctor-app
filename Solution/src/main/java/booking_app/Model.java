@@ -7,6 +7,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Time;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.HashSet;
@@ -79,6 +80,24 @@ public class Model {
         }
         public int getId() {
             return id;
+        }
+        public void setDoctor(User newDoctor) {
+            doctor = newDoctor;
+        }
+        public void setVisitNotes(String newNotes) {
+            visitNotes = newNotes;
+        }
+        public void setTimestamp(Timestamp newTime) {
+            timestamp = newTime;
+        }
+        public void setPatient(User newPatient) {
+            patient = newPatient;
+        }
+        public void setPrescriptionName(String newPrescriptionName) {
+            prescriptionName = newPrescriptionName;
+        }
+        public void setPrescriptionQuantity(int newPrescriptionQuantity) {
+            prescriptionQuantity = newPrescriptionQuantity;
         }
 
 
