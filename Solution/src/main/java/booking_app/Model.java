@@ -81,22 +81,58 @@ public class Model {
         public int getId() {
             return id;
         }
-        public void setDoctor(User newDoctor) {
+        public void setDoctor(User newDoctor)  throws SQLException {
+            try (Connection conn = getConn(); PreparedStatement stmt = conn.prepareStatement("UPDATE `visitDetails` SET  `doctor` = ? WHERE `id` = ?;")) {
+                stmt.setString(1, newDoctor.getEmail());
+                stmt.setInt(2, getId());
+                stmt.executeUpdate();
+    
+            }
             doctor = newDoctor;
         }
-        public void setVisitNotes(String newNotes) {
+        public void setVisitNotes(String newNotes)  throws SQLException {
+            try (Connection conn = getConn(); PreparedStatement stmt = conn.prepareStatement("UPDATE `visitDetails` SET `visitNotes` = ? WHERE `id` = ?;")) {
+                stmt.setString(1, newNotes);
+                stmt.setInt(2, getId());
+                stmt.executeUpdate();
+    
+            }
             visitNotes = newNotes;
         }
-        public void setTimestamp(Timestamp newTime) {
+        public void setTimestamp(Timestamp newTime)  throws SQLException {
+            try (Connection conn = getConn(); PreparedStatement stmt = conn.prepareStatement("UPDATE `visitDetails` SET `timestamp` = ? WHERE `id` = ?;")) {
+                stmt.setTimestamp(1, newTime);
+                stmt.setInt(2, getId());
+                stmt.executeUpdate();
+    
+            }
             timestamp = newTime;
         }
-        public void setPatient(User newPatient) {
+        public void setPatient(User newPatient)  throws SQLException {
+            try (Connection conn = getConn(); PreparedStatement stmt = conn.prepareStatement("UPDATE `visitDetails` SET `patientEmail` = ? WHERE `id` = ?;")) {
+                stmt.setString(1, newPatient.getEmail());
+                stmt.setInt(2, getId());
+                stmt.executeUpdate();
+    
+            }
             patient = newPatient;
         }
-        public void setPrescriptionName(String newPrescriptionName) {
+        public void setPrescriptionName(String newPrescriptionName)  throws SQLException {
+            try (Connection conn = getConn(); PreparedStatement stmt = conn.prepareStatement("UPDATE `visitDetails` SET `prescriptionName` = ? WHERE `id` = ?;")) {
+                stmt.setString(1, newPrescriptionName);
+                stmt.setInt(2, getId());
+                stmt.executeUpdate();
+    
+            }
             prescriptionName = newPrescriptionName;
         }
-        public void setPrescriptionQuantity(int newPrescriptionQuantity) {
+        public void setPrescriptionQuantity(int newPrescriptionQuantity)  throws SQLException {
+            try (Connection conn = getConn(); PreparedStatement stmt = conn.prepareStatement("UPDATE `visitDetails` SET `prescriptionQuantity` = ? WHERE `id` = ?;")) {
+                stmt.setInt(1, newPrescriptionQuantity);
+                stmt.setInt(2, getId());
+                stmt.executeUpdate();
+    
+            }
             prescriptionQuantity = newPrescriptionQuantity;
         }
 
@@ -136,18 +172,7 @@ public class Model {
         }
 
     }
-    public static void editVisitDetails(Visit visit )  throws SQLException {
-        try (Connection conn = getConn(); PreparedStatement stmt = conn.prepareStatement("UPDATE `visitDetails` SET `visitNotes` = ?, `doctor` = ?, `patientEmail` = ?, `prescriptionName` = ?, `timestamp` = ? WHERE `id` = ?;")) {
-            stmt.setString(1, visit.getVisitNotes());
-            stmt.setString(2, visit.getDoctor().getEmail());
-            stmt.setString(3, visit.getPatient().getEmail());
-            stmt.setString(4, visit.getPrescriptionName());
-            stmt.setTimestamp(5, visit.getTimestamp());
-            stmt.setInt(6, visit.getId());
-            stmt.executeUpdate();
-
-        }
-    }
+  
     public static Set<Visit> getVisitDetails (String doctor)  throws SQLException {
         try (PreparedStatement stmt = getConn().prepareStatement("SELECT * FROM `visitDetails` WHERE `doctor` = ?")) {
             stmt.setString(1, doctor);
