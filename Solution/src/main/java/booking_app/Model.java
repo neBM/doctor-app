@@ -175,8 +175,8 @@ public class Model {
         VIEW_MESSAGES,
         VIEW_PATIENTS,
         VIEW_BOOKINGS,
-        VIEW_VISTS,
-        VIEW_NEWVIST,
+        VIEW_VISITS,
+        VIEW_NEWVISIT,
         VIEW_WELCOMESCREEN;
     }
 
