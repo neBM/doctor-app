@@ -84,6 +84,11 @@ public class Interface implements ActionListener, KeyListener {
         // Main Interface
         // Frame Information
         this.loggedInUser = loggedInuser;
+        try {
+            Model.logEvent(loggedInUser, Model.Events.VIEW_WELCOMESCREEN);
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
         frame.setLayout(null);
         frame.setTitle("Welcome Page");
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
@@ -372,6 +377,11 @@ public class Interface implements ActionListener, KeyListener {
     @Override
     public void actionPerformed(ActionEvent e){
         if(e.getSource() == buttonPreviousBookings){
+            try {
+                Model.logEvent(loggedInUser, Model.Events.VIEW_VISITS);
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
             new ViewBookingInterface(loggedInUser);
         }
         if(e.getSource() == buttonMessage){
@@ -379,6 +389,11 @@ public class Interface implements ActionListener, KeyListener {
             panelPatientList.setVisible(false);
             panelBookings.setVisible(false);
             panelVisit.setVisible(false);
+            try {
+                Model.logEvent(loggedInUser, Model.Events.VIEW_MESSAGES);
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
         }
 
         if(e.getSource() == buttonPatientList){
@@ -386,6 +401,11 @@ public class Interface implements ActionListener, KeyListener {
             panelPatientList.setVisible(true);
             panelBookings.setVisible(false);
             panelVisit.setVisible(false);
+            try {
+                Model.logEvent(loggedInUser, Model.Events.VIEW_PATIENTS);
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
         }
 
         if(e.getSource() == buttonBookings){
@@ -393,6 +413,11 @@ public class Interface implements ActionListener, KeyListener {
             panelPatientList.setVisible(false);
             panelBookings.setVisible(true);
             panelVisit.setVisible(false);
+            try {
+                Model.logEvent(loggedInUser, Model.Events.VIEW_BOOKINGS);
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
         }
 
         if(e.getSource() == buttonFilter){
@@ -404,6 +429,11 @@ public class Interface implements ActionListener, KeyListener {
             panelPatientList.setVisible(false);
             panelBookings.setVisible(false);
             panelVisit.setVisible(true);
+            try {
+                Model.logEvent(loggedInUser, Model.Events.VIEW_NEWVISIT);
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
         }
 
         if(e.getSource() == buttonOk){
