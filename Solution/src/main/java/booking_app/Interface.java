@@ -46,6 +46,7 @@ public class Interface implements ActionListener, KeyListener {
     private JButton buttonSubmit = new JButton();
     private JButton buttonFilter = new JButton();
     private JButton buttonPreviousBookings = new JButton();
+    private JButton buttonAssignDoctor;
 
     // JLabels Objects
     private JLabel labelPatient = new JLabel();
@@ -59,6 +60,7 @@ public class Interface implements ActionListener, KeyListener {
     private JLabel labelNewMessages = new JLabel();
     private JLabel labelNumOfPatients = new JLabel();
     private JLabel labelPatientName = new JLabel();
+    private JLabel labelPatientEmail = new JLabel();
     private JLabel labelNumber = new JLabel();
     private JLabel labelAddress = new JLabel();
     private JLabel labelGender = new JLabel();
@@ -68,6 +70,7 @@ public class Interface implements ActionListener, KeyListener {
     // JComboBoxes Objects
     private JComboBox<String> textFieldPatient = new JComboBox<>();
     private JComboBox<String> textDoctor = new JComboBox<>();
+    private JComboBox<String> textChangeDoctor = new JComboBox();
 
     // JTextFields Objects
     private JTextField textFieldYear = new JTextField();
@@ -311,41 +314,11 @@ public class Interface implements ActionListener, KeyListener {
         buttonOk.addActionListener(this);
 
         // View Patient Window Information
-
         panelPatientList.setLayout(new BoxLayout(panelPatientList, BoxLayout.Y_AXIS));
-        int numOfPatients = 0;
         panelPatientList.add(labelNumOfPatients);
-        try {
-            Set<User> setPatients = Model.getPatients(loggedInUser.getEmail());
-            for(User patients: setPatients){
-                numOfPatients++; 
-                labelNumOfPatients.setText("Total number of patients: " + numOfPatients);
-                JLabel msg = new JLabel();
-                msg.setText(numOfPatients + ". " + patients.getFirstname() + " " + patients.getLastname());
-                JButton buttonViewInfo = new JButton();
-                buttonViewInfo.setText("View Summary Information");
-                panelPatientList.add(msg);
-                panelPatientList.add(buttonViewInfo);
-                buttonViewInfo.addActionListener(e -> {
-                    summaryInfo.setVisible(true);
-                    labelPatientName.setText(patients.getFirstname() + " " + patients.getLastname());
-                    labelNumber.setText(patients.getPhoneNumber());
-                    labelAddress.setText(patients.getAddress());
-                    labelGender.setText(patients.getGender());
-                    labelDOB.setText("" + patients.getDateOfBirth());
-                    try {
-                        labelAssignedDoc.setText(patients.getAssignedDoctor().getEmail());
-                    } catch (IllegalArgumentException | SQLException e1) {
-                        e1.printStackTrace();
-                    }
-                });
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+        updateAssignDoctor();
 
         // View Summary Information 
-
         summaryInfo.setLayout(new BorderLayout());
         summaryInfo.setTitle("Patients Summary Information");
         summaryInfo.setSize(600, 400);
@@ -358,19 +331,37 @@ public class Interface implements ActionListener, KeyListener {
         panelSummaryTop.setLayout(null);
         panelSummaryTop.setBackground(Color.decode("#709ED6"));
         panelSummaryTop.setVisible(true);
-
-        
+  
         panelSummary.add(labelPatientName);
+        panelSummary.add(labelPatientEmail);
         panelSummary.setLayout(new BoxLayout(panelSummary, BoxLayout.Y_AXIS));
         panelSummary.add(labelNumber);
         panelSummary.add(labelAddress);
         panelSummary.add(labelGender);
         panelSummary.add(labelDOB);
         panelSummary.add(labelAssignedDoc);
-    }   
+        panelSummary.add(textChangeDoctor);
 
+        buttonAssignDoctor = new JButton();
+        buttonAssignDoctor.setText("Assign New Doctor");
+        buttonAssignDoctor.addActionListener(this);
+        panelSummary.add(buttonAssignDoctor);
+    }   
     @Override
     public void actionPerformed(ActionEvent e){
+        if(e.getSource() == buttonAssignDoctor){
+            String doctorName2 = textChangeDoctor.getSelectedItem().toString();
+            String patientName2 = labelPatientEmail.getText();
+            try {
+                User doctor = Model.getUser(doctorName2);
+                User patient = Model.getUser(patientName2);
+                patient.setAssignedDoctor(doctor);
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
+            updateAssignDoctor();
+            summaryInfo.setVisible(false);
+        }
         if(e.getSource() == buttonPreviousBookings){
             new ViewBookingInterface(loggedInUser);
         }
@@ -480,6 +471,48 @@ public class Interface implements ActionListener, KeyListener {
         }
         panelViewBooking.revalidate();
         panelViewBooking.repaint();
+    }
+
+    public void updateAssignDoctor(){
+        panelPatientList.removeAll();
+        textChangeDoctor.removeAllItems();
+        int numOfPatients = 0;
+        try {
+            for (User user : Model.getUsers(User.Type.DOCTOR)) {
+                textChangeDoctor.addItem(user.getEmail());
+            }
+        }
+        catch(SQLException ee){
+            ee.printStackTrace();
+        }
+        try {
+            Set<User> setPatients = Model.getPatients(loggedInUser.getEmail());
+            for(User patients: setPatients){
+                numOfPatients++;
+                labelNumOfPatients.setText("Total number of patients: " + numOfPatients);
+                JLabel msg = new JLabel();
+                msg.setText(numOfPatients + ". " + patients.getFirstname() + " " + patients.getLastname());
+                JButton buttonViewInfo = new JButton();
+                buttonViewInfo.setText("View Summary Information");
+                panelPatientList.add(msg);
+                panelPatientList.add(buttonViewInfo);
+                buttonViewInfo.addActionListener(e -> {
+                    summaryInfo.setVisible(true);
+                    labelPatientName.setText(patients.getFirstname() + " " + patients.getLastname());
+                    labelPatientEmail.setText(patients.getEmail());
+                    labelNumber.setText(patients.getPhoneNumber());
+                    labelAddress.setText(patients.getAddress());
+                    labelGender.setText(patients.getGender());
+                    labelDOB.setText("" + patients.getDateOfBirth());
+                    labelAssignedDoc.setText(patients.getEmail());
+                    textChangeDoctor.setMaximumSize(new Dimension(150, 20));
+                });
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        panelPatientList.revalidate();
+        panelPatientList.repaint();
     }
 }
 

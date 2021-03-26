@@ -65,6 +65,15 @@ public class User {
     public User getAssignedDoctor() throws IllegalArgumentException, SQLException {
         return Model.getUser(email);
     }
+    public void setAssignedDoctor(User assignedDoctor) throws SQLException {
+        try (Connection conn = getConn(); PreparedStatement stmt = conn.prepareStatement("UPDATE `patientDetails` SET `assignedDoctor` = ? WHERE `patientEmail` = ?")) {
+            stmt.setString(1, assignedDoctor.getEmail());
+            stmt.setString(2, getEmail());
+            stmt.executeUpdate();
+        }
+            
+        this.assignedDoctor = assignedDoctor.getEmail();
+    }
 
     @Override
     public String toString() {
