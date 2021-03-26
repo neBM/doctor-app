@@ -39,7 +39,7 @@
 | Robin  | <ul><li>Wrote the tasks for 2 user stories</li></ul> | <ul><li>Write the tasks for the remaining user story</li><li>Code the sql query needed to retrieve all the needed information for viewPatient</li></ul> | 
 | Sean   | <ul><li>Start planning out the 'view booking' feature</li></ul>| <ul><li>Create a button for bookings</li><li>Create a pop window that is form used to enter the booking month and year</li><li>Add two entries which takes a month and year</li><li>On the form pop window have a button to return to the welcome screen</li></ul>  | 
 
-# Scrum Meeting Four
+# Scrum Meeting Five
 | Name   | What I did Yesterday | What tasks I will do today | Any isssues? |
 | ------ | -------------------- | -------------------------- | ------------ |
 | Ben    | <ul><li>Implement getter for a set of bookings that apply to a user</li><li>Fix #6</li><li>Refactor previous sprint</li><li>Create maven project</li></ul> | <ul><li>Merge master into feature/viewPatient and feature/viewBookings</li><li>Implement filter for ui's messages to display messages relevent only to the logged in user</li><li>Fix camel case in interface class</li></ul> | <ul><li>Work from other branches are needed in other branches - merges from master were needed</li></ul> |
@@ -47,10 +47,18 @@
 | Robin  |  <ul><li>Write the tasks for the remaining user story</li><li>Code the sql query needed to retrieve all the needed information for viewPatient</li></ul> |     <ul><li>Have patient's email and assigned doctor's email and the remaing attributes as fields</li> <li></li><li>Create a getPatientEmail method that returns the patient's email</li><li>Create a getDoctorEmail that returns the doctor's email</li><li>in the model class create a getPatientsList method that takes a doctor's email as a parameter and returns a set of patients to whom the doctor is assigned to</li><li>In the user class create getter methods for: A getFirstName method that returns the first name of the user, a getLastName method that returns the last name of the user, a getPhoneNumber method that returns the user's phone number, a getAddress method that returns the user's address, a getGender method that returns the user's gender, a getDateOfBirth method that returns the user's date of birth</li><li>An SQL query that retrieves the visit details for a given doctor</li><li>A getVisitDetails method that takes a user as a parameter and returns all the visits for that user</li></ul> |      <ul><li>Make test to ensure all potential scenarios are accounted for</li></ul>        |
 | Sean   | <ul><li>Create a pop window that is form used to enter the booking month and year</li><li>Add two entries which takes a month and year</li><li>On the form pop window have a button to return to the welcome screen</li></ul>   | <ul><li>Implement functionality to the JButton in view bookings</li><li>Retrieve booking data from our SQL database</li></ul> | <ul><li>ComboBoxes were not being displayed properly</li></ul>             |
 
-# Scrum Meeting Five
+# Scrum Meeting Six
 | Name   | What I did Yesterday | What tasks I will do today | Any isssues? |
 | ------ | -------------------- | -------------------------- | ------------ |
 | Ben    | <ul><li>Merge master into feature/viewPatient and feature/viewBookings</li><li>Create branch for feature/viewVistDetails</li></ul> | <ul><li>Merge feature/viewPatient and feature/viewBookings into master</li><li>Move #7700d9d6bcafcea17819d962f3e22a48cef4d01d, #c83cc65199486d3b5641b345938fc5623c350cd6, and #b4ed5d05bafaf2012b97b03aa236ec472fb3379f into feature/viewVistDetails</li><li>Remove deletions from #49a426344ce652b8261bc974a5e82ec6d86230e3</li><li>Help Front End complete features</li></ul> |  |
 | Hayden | <ul><li> Completed front end tasks for view Visit Details user story </li> <li> Fixed sql query in getVisitDetails() as a field was named wrong and it was causing an error </li></ul> | <ul> <li> Begin implementing front end design for one of the user stories for the final sprint </li> </ul> | <ul><li> </li></ul> |
 | Robin  | <ul><li>Make test to ensure all potential scenarios are accounted for</li></ul>    | <ul><li>Help linking the front end to the back-end</li></ul>    | <ul><li>Had git pulling issues, a branch needed code from another branch so we had to merge branches</li></ul> |
 | Sean   | <ul><li>Converted all the JLabels and JComboBoxes from Day to Year</li><li>Updated Year array to take values 2000-2030</li><li>Set getTimestamp(). to getYear() instead of getDayOfMonth() & Reformatted code</li><li>Switched Month and Year around</li></ul>  | <ul><li>Created README.MD file and started User Manual</li></ul> |  |
+
+# Scrum Meeting Seven
+| Name   | What I did Yesterday | What tasks I will do today | Any isssues? |
+| ------ | -------------------- | -------------------------- | ------------ |
+| Ben    |                      |                            |              |
+| Hayden |                      |                            |              |
+| Robin  |                      |                            |              |
+| Sean   |                      |                            |              |
