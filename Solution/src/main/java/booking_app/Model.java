@@ -42,15 +42,16 @@ public class Model {
 
 
     public static class Visit {
+        private int id;
         private User doctor;
         private String visitNotes;
-        private Timestamp timestamp;
+        private LocalDateTime timestamp;
         private User patient;
         private String prescriptionName;
         private int prescriptionQuantity;
 
-        public Visit(User doctor, String visitNotes, Timestamp timestamp, User patient, String prescriptionName, int prescriptionQuantity) {
-
+        public Visit(int id, User doctor, String visitNotes, LocalDateTime timestamp, User patient, String prescriptionName, int prescriptionQuantity) {
+            this.id = id;
             this.doctor = doctor;
             this.visitNotes = visitNotes;
             this.timestamp = timestamp;
@@ -64,7 +65,7 @@ public class Model {
         public String getVisitNotes() {
             return visitNotes;
         }
-        public Timestamp getTimestamp() {
+        public LocalDateTime getTimestamp() {
             return timestamp;
         }
         public User getPatient() {
@@ -75,6 +76,63 @@ public class Model {
         }
         public int getPrescriptionQuantity() {
             return prescriptionQuantity;
+        }
+        public int getId() {
+            return id;
+        }
+        public void setDoctor(User newDoctor)  throws SQLException {
+            try (Connection conn = getConn(); PreparedStatement stmt = conn.prepareStatement("UPDATE `visitDetails` SET  `doctor` = ? WHERE `id` = ?;")) {
+                stmt.setString(1, newDoctor.getEmail());
+                stmt.setInt(2, getId());
+                stmt.executeUpdate();
+    
+            }
+            doctor = newDoctor;
+        }
+        public void setVisitNotes(String newNotes)  throws SQLException {
+            try (Connection conn = getConn(); PreparedStatement stmt = conn.prepareStatement("UPDATE `visitDetails` SET `visitNotes` = ? WHERE `id` = ?;")) {
+                stmt.setString(1, newNotes);
+                stmt.setInt(2, getId());
+                stmt.executeUpdate();
+    
+            }
+            visitNotes = newNotes;
+        }
+        public void setTimestamp(LocalDateTime newTime)  throws SQLException {
+            try (Connection conn = getConn(); PreparedStatement stmt = conn.prepareStatement("UPDATE `visitDetails` SET `timestamp` = ? WHERE `id` = ?;")) {
+                stmt.setTimestamp(1, Timestamp.valueOf(newTime));
+                stmt.setInt(2, getId());
+                stmt.executeUpdate();
+
+            }
+            timestamp = newTime;
+        }
+        public void setPatient(User newPatient)  throws SQLException {
+            try (Connection conn = getConn(); PreparedStatement stmt = conn.prepareStatement("UPDATE `visitDetails` SET `patientEmail` = ? WHERE `id` = ?;")) {
+                stmt.setString(1, newPatient.getEmail());
+                stmt.setInt(2, getId());
+                stmt.executeUpdate();
+    
+            }
+            patient = newPatient;
+        }
+        public void setPrescriptionName(String newPrescriptionName)  throws SQLException {
+            try (Connection conn = getConn(); PreparedStatement stmt = conn.prepareStatement("UPDATE `visitDetails` SET `prescriptionName` = ? WHERE `id` = ?;")) {
+                stmt.setString(1, newPrescriptionName);
+                stmt.setInt(2, getId());
+                stmt.executeUpdate();
+    
+            }
+            prescriptionName = newPrescriptionName;
+        }
+        public void setPrescriptionQuantity(int newPrescriptionQuantity)  throws SQLException {
+            try (Connection conn = getConn(); PreparedStatement stmt = conn.prepareStatement("UPDATE `visitDetails` SET `prescriptionQuantity` = ? WHERE `id` = ?;")) {
+                stmt.setInt(1, newPrescriptionQuantity);
+                stmt.setInt(2, getId());
+                stmt.executeUpdate();
+    
+            }
+            prescriptionQuantity = newPrescriptionQuantity;
         }
 
 
@@ -113,14 +171,14 @@ public class Model {
         }
 
     }
-
+  
     public static Set<Visit> getVisitDetails (String doctor)  throws SQLException {
         try (PreparedStatement stmt = getConn().prepareStatement("SELECT * FROM `visitDetails` WHERE `doctor` = ?")) {
             stmt.setString(1, doctor);
             ResultSet result = stmt.executeQuery();
             Set<Visit> visitDetails = new HashSet<>();
             while (result.next()) {
-                visitDetails.add(new Visit(getUser(result.getString("doctor")), result.getString("visitNotes"), result.getTimestamp("timestamp"), getUser(result.getString("patientEmail")), result.getString("prescriptionName"), result.getInt("prescriptionQuantity"))); 
+                visitDetails.add(new Visit(result.getInt("id"), getUser(result.getString("doctor")), result.getString("visitNotes"), result.getTimestamp("timestamp").toLocalDateTime(), getUser(result.getString("patientEmail")), result.getString("prescriptionName"), result.getInt("prescriptionQuantity"))); 
             }
             return visitDetails;
         }
@@ -146,7 +204,7 @@ public class Model {
             ResultSet result = stmt.executeQuery("SELECT * FROM `visitDetails`");
             HashSet<Visit> visits = new HashSet<>();
             while (result.next()) {
-                visits.add(new Visit(getUser(result.getString("doctor")), result.getString("visitNotes"), result.getTimestamp("timestamp"), getUser(result.getString("patientEmail")), result.getString("prescriptionName"), result.getInt("prescriptionQuantity")));
+                visits.add(new Visit(result.getInt("id"), getUser(result.getString("doctor")), result.getString("visitNotes"), result.getTimestamp("timestamp").toLocalDateTime(), getUser(result.getString("patientEmail")), result.getString("prescriptionName"), result.getInt("prescriptionQuantity")));
             }
             return visits;
         }
