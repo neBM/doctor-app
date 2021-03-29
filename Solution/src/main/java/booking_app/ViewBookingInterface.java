@@ -1,6 +1,8 @@
 package booking_app;
 
 import java.sql.SQLException;
+import java.time.format.DateTimeFormatter;
+
 import javax.swing.*;
 import java.util.Set;
 import java.awt.*;
@@ -57,7 +59,7 @@ public class ViewBookingInterface {
                 numOfVisits++; 
                 label.setText("Total number of past Visits: " + numOfVisits);
                 JLabel msg = new JLabel();
-                msg.setText(numOfVisits + ". Patient: " + visits.getPatient() + ", " + visits.getVisitNotes() + ". " + visits.getPrescriptionName() + ": " + visits.getPrescriptionQuantity() + " at " + visits.getTimestamp());
+                msg.setText(numOfVisits + ". Patient: " + visits.getPatient() + ", " + visits.getVisitNotes() + ". " + visits.getPrescriptionName() + ": " + visits.getPrescriptionQuantity() + " at " + visits.getTimestamp().format(DateTimeFormatter.ISO_DATE_TIME));
                 panelMain.add(msg);
             }
             panelTop.add(buttonReturn);

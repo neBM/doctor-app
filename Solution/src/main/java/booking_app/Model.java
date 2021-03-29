@@ -7,7 +7,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.sql.Time;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.HashSet;
@@ -46,12 +45,12 @@ public class Model {
         private int id;
         private User doctor;
         private String visitNotes;
-        private Timestamp timestamp;
+        private LocalDateTime timestamp;
         private User patient;
         private String prescriptionName;
         private int prescriptionQuantity;
 
-        public Visit(int id, User doctor, String visitNotes, Timestamp timestamp, User patient, String prescriptionName, int prescriptionQuantity) {
+        public Visit(int id, User doctor, String visitNotes, LocalDateTime timestamp, User patient, String prescriptionName, int prescriptionQuantity) {
             this.id = id;
             this.doctor = doctor;
             this.visitNotes = visitNotes;
@@ -66,7 +65,7 @@ public class Model {
         public String getVisitNotes() {
             return visitNotes;
         }
-        public Timestamp getTimestamp() {
+        public LocalDateTime getTimestamp() {
             return timestamp;
         }
         public User getPatient() {
@@ -99,12 +98,12 @@ public class Model {
             }
             visitNotes = newNotes;
         }
-        public void setTimestamp(Timestamp newTime)  throws SQLException {
+        public void setTimestamp(LocalDateTime newTime)  throws SQLException {
             try (Connection conn = getConn(); PreparedStatement stmt = conn.prepareStatement("UPDATE `visitDetails` SET `timestamp` = ? WHERE `id` = ?;")) {
-                stmt.setTimestamp(1, newTime);
+                stmt.setTimestamp(1, Timestamp.valueOf(newTime));
                 stmt.setInt(2, getId());
                 stmt.executeUpdate();
-    
+
             }
             timestamp = newTime;
         }
@@ -179,7 +178,7 @@ public class Model {
             ResultSet result = stmt.executeQuery();
             Set<Visit> visitDetails = new HashSet<>();
             while (result.next()) {
-                visitDetails.add(new Visit(result.getInt("id"), getUser(result.getString("doctor")), result.getString("visitNotes"), result.getTimestamp("timestamp"), getUser(result.getString("patientEmail")), result.getString("prescriptionName"), result.getInt("prescriptionQuantity"))); 
+                visitDetails.add(new Visit(result.getInt("id"), getUser(result.getString("doctor")), result.getString("visitNotes"), result.getTimestamp("timestamp").toLocalDateTime(), getUser(result.getString("patientEmail")), result.getString("prescriptionName"), result.getInt("prescriptionQuantity"))); 
             }
             return visitDetails;
         }
@@ -205,7 +204,7 @@ public class Model {
             ResultSet result = stmt.executeQuery("SELECT * FROM `visitDetails`");
             HashSet<Visit> visits = new HashSet<>();
             while (result.next()) {
-                visits.add(new Visit(result.getInt("id"), getUser(result.getString("doctor")), result.getString("visitNotes"), result.getTimestamp("timestamp"), getUser(result.getString("patientEmail")), result.getString("prescriptionName"), result.getInt("prescriptionQuantity")));
+                visits.add(new Visit(result.getInt("id"), getUser(result.getString("doctor")), result.getString("visitNotes"), result.getTimestamp("timestamp").toLocalDateTime(), getUser(result.getString("patientEmail")), result.getString("prescriptionName"), result.getInt("prescriptionQuantity")));
             }
             return visits;
         }
