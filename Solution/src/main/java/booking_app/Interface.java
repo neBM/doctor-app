@@ -448,6 +448,10 @@ public class Interface implements ActionListener, KeyListener {
                 throwables.printStackTrace();
             }
             updateMessages();
+            panelMessage.setVisible(true);
+            panelPatientList.setVisible(false);
+            panelBookings.setVisible(false);
+            panelVisit.setVisible(false);
         }
     }
 
