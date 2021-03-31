@@ -193,21 +193,8 @@ public class Interface implements ActionListener, KeyListener {
         panelTop.setBounds(0, 0, 800, 40);
         panelTop.setBackground(Color.decode("#709ED6"));
         panelTop.setLayout(null);
-        panelMessage.setVisible(true);
-        panelMessage.setBounds(0, 40, 800, 560);
-        panelMessage.setLayout(new BoxLayout(panelMessage, BoxLayout.Y_AXIS));
-        numOfMessages = 0;
-        try {
-            Set<Model.Message> unread = Model.getMessages();
-            for(Model.Message message: unread){
-                numOfMessages++;
-                JLabel msg = new JLabel();
-                msg.setText(numOfMessages + ". " + message.getMessage());
-                panelMessage.add(msg);
-            }
-        } catch (SQLException e1) {
-            e1.printStackTrace();
-        }
+
+        updateMessages();
 
         panelPatientList.setVisible(false);
         panelPatientList.setBounds(0, 40, 800, 560);
@@ -450,20 +437,17 @@ public class Interface implements ActionListener, KeyListener {
                 Model.addMessage(Model.getUser(patientName), Model.getUser(doctorName), String.format("Visit confirmation on %d %d %d at %d %d", year, month, day, hour, minute));
                 date = LocalDateTime.of(year, month, day, hour, minute);
                 Model.addVisitDetails(Model.getUser(doctorName), visitNote, date, Model.getUser(patientName), prescription, quantity);
-            }
-
-            catch(java.time.DateTimeException | java.sql.DataTruncation | java.sql.SQLIntegrityConstraintViolationException err){
+            } catch(java.time.DateTimeException | java.sql.DataTruncation | java.sql.SQLIntegrityConstraintViolationException err){
                 windowError.setVisible(true);
                 labelError.setText(err.getMessage());
                 labelError.setBounds(30, 10, 600, 20);
                 windowError.add(buttonOk);
                 windowError.add(labelError);
                 err.printStackTrace();
-            }
-
-           catch (SQLException throwables) {
+            } catch (SQLException throwables) {
                 throwables.printStackTrace();
-           }
+            }
+            updateMessages();
         }
     }
 
@@ -543,6 +527,27 @@ public class Interface implements ActionListener, KeyListener {
         }
         panelPatientList.revalidate();
         panelPatientList.repaint();
+    }
+
+    public void updateMessages(){
+        panelMessage.removeAll();
+        panelMessage.setVisible(true);
+        panelMessage.setBounds(0, 40, 800, 560);
+        panelMessage.setLayout(new BoxLayout(panelMessage, BoxLayout.Y_AXIS));
+        numOfMessages = 0;
+        try {
+            Set<Model.Message> unread = Model.getMessages();
+            for(Model.Message message: unread){
+                numOfMessages++;
+                JLabel msg = new JLabel();
+                msg.setText(numOfMessages + ". " + message.getMessage());
+                panelMessage.add(msg);
+            }
+        } catch (SQLException e1) {
+            e1.printStackTrace();
+        }
+        panelMessage.revalidate();
+        panelMessage.repaint();
     }
 }
 
