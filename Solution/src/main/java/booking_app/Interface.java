@@ -522,7 +522,12 @@ public class Interface implements ActionListener, KeyListener {
                     labelAddress.setText(patients.getAddress());
                     labelGender.setText(patients.getGender());
                     labelDOB.setText("" + patients.getDateOfBirth());
-                    labelAssignedDoc.setText(patients.getEmail());
+                    try {
+                        User assignDoctor = patients.getAssignedDoctor();
+                        labelAssignedDoc.setText(assignDoctor.getEmail());
+                    } catch (SQLException throwables) {
+                        throwables.printStackTrace();
+                    }
                     textChangeDoctor.setMaximumSize(new Dimension(150, 20));
                 });
             }
