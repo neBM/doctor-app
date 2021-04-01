@@ -21,7 +21,6 @@ public class User {
     private Timestamp dateOfBirth;
     private String assignedDoctor;
 
-
     public enum Type {
         DOCTOR, PATIENT;
     }
@@ -63,7 +62,7 @@ public class User {
         return dateOfBirth;
     }
     public User getAssignedDoctor() throws IllegalArgumentException, SQLException {
-        return Model.getUser(email);
+        return Model.getUser(assignedDoctor);
     }
     public void setAssignedDoctor(User assignedDoctor) throws SQLException {
         try (Connection conn = getConn(); PreparedStatement stmt = conn.prepareStatement("UPDATE `patientDetails` SET `assignedDoctor` = ? WHERE `patientEmail` = ?")) {
