@@ -4,7 +4,7 @@
 | Ben   |   &#x2611;   |  &#x2611;  |  &#x2611;  |  &#x2611;  |  &#x2611;  |  &#x2611;  | &#x2611;   |            |
 | Hayden|   &#x2611;   |  &#x2611;  |  &#x2611;  |  &#x2611;  |  &#x2611;  |  &#x2611;  |            |            |
 | Robin |   &#x2611;   |  &#x2611;  |  &#x2611;  |  &#x2611;  |  &#x2611;  |  &#x2611;  | &#x2611;   |  &#x2611;  |
-| Sean  |   &#x2611;   |  &#x2611;  |  &#x2611;  |  &#x2611;  |  &#x2611;  |  &#x2611;  |            |            |
+| Sean  |   &#x2611;   |  &#x2611;  |  &#x2611;  |  &#x2611;  |  &#x2611;  |  &#x2611;  | &#x2611;   |  &#x2611;  |
 
 
 # Scrum Meeting One
@@ -61,7 +61,7 @@
 | Ben    | <ul><li>Helped @ss2439 merge feature/viewPatient and feature/viewBookings into master</li><li>Move #7700d9d6bcafcea17819d962f3e22a48cef4d01d, #c83cc65199486d3b5641b345938fc5623c350cd6, and #b4ed5d05bafaf2012b97b03aa236ec472fb3379f into feature/viewVistDetails</li><li>Remove deletions from #49a426344ce652b8261bc974a5e82ec6d86230e3</li><li>Help Front End complete features</li><li>Create CI pipeline</li></ul> | <ul><li>Help Front End complete features</li><li>Add pipeline labels to repo overview page</li></ul> |  |
 | Hayden |                      |                            |              |
 | Robin  |   <ul><li>Implemented an id field to the visit class and a getter method</li><li>Created Setter methods for each field/attribute of the visit class</li><li>Update the setter methods of visit to have update every call made the SQL database</li></ul>                   |<ul><li>Help front end connect with the back end</li><li>Find ways to improve the flexibilty of editing visits to improve user experience</li></ul>                            |  <ul><li>flexibilty of editing visit details, initially had one method method to edit all fields of a visit but obviously on most occasions only one field would be modified therefore it became inefficient to have it as one method to edit all fields so I split it into individual methods for each field</li></ul>            |
-| Sean   |                      |                            |              |
+| Sean   | <ul><li> Started assigning a new doctor to a patient feature</li><li>Created JComboBox that receives the currently doctors in the database</li><li>Merged feature/assignDoctor & feature/accessRecords into Master branch</li></ul>                   |  <ul><li>Created a new method called updateAssignDoctor() to redraw the patient's summary information frame with the updated doctor</li><li>Moved the patient's summary information code into the updateAssignDoctor method to reduce clutter in constructor</li></ul>                       |              |
 
 
 # Scrum Meeting Eight 
@@ -70,4 +70,4 @@
 | Ben    |                      |                            |              |
 | Hayden |                      |                            |              |
 | Robin  | <ul><li>Finished helping implementing the front end to back end connection for the editVisitDetails branch</li><li>Added visits to the SQL database and checked each setter method for the visit class updated all correct attributes in the SQL database</li></ul>                     |  <ul><li>Merge the branch and deal with anny merge conflicts</li></ul>                           |  <ul><li>The timestamps imported in java wasn't the matching one for the SQL database, it had to be changed</li></ul>            | 
-| Sean   |                      |                            |              |
+| Sean   | <ul><li>Finished the User Manual with the perspective of the Doctor user</li><li>Started the video showing a demonstration of all the features</li><ul>  |                            |              |
