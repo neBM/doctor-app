@@ -37,7 +37,7 @@ public class LoginInterface extends JFrame {
         textPassword = new JPasswordField();
 
         // Frame Information
-        frame.setTitle("NHS Login Page");
+        frame.setTitle("Login Page");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(550, 150);
         frame.setResizable(false);
