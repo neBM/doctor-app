@@ -3,7 +3,7 @@
 | ----- | :----------: | :--------: | :--------: | :--------: | :--------: | :--------: | :--------: | :--------: |
 | Ben   |   &#x2611;   |  &#x2611;  |  &#x2611;  |  &#x2611;  |  &#x2611;  |  &#x2611;  | &#x2611;   |            |
 | Hayden|   &#x2611;   |  &#x2611;  |  &#x2611;  |  &#x2611;  |  &#x2611;  |  &#x2611;  |            |            |
-| Robin |   &#x2611;   |  &#x2611;  |  &#x2611;  |  &#x2611;  |  &#x2611;  |  &#x2611;  | &#x2611;   |            |
+| Robin |   &#x2611;   |  &#x2611;  |  &#x2611;  |  &#x2611;  |  &#x2611;  |  &#x2611;  | &#x2611;   |  &#x2611;  |
 | Sean  |   &#x2611;   |  &#x2611;  |  &#x2611;  |  &#x2611;  |  &#x2611;  |  &#x2611;  |            |            |
 
 
@@ -69,5 +69,5 @@
 | ------ | -------------------- | -------------------------- | ------------ |
 | Ben    |                      |                            |              |
 | Hayden |                      |                            |              |
-| Robin  |                      |                            |              | 
+| Robin  | <ul><li>Finished helping implementing the front end to back end connection for the editVisitDetails branch</li><li>Added visits to the SQL database and checked each setter method for the visit class updated all correct attributes in the SQL database</li></ul>                     |  <ul><li>Merge the branch and deal with anny merge conflicts</li></ul>                           |  <ul><li>The timestamps imported in java wasn't the matching one for the SQL database, it had to be changed</li></ul>            | 
 | Sean   |                      |                            |              |
