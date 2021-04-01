@@ -342,12 +342,17 @@ public class Interface implements ActionListener, KeyListener {
     @Override
     public void actionPerformed(ActionEvent e){
         if(e.getSource() == buttonAssignDoctor){
+            panelMessage.removeAll();
             String doctorName2 = textChangeDoctor.getSelectedItem().toString();
             String patientName2 = labelPatientEmail.getText();
             try {
                 User doctor = Model.getUser(doctorName2);
                 User patient = Model.getUser(patientName2);
                 patient.setAssignedDoctor(doctor);
+                Model.addMessage(loggedInUser, patient, "You have been assigned " + doctor.getEmail());
+                Model.addMessage(loggedInUser, doctor, "You have been assigned " + patient.getEmail());
+                updateMessages();
+                panelPatientList.setVisible(false);
             } catch (SQLException throwables) {
                 throwables.printStackTrace();
             }
@@ -530,6 +535,7 @@ public class Interface implements ActionListener, KeyListener {
                     }
                     textChangeDoctor.setMaximumSize(new Dimension(150, 20));
                 });
+
             }
         } catch (SQLException e) {
             e.printStackTrace();
