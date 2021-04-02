@@ -1,8 +1,8 @@
 # Attendance
 | Name  |  24/02/2021  | 26/02/2021 | 02/03/2021 | 04/03/2021 | 09/03/2021 | 16/03/2021 | 22/03/2021 | 01/04/2021 | 02/04/2021 | 
 | ----- | :----------: | :--------: | :--------: | :--------: | :--------: | :--------: | :--------: | :--------: | :--------: |
-| Ben   |   &#x2611;   |  &#x2611;  |  &#x2611;  |  &#x2611;  |  &#x2611;  |  &#x2611;  | &#x2611;   |  &#x2611;  | &#x2611; | 
-| Hayden|   &#x2611;   |  &#x2611;  |  &#x2611;  |  &#x2611;  |  &#x2611;  |  &#x2611;  |            |            |            |
+| Ben   |   &#x2611;   |  &#x2611;  |  &#x2611;  |  &#x2611;  |  &#x2611;  |  &#x2611;  | &#x2611;   |  &#x2611;  | &#x2611;   | 
+| Hayden|   &#x2611;   |  &#x2611;  |  &#x2611;  |  &#x2611;  |  &#x2611;  |  &#x2611;  | &#x2611;   |  &#x2611;  | &#x2611;   |
 | Robin |   &#x2611;   |  &#x2611;  |  &#x2611;  |  &#x2611;  |  &#x2611;  |  &#x2611;  | &#x2611;   |  &#x2611;  | &#x2611;   |
 | Sean  |   &#x2611;   |  &#x2611;  |  &#x2611;  |  &#x2611;  |  &#x2611;  |  &#x2611;  | &#x2611;   |  &#x2611;  | &#x2611;   |
 
@@ -59,7 +59,7 @@
 | Name   | What I did Yesterday | What tasks I will do today | Any isssues? |
 | ------ | -------------------- | -------------------------- | ------------ |
 | Ben    | <ul><li>Helped @ss2439 merge feature/viewPatient and feature/viewBookings into master</li><li>Move #7700d9d6bcafcea17819d962f3e22a48cef4d01d, #c83cc65199486d3b5641b345938fc5623c350cd6, and #b4ed5d05bafaf2012b97b03aa236ec472fb3379f into feature/viewVistDetails</li><li>Remove deletions from #49a426344ce652b8261bc974a5e82ec6d86230e3</li><li>Help Front End complete features</li><li>Create CI pipeline</li></ul> | <ul><li>Help Front End complete features</li><li>Add pipeline labels to repo overview page</li></ul> | <ul><li>#7</li></ul> |
-| Hayden |                      |                            |              |
+| Hayden | <ul><li> Began designing front end for edit visit details </li></ul> | <ul><li> Complete front end tasks for edit visit details</li></ul> |              |
 | Robin  |   <ul><li>Implemented an id field to the visit class and a getter method</li><li>Created Setter methods for each field/attribute of the visit class</li><li>Update the setter methods of visit to have update every call made the SQL database</li></ul>                   |<ul><li>Help front end connect with the back end</li><li>Find ways to improve the flexibilty of editing visits to improve user experience</li></ul>                            |  <ul><li>flexibilty of editing visit details, initially had one method method to edit all fields of a visit but obviously on most occasions only one field would be modified therefore it became inefficient to have it as one method to edit all fields so I split it into individual methods for each field</li></ul>            |
 | Sean   | <ul><li> Started assigning a new doctor to a patient feature</li><li>Created JComboBox that receives the currently doctors in the database</li><li>Merged feature/assignDoctor & feature/accessRecords into Master branch</li></ul>                   |  <ul><li>Created a new method called updateAssignDoctor() to redraw the patient's summary information frame with the updated doctor</li><li>Moved the patient's summary information code into the updateAssignDoctor method to reduce clutter in constructor</li></ul>                       |              |
 
@@ -68,7 +68,7 @@
 | Name   | What I did Yesterday | What tasks I will do today | Any isssues? |
 | ------ | -------------------- | -------------------------- | ------------ |
 | Ben    | <ul><li>Help Front End complete features</li><li>Add pipeline labels to repo overview page</li></ul> | <ul><li>Peer programming: Help @ss2439 fix #7</li><li>Help Front End Complete Features</li><li>Refactoring</li></ul> | <ul><li>Wasn't able to get code coverage working</li></ul> |
-| Hayden |                      |                            |              |
+| Hayden | <ul><li> Worked on front end tasks for edit visit detials </li></ul> |  <ul><li> Solve problem relating to submitting an edit for a visit </li></ul>  | <ul><li> Minor issue when submitting an edit that caused it to edit all other visit details for that doctor with the same information</li></ul> |
 | Robin  | <ul><li>Finished helping implementing the front end to back end connection for the editVisitDetails branch</li><li>Added visits to the SQL database and checked each setter method for the visit class updated all correct attributes in the SQL database</li></ul>                     |  <ul><li>Merge the branch and deal with anny merge conflicts</li></ul>                           |  <ul><li>The timestamps imported in java wasn't the matching one for the SQL database, it had to be changed</li></ul>            | 
 | Sean   | <ul><li>Finished the User Manual with the perspective of the Doctor user</li><li>Started the video showing a demonstration of all the features</li><ul>  | <ul><li> Fixed issue #7</li><li>Added confirmation when new doctor is assigned</li><li>Worked on video showing the features</li></ul>                           |              |
 
@@ -76,6 +76,6 @@
 | Name   | What I did Yesterday | What tasks I will do today | Any isssues? |
 | ------ | -------------------- | -------------------------- | ------------ |
 | Ben    | <ul><li>Peer programming: Help @ss2439 fix #7</li><li>Help Front End Complete Features</li><li>Refactoring</li></ul> | <ul><li>Help Front End Complete Features</li><li>Refactoring</li><li>Create link to video demonstration of solution</li></ul> |  |
-| Hayden |                      |                            |              |
+| Hayden | <ul><li> Fixed error with submitting an edit</li> <li> Finished the rest of the front end for edit visit details </li></ul> | <ul><li> Run tests to make sure all parts of the interface work as intended </li></ul> |              |
 | Robin  |  <ul><li>Merge the branch and deal with anny merge conflicts</li></ul>   |          <ul><li>Help my project partners finish off the last branches and run through the interface to make sure everything works</li></ul>                      |              |
 | Sean   |  <ul><li>Recorded first 4 features for the video</li></ul>       | <ul><li>Recorded the next 4 features for the video</li></ul>                           |              |
