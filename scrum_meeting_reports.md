@@ -4,7 +4,7 @@
 | Ben   |   &#x2611;   |  &#x2611;  |  &#x2611;  |  &#x2611;  |  &#x2611;  |  &#x2611;  | &#x2611;   |  &#x2611;  | &#x2611; | 
 | Hayden|   &#x2611;   |  &#x2611;  |  &#x2611;  |  &#x2611;  |  &#x2611;  |  &#x2611;  |            |            |            |
 | Robin |   &#x2611;   |  &#x2611;  |  &#x2611;  |  &#x2611;  |  &#x2611;  |  &#x2611;  | &#x2611;   |  &#x2611;  | &#x2611;   |
-| Sean  |   &#x2611;   |  &#x2611;  |  &#x2611;  |  &#x2611;  |  &#x2611;  |  &#x2611;  | &#x2611;   |  &#x2611;  |            |
+| Sean  |   &#x2611;   |  &#x2611;  |  &#x2611;  |  &#x2611;  |  &#x2611;  |  &#x2611;  | &#x2611;   |  &#x2611;  | &#x2611;   |
 
 
 # Scrum Meeting One
@@ -78,4 +78,4 @@
 | Ben    | <ul><li>Peer programming: Help @ss2439 fix #7</li><li>Help Front End Complete Features</li><li>Refactoring</li></ul> | <ul><li>Help Front End Complete Features</li><li>Refactoring</li><li>Create link to video demonstration of solution</li></ul> |  |
 | Hayden |                      |                            |              |
 | Robin  |  <ul><li>Merge the branch and deal with anny merge conflicts</li></ul>   |          <ul><li>Help my project partners finish off the last branches and run through the interface to make sure everything works</li></ul>                      |              |
-| Sean   |                      |                            |              |
+| Sean   |  <ul><li>Recorded first 4 features for the video</li></ul>       | <ul><li>Recorded the next 4 features for the video</li></ul>                           |              |
