@@ -1,10 +1,10 @@
 # Attendance
-| Name  |  24/02/2021  | 26/02/2021 | 02/03/2021 | 04/03/2021 | 09/03/2021 | 16/03/2021 | 22/03/2021 | 01/04/2021 |
-| ----- | :----------: | :--------: | :--------: | :--------: | :--------: | :--------: | :--------: | :--------: |
-| Ben   |   &#x2611;   |  &#x2611;  |  &#x2611;  |  &#x2611;  |  &#x2611;  |  &#x2611;  | &#x2611;   |  &#x2611;  |
-| Hayden|   &#x2611;   |  &#x2611;  |  &#x2611;  |  &#x2611;  |  &#x2611;  |  &#x2611;  |            |            |
-| Robin |   &#x2611;   |  &#x2611;  |  &#x2611;  |  &#x2611;  |  &#x2611;  |  &#x2611;  | &#x2611;   |  &#x2611;  |
-| Sean  |   &#x2611;   |  &#x2611;  |  &#x2611;  |  &#x2611;  |  &#x2611;  |  &#x2611;  | &#x2611;   |  &#x2611;  |
+| Name  |  24/02/2021  | 26/02/2021 | 02/03/2021 | 04/03/2021 | 09/03/2021 | 16/03/2021 | 22/03/2021 | 01/04/2021 | 02/04/2021 | 
+| ----- | :----------: | :--------: | :--------: | :--------: | :--------: | :--------: | :--------: | :--------: | :--------: |
+| Ben   |   &#x2611;   |  &#x2611;  |  &#x2611;  |  &#x2611;  |  &#x2611;  |  &#x2611;  | &#x2611;   |  &#x2611;  |            | 
+| Hayden|   &#x2611;   |  &#x2611;  |  &#x2611;  |  &#x2611;  |  &#x2611;  |  &#x2611;  |            |            |            |
+| Robin |   &#x2611;   |  &#x2611;  |  &#x2611;  |  &#x2611;  |  &#x2611;  |  &#x2611;  | &#x2611;   |  &#x2611;  | &#x2611;   |
+| Sean  |   &#x2611;   |  &#x2611;  |  &#x2611;  |  &#x2611;  |  &#x2611;  |  &#x2611;  | &#x2611;   |  &#x2611;  |            |
 
 
 # Scrum Meeting One
@@ -71,3 +71,11 @@
 | Hayden |                      |                            |              |
 | Robin  | <ul><li>Finished helping implementing the front end to back end connection for the editVisitDetails branch</li><li>Added visits to the SQL database and checked each setter method for the visit class updated all correct attributes in the SQL database</li></ul>                     |  <ul><li>Merge the branch and deal with anny merge conflicts</li></ul>                           |  <ul><li>The timestamps imported in java wasn't the matching one for the SQL database, it had to be changed</li></ul>            | 
 | Sean   | <ul><li>Finished the User Manual with the perspective of the Doctor user</li><li>Started the video showing a demonstration of all the features</li><ul>  | <ul><li> Fixed issue #7</li><li>Added confirmation when new doctor is assigned</li><li>Worked on video showing the features</li></ul>                           |              |
+
+# Scrum Meeting Nine
+| Name   | What I did Yesterday | What tasks I will do today | Any isssues? |
+| ------ | -------------------- | -------------------------- | ------------ |
+| Ben    |                      |                            |              |
+| Hayden |                      |                            |              |
+| Robin  |  <ul><li>Merge the branch and deal with anny merge conflicts</li></ul>   |          <ul><li>Help my project partners finish off the last branches and run through the interface to make sure everything works</li></ul>                      |              |
+| Sean   |                      |                            |              |
